@@ -9,13 +9,14 @@ class Index  extends Controller
 
     public function regist()
     {
-    	dump($this->request());
-       //return $this->fetch('/public/regist');
+    	
+    	echo 11;
+       return $this->fetch('/public/regist');
     }
 
     public function index()
     {
-        //return $this->regist();
+        return $this->regist();
     }
 
 }

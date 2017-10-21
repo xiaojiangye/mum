@@ -14,7 +14,7 @@
 
 
 
-      <form action=""  method="post" name="fm">
+      <form action="{:url(Index/regist())}"  method="post" name="fm">
 
 
 
@@ -120,7 +120,7 @@ $(function ()
           }
           else
           {
-              $.post( {:url(Index/regist)} , { name: name.val(), email: email.val() , pwd:pwd.val()  },
+              $.post( {:url(Index/regist())}} , { name: name.val(), email: email.val() , pwd:pwd.val()  },
               function(data)
               {
                 alert("Data Loaded: " + data);
