@@ -13,10 +13,7 @@
       <div class="tc" style="margin-top:-10px;"><img src="images/regtxt.png"></div>
 
 
-
-      <form action="{:url(Index/regist())}"  method="post" name="fm">
-
-
+      <form action="{:url('User/regist')}"  method="post" id="fm">
 
       <div class="boxbd mt20">
         <label class="label">
@@ -30,6 +27,11 @@
           <span class="text">请输入您的邮箱</span>
         </label>
 
+        <label class="label">
+          <input type="text" name="phone" id='phone' value="" class="loginipt key user">
+          <span class="text">请输入您的手机号</span>
+        </label>
+
         
         <label class="label">
           <input type="password" name="pwd" id='pwd' value="" class="loginipt key pwd">
@@ -39,7 +41,7 @@
           <input type="password" name="rpwd" id='rpwd' value="" class="loginipt key pwd">
           <span class="text">请再次输入您的密码</span>
         </label>
-        <button type="submit" name="login" id='regist' value="" class="button btn-reg" >立即注册</button>
+        <button type="submit" id='regist' value="" class="button btn-reg" >立即注册</button>
 
 
 
@@ -112,25 +114,16 @@ $(function ()
 
      var regist = $('#regist').click(function()
       {
-      
-          if(!status || (name.val()==null))
+        $.post("{:url('User/selectUser')}" , {name:123}, success);
+          function success(data)
           {
-            alert('注册失败');
-            return false;
+            var res = json_decode('data')['status'];
+            if(res == 1)
+            {
+              alert('注册成功,去登录吧!');
+            }
           }
-          else
-          {
-              $.post( {:url(Index/regist())}} , { name: name.val(), email: email.val() , pwd:pwd.val()  },
-              function(data)
-              {
-                alert("Data Loaded: " + data);
-             });
-          }
-          //alert('注册成功!去登录试试');
-
-          
-
-      });
+        });
     
   });
 </script>

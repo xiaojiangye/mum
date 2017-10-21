@@ -145,6 +145,7 @@ return [
         '__CSS__' => '/static/css/',
         '__IMAGE__' => '/static/image/',
         '__JS__' => '/static/js/',
+        '__PICTURE__' => '/static/picture/'
     ],
     // 默认跳转页面对应的模板文件
     'dispatch_success_tmpl'  => THINK_PATH . 'tpl' . DS . 'dispatch_jump.tpl',
