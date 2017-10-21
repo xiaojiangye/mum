@@ -1,4 +1,7 @@
 .idea
 composer.lock
 *.log
+<<<<<<< HEAD
 
+=======
+>>>>>>> fe32c45b8f60f39a572c7d7942255b8770719259

@@ -1,24 +1,21 @@
 <?php
 namespace app\index\controller;
+
 use think\Controller; 
-use think\index\View;
+use think\View;
 
 class Index  extends Controller
 {
-    public function index()
-    {       
-        return $this->fetch();
-         
-    }
+
     public function regist()
     {
-        return $this->fetch();
+    	dump($this->request());
+       //return $this->fetch('/public/regist');
     }
-    public function login()
+
+    public function index()
     {
-        return $this->fetch();
+        //return $this->regist();
     }
 
-
-   
 }

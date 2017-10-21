@@ -15,7 +15,11 @@ return [
     // 服务器地址
     'hostname'        => '127.0.0.1',
     // 数据库名
+<<<<<<< HEAD
     'database'        => 'think',
+=======
+    'database'        => 'mumma',
+>>>>>>> fe32c45b8f60f39a572c7d7942255b8770719259
     // 用户名
     'username'        => 'root',
     // 密码

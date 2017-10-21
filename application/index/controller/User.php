@@ -10,8 +10,9 @@ class User  extends Controller
         return $this->fetch();
     }
     public function login()
-    {    $data = input('post.name');
-         $this->assign('data', $data);
+    {    
+        $data = input('post.name');
+        $this->assign('data', $data);
         return $this->fetch();
     }
     public function dologin()
