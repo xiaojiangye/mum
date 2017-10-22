@@ -1,24 +1,15 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-	<link type="text/css" rel="stylesheet" href="__CSS__style.css" />
-    <!--[if IE 6]>
-    <script src="__JS__iepng.js" type="text/javascript"></script>
-        <script type="text/javascript">
-           EvPNG.fix('div, ul, img, li, input, a'); 
-        </script>
-    <![endif]-->    
+	<link type="text/css" rel="stylesheet" href="__CSS__style.css" />   
     <script type="text/javascript" src="__JS__jquery-1.11.1.min_044d0927.js"></script>
-	<script type="text/javascript" src="__JS__jquery.bxslider_e88acd1b.js"></script>
-    
+    <script type="text/javascript" src="__JS__jquery.bxslider_e88acd1b.js"></script>
     <script type="text/javascript" src="__JS__jquery-1.8.2.min.js"></script>
-    <script type="text/javascript" src="__JS__menu.js"></script>    
-        
-	<script type="text/javascript" src="__JS__select.js"></script>
-    
-	<script type="text/javascript" src="__JS__lrscroll.js"></script>
-    
+    <script type="text/javascript" src="__JS__jquery-1.11.3.js"></script>
+    <script type="text/javascript" src="__JS__menu.js"></script>      
+	  <script type="text/javascript" src="__JS__select.js"></script>
+    <script type="text/javascript" src="__JS__lrscroll.js"></script>
     <script type="text/javascript" src="__JS__iban.js"></script>
     <script type="text/javascript" src="__JS__fban.js"></script>
     <script type="text/javascript" src="__JS__f_ban.js"></script>
@@ -26,26 +17,15 @@
     <script type="text/javascript" src="__JS__bban.js"></script>
     <script type="text/javascript" src="__JS__hban.js"></script>
     <script type="text/javascript" src="__JS__tban.js"></script>
-    
 	<script type="text/javascript" src="__JS__lrscroll_1.js"></script>
     
     
-<title>尤洪</title>
+<title>登录页面</title>
 </head>
 <body>  
 <!--Begin Header Begin-->
-<div class="soubg">
-	<div class="sou">
-        <span class="fr">
-        	<span class="fl">你好，请<a href="Login.html">登录</a>&nbsp; <a href="Regist.html" style="color:#ff4e00;">免费注册</a>&nbsp; </span>
-            <span class="fl">|&nbsp;关注我们：</span>
-            <span class="s_sh"><a href="#" class="sh1">新浪</a><a href="#" class="sh2">微信</a></span>
-            <span class="fr">|&nbsp;<a href="#">手机版&nbsp;<img src="__IMAGE__s_tel.png" align="absmiddle" /></a></span>
-        </span>
-    </div>
-</div>
-<!--End Header End--> 
-<!--Begin Login Begin-->
+
+
 <div class="log_bg">	
     <div class="top">
         <div class="logo"><a href="Index.html"><img src="__IMAGE__logo.png" /></a></div>
@@ -53,7 +33,7 @@
 	<div class="login" style="height: 600px;">
     	<div class="log_img"><img src="__IMAGE__l_img.png" width="611" height="425" /></div>
 		<div class="log_c" style="height: 600px;">
-        	<form action="{url:('login')}" method="post">
+        	<form action="{url:('User/dologin')}" method="post" enctype="multipart/form-data">
             <table border="0" style="width:370px; font-size:14px; margin-top:30px;" cellspacing="0" cellpadding="0">
               <tr height="50" valign="top">
               	<td width="55">&nbsp;</td>
@@ -64,7 +44,7 @@
               </tr>
               <tr height="70">
                 <td>用户名</td>
-                <td><input type="text" value="" class="l_user" id="username" /></td>
+                <td><input type="text" name="name" class="l_user" id="username" /></td>
               </tr>
               <tr height="10">
                 <td></td>
@@ -72,7 +52,7 @@
               </tr>
               <tr height="70">
                 <td>密&nbsp; &nbsp; 码</td>
-                <td><input type="password" id="pad" class="l_pwd" /></td>
+                <td><input type="password" id="pad" class="l_pwd" name="pwd" /></td>
               </tr>
                <tr height="20">
                 <td></td>
@@ -105,7 +85,8 @@
               </tr>
               <tr height="60">
               	<td>&nbsp;</td>
-                <td><input type="submit" id="log" value="登录" class="log_btn" /></td>
+                <td><input type="submit" id="log" value="登录" style="width:300px;height:30px;background-color: pink;border:none;" /></td>
+
               </tr>
             </table>
             </form>
@@ -116,7 +97,7 @@
 <!--Begin Footer Begin-->
 <div class="btmbg">
     <div class="btm">
-        备案/许可证编号：蜀ICP备12009302号-1-www.dingguagua.com   Copyright © 2015-2018 尤洪商城网 All Rights Reserved. 复制必究 , Technical Support: Dgg Group <br />
+        备案/许可证编号：蜀ICP备12009302号-1-www.dingguagua.com   Copyright © 2015-2018  All Rights Reserved. 复制必究 , Technical Support: Dgg Group <br />
         <img src="__IMAGE__b_1.gif" width="98" height="33" /><img src="__IMAGE__b_2.gif" width="98" height="33" /><img src="__IMAGE__b_3.gif" width="98" height="33" /><img src="__IMAGE__b_4.gif" width="98" height="33" /><img src="__IMAGE__b_5.gif" width="98" height="33" /><img src="__IMAGE__b_6.gif" width="98" height="33" />
     </div>    	
 </div>
@@ -126,30 +107,25 @@
 </html>
 
 <script type="text/javascript">
- /* $('#log').click(function () {
-    var name = $('input[name=name]').val();
-    if (name.length > 4 || name.length<2) {
-      "你的用户名长度不正确"
-    }
-     if (name.length > 4 || name.length<2) {
-      "你的用户名长度不正确"
-    }　
-    var pwd = $('input[name=pwd]').val();
-    
-    $.post("{url('User/login')}",{name:name},function (data) {
-      alert('data');
-    },'json')
-    return false;
-  }
-    )*/
-
   $(function(){
         $('#log').click(function () {
           var name = $('#username').val();
           //alert(name);
           var pwd = $('#pad').val();
           //alert(pwd);
+           $.post("{:url('User/dologin')}",{name:name,pwd:pwd},function (data) {
+            var data = JSON.parse(data);
+            if(data.status == 0){
+              $('#perror').html(data.msg);
+            }else if(data.status == 2){
+              $('#uerror').html(data.msg);
+            }else if(data.status == 1) {
+              //header(refresh:3,url={:url('Index/index')});
+            }
+           },'json');
+           return false;
         })
+         
         //用户名取得焦点
         $("#username").focus(function(){
           $('#uerror').html("");
@@ -157,34 +133,39 @@
       });
         //密码框得到焦点
         $("#pad").focus(function(){
-
-          $('#perror').html("<span></span>");
+          $('#perror').html("");
         $("#pad").css("background-color","#FFFFCC");
       });
-      
-        //失去焦点
+        //用户名失去焦点
         $("#username").blur(function(){
-          if($("#username").val()=="") {
-            $('#uerror').html("用户名不能为空<");
+          
+          if($("#username").val() == "") {
+
+            $('#uerror').html("用户名不能为空");
             }
-            if($("#usernaem").val() !== "" ) {
+            /*$.post("{url('User/login')}",{name:name},function (data) {
+             alert(data);
+             },'json');*/
+            /*if($("#usernaem").val() !== "" ) {
                $('#uerror').html("用户名不存在");
-            }
+            }*/
+            $("#username").css("background-color","");
         })
 
           //密码失去焦点
         $("#pad").blur(function(){
-          if($("#pad").val()=="") {
+          if($("#pad").val() == "") {
             $('#perror').html("还没有输入密码");
           }
-
+          $("#pad").css("background-color","");
         })
+   /*    $.post("{url('User/login')}",{name:name},function (data) {
+      alert(data);
+    },'json');*/
 
-       $.post("{url('User/login')}",{name:name,pwd:pwd},function (data) {
-      
-    },'json')
+
   
-      })
+      });
    
  
 </script>
