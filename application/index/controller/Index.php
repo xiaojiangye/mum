@@ -7,18 +7,17 @@ use think\View;
 class Index  extends Controller
 {
 
-   /* public function regist()
+
+   public function regist()
     {
     	
        return $this->fetch('/public/regist');
     }
-*/
 
     public function index()
     {
     	
     	return $this->fetch('/public/index');
-    
     }
 
 }

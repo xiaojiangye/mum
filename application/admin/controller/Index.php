@@ -8,13 +8,9 @@ class Index  extends Controller
 {
 	public function index()
 	{
-		$this->fetch();
+		return $this->fetch('public/index');
 	}
 
-	public function login()
-	{
-		return $this->fetch('public/login');
-	}
 }
 
 
