@@ -8,12 +8,10 @@ use app\index\model\User as UserModel;
 
 class User  extends  Controller
 {
-	protected $request ;
 	protected $userModel;
 
 	public function _initialize()
 	{
-		$this->request = Request::instance();
 		$this->userModel =  new UserModel();
 	}
 
@@ -31,17 +29,24 @@ class User  extends  Controller
 
 	public function regist()
 	{
+		return $this->fetch();
+	}
+
+	public function addUserInfo()
+	{
 		$data = $this->request->post();
-		$res = $this->userModel->add($data);
-		if($res)
+		if($this->userModel->add($data))
 		{
-			$this->success('新增成功', 'Index/index');
+			return 1;
 		}
 		else
 		{
-			$this->error('新增失败');
+			return 0;
 		}
+
 	}
+
+	
 }
 
 

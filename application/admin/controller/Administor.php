@@ -11,7 +11,6 @@ class Administor  extends Controller
 	public function _initailize()
 	{				
 		$this->request = Request::instance();
-
 	}
 
 	public function login()

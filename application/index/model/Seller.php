@@ -3,9 +3,9 @@ namespace app\index\model;
 
 use think\Model;
 
-class User  extends Model
+class Seller  extends Model
 {
-	/*把用户信息添加到数据库中!*/
+
 	public function add($data)
 	{
 		$this->data($data);
@@ -13,12 +13,8 @@ class User  extends Model
 		return $this->id;
 	}
 
-	public function getName($name)
-	{
-		/*dump($name);*/
-		return $this->where('name', $name)->select();
-	}
 }
+
 
 
 
