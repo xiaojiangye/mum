@@ -1,0 +1,126 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+{include file="common/mcss" /}
+<title>个人信息</title>
+</head>
+<body> 
+{include file="common/mpheader" /} 
+    <div class="m_content">
+    {include file="common/mpleft"}
+		<div class="m_right">
+        	<div class="m_des">
+          
+            	<table border="0" style="width:870px; line-height:22px;" cellspacing="0" cellpadding="0" style="background-color: pink;">
+                  <tr valign="top">
+                    <td width="115"><img src="{$res['photo']}" width="90" height="90" /></td>
+                    <td>
+                    	<div class="m_user">
+                     <form method="post">
+                       昵称:&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" value="{$res['name']}" name="name" style="border:none;">
+                       </div>
+                       
+                            <div><input type="submit" id="edit" value="确认修改昵称" style="border:none;width: 100px;color:red;background-color:pink;margin-top:10px;" ></div>
+                      </form>
+                        <p>
+                            等级：普通用户 <br />
+                            上一次登录时间: 2015-09-28 18:19:47<br />
+                            您还没有通过邮件认证 <a href="" style="color:#ff4e00;">点此发送认证邮件</a>
+                        </p>
+                        <div class="m_notice" >
+                          <!-- 头像的修改 -->
+                         <form action="/index/user/upload" enctype="multipart/form-data" method="post">
+                         <font color="red">修改头像</font>
+                            <input type="file" name="image" />
+                            <input type="submit" value="上传"/>
+                          </form>
+                        </div>
+                    </td>
+                  </tr>
+                </table>	
+            </div>
+         
+            <div class="mem_t">资产信息</div>
+            <table border="0" class="mon_tab" style="width:870px; margin-bottom:20px;" cellspacing="0" cellpadding="0">
+              <tr>
+                <td width="33%">用户等级：<span style="color:#555555;">普通会员</span></td>
+                <td width="33%">消费金额：<span>￥200元</span></td>
+                <td width="33%">积分：<span>{$res['grade']}</span></td>
+              </tr>
+              <tr>
+                <td>账户余额：<span>￥{$res['money']}</span></td></td>
+                <td></td></td>
+                <td></td></td>
+              </tr>
+              <tr>
+                <td colspan="3">订单提醒：
+                	<font style="font-family:'宋体';">待付款(<span>0</span>) &nbsp; &nbsp; &nbsp; &nbsp; 待收货(<span>2</span>) &nbsp; &nbsp; &nbsp; &nbsp; 待评论(<span>1</span>)</font>
+                </td>
+              </tr>
+            </table>
+
+            <div class="mem_t">账号信息</div>
+           
+            <table border="0" class="mon_tab" style="width:870px; margin-bottom:20px;" cellspacing="0" cellpadding="0">
+              <tr>
+                <td width="40%">用户ID：<span style="color:#555555;">{$res['id']}</span></td>
+              </tr>
+              <tr>
+                <td>电&nbsp; &nbsp; 话：<span style="color:#555555;">{$res['phone']}</span></td>
+                <td>邮&nbsp; &nbsp; 箱：<span style="color:#555555;">{$res['email']}</span></td>
+              </tr>
+              <tr>
+                <td>注册时间：<span style="color:#555555;">2015-10-10</span></td>
+                <td></td>
+              </tr>
+            </table> 
+           
+            </form>
+
+        </div>
+        </div>
+    
+	<!--End 用户中心 End--> 
+{include file="common/mpfooter"}
+</body>
+</html>
+<script type="text/javascript">
+    $(function() {
+      $('#edit').click (function() {
+        var  name = $("input[name='name']").val();
+       /* var phone =$("input[name='phone']").val();
+        var email = $("input[name = 'email']").val();*/
+       // alert(phone);
+      /* $.post("{url('User/edituser')}",{name:name,phone:phone,email:email},function (data) {
+            
+              data = JSON.parse(data);
+               //alert(data);
+             //console.log(data);
+             },'json');*/
+        
+         $.post('editUser',{name:name},success,'text')
+         function success(data) {
+             var data = JSON.parse(data);
+             console.log(data);
+             if (data == 0) {
+              alert('修改失败');
+             }else if(data ==1)
+             {
+              alert('恭喜你修改成功');
+             }
+             };
+      return false;
+      })
+      
+
+
+    })
+    
+     
+
+
+   
+ 
+
+
+</script>

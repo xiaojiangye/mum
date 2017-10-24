@@ -22,5 +22,22 @@ class Index  extends Controller
     	$data = ['code' => $code];
     	return json_encode($data);
     }
+    public function brandList()
+    {
+    	return $this->fetch();
+    }
+    public function details()
+   	{
+   		return $this->fetch();
+   	}
+   	public function sellDetails()
+   	{
+   		return $this->fetch();
+   	}
+   	public function orderDetails()
+   	{
+   		return $this->fetch();
+   	}
+   
 
 }
