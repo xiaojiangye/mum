@@ -8,11 +8,13 @@ use think\Request;
 class Administor  extends Controller
 {
 	protected $request;
+
 	public function _initailize()
 	{				
 		$this->request = Request::instance();
 	}
 
+	
 	public function login()
 	{
 		/*$data = $_POST;*/

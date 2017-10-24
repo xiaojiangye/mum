@@ -15,6 +15,7 @@ class User  extends  Controller
 		$this->userModel =  new UserModel();
 	}
 
+	/*注册时查询用户名是否存在的判断*/
 	public function selectUser()
 	{
 		$data = $this->request->post();
@@ -27,23 +28,22 @@ class User  extends  Controller
 		}
 	}
 
+	/*渲染注册页面*/
 	public function regist()
 	{
 		return $this->fetch();
 	}
 
+	/*添加注册时的个人信息*/
 	public function addUserInfo()
 	{
 		$data = $this->request->post();
 		if($this->userModel->add($data))
 		{
 			return 1;
-		}
-		else
-		{
+		}else{
 			return 0;
 		}
-
 	}
 
 	

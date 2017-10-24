@@ -12,6 +12,7 @@ class Index  extends Controller
     	return $this->fetch();
     }
 
+    /*发送邮件 并返回验证码*/
     public function getEmailCode()
     {
     	$address = $this->request->post();

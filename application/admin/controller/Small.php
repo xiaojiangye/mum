@@ -28,15 +28,9 @@ class Small extends Controller
 		/*把商品的对应的大版块id得到对应的style*/
 		foreach($data as $key =>  $val)
 		{
-			/*dump($val['id']);*/
 			$bigId = $val['big_id'];
-			/*dump($bigId);*/
 			$res = $this->big->getByField('id' , $bigId);
 			$data[$key]['big_style'] = $res[0]['style'];
-			/*$data[$key]['big_style'] = $res[0]['style'];*/
-
-			//dump($data[$key]['big_style']);
-			//dump($data);
 		}
 		
 		$this->assign('data' , $data);

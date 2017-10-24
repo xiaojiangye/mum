@@ -6,6 +6,7 @@ use think\Controller;
 
 class Index  extends Controller
 {
+	/*渲染主页*/
 	public function index()
 	{
 		return $this->fetch();
@@ -21,6 +22,7 @@ class Index  extends Controller
 		return $this->fetch('public/login');
 	}
 
+	/*渲染类型添加的页面*/
 	public function category_add()
 	{
 		return $this->fetch('public/category_seller_add');

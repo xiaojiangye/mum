@@ -15,6 +15,7 @@ class Seller extends Controller
 		$this->seller = new SellerModel();
 	}
 
+	/*添加商家信息*/
 	public function addSellerInfo()
 	{
 		$res = $this->seller->add($this->request->post());
