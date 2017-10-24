@@ -6,20 +6,14 @@
     <script type="text/javascript" src="__JS__jquery-1.11.1.min_044d0927.js"></script>
     <script type="text/javascript" src="__JS__jquery.bxslider_e88acd1b.js"></script>
     <script type="text/javascript" src="__JS__jquery-1.8.2.min.js"></script>
-    <script type="text/javascript" src="__JS__jquery-1.11.3.js"></script>
+   
     <script type="text/javascript" src="__JS__menu.js"></script>      
 	  <script type="text/javascript" src="__JS__select.js"></script>
     <script type="text/javascript" src="__JS__lrscroll.js"></script>
-    <script type="text/javascript" src="__JS__iban.js"></script>
-    <script type="text/javascript" src="__JS__fban.js"></script>
-    <script type="text/javascript" src="__JS__f_ban.js"></script>
-    <script type="text/javascript" src="__JS__mban.js"></script>
     <script type="text/javascript" src="__JS__bban.js"></script>
     <script type="text/javascript" src="__JS__hban.js"></script>
     <script type="text/javascript" src="__JS__tban.js"></script>
 	<script type="text/javascript" src="__JS__lrscroll_1.js"></script>
-    
-    
 <title>登录页面</title>
 </head>
 <body>  
@@ -31,7 +25,7 @@
         <div class="logo"><a href="Index.html"><img src="__IMAGE__logo.png" /></a></div>
     </div>
 	<div class="login" style="height: 600px;">
-    	<div class="log_img"><img src="__IMAGE__l_img.png" width="611" height="425" /></div>
+    	<div class="log_img"><!-- <img src="__IMAGE__l_img.png" width="611" height="425" /> --></div>
 		<div class="log_c" style="height: 600px;">
         	<form action="{url:('User/dologin')}" method="post" enctype="multipart/form-data">
             <table border="0" style="width:370px; font-size:14px; margin-top:30px;" cellspacing="0" cellpadding="0">
@@ -114,13 +108,14 @@
           var pwd = $('#pad').val();
           //alert(pwd);
            $.post("{:url('User/dologin')}",{name:name,pwd:pwd},function (data) {
+            //console.log(data);
             var data = JSON.parse(data);
-            if(data.status == 0){
-              $('#perror').html(data.msg);
-            }else if(data.status == 2){
-              $('#uerror').html(data.msg);
-            }else if(data.status == 1) {
-              //header(refresh:3,url={:url('Index/index')});
+            if(data == 0){
+              $('#perror').html('密码不正确');
+            }else if(data == 2){
+              $('#uerror').html('用户名不正确');
+            }else if(data == 1) {
+             window.location.href="/index/index/index"; 
             }
            },'json');
            return false;
@@ -159,12 +154,6 @@
           }
           $("#pad").css("background-color","");
         })
-   /*    $.post("{url('User/login')}",{name:name},function (data) {
-      alert(data);
-    },'json');*/
-
-
-  
       });
    
  

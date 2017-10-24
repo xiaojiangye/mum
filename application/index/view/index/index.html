@@ -3,33 +3,20 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<link type="text/css" rel="stylesheet" href="__CSS__style.css" />
-    <!--[if IE 6]>
-    <script src="__JS__iepng.js" type="text/javascript"></script>
-        <script type="text/javascript">
-           EvPNG.fix('div, ul, img, li, input, a'); 
-        </script>
-    <![endif]-->    
     <script type="text/javascript" src="__JS__jquery-1.11.1.min_044d0927.js"></script>
 	<script type="text/javascript" src="__JS__jquery.bxslider_e88acd1b.js"></script>
-    
     <script type="text/javascript" src="__JS__jquery-1.8.2.min.js"></script>
-    <script type="text/javascript" src="__JS__menu.js"></script>    
-        
-	<script type="text/javascript" src="__JS__select.js"></script>
-    
+    <script type="text/javascript" src="__JS__menu.js"></script>       
+	<script type="text/javascript" src="__JS__select.js"></script> 
 	<script type="text/javascript" src="__JS__lrscroll.js"></script>
-    
-    <script type="text/javascript" src="__JS__iban.js"></script>
     <script type="text/javascript" src="__JS__fban.js"></script>
     <script type="text/javascript" src="__JS__f_ban.js"></script>
     <script type="text/javascript" src="__JS__mban.js"></script>
     <script type="text/javascript" src="__JS__bban.js"></script>
     <script type="text/javascript" src="__JS__hban.js"></script>
     <script type="text/javascript" src="__JS__tban.js"></script>
-    
 	<script type="text/javascript" src="__JS__lrscroll_1.js"></script>
-    
-    
+    {include file="common/indexcss"}
 <title>小馋猫</title>
 </head>
 <body>  
@@ -113,7 +100,21 @@
         </span>
         <!--End 所在收货地区 End-->
         <span class="fr">
-        	<span class="fl">你好，请<a href="{:url('User/login')}">登录</a>&nbsp; <a href="{:url('User/regist')}" style="color:#ff4e00;">免费注册</a>&nbsp;|&nbsp;<a href="{:url('User/regist')}">我的订单</a>&nbsp;|<a href="member.php">个人中心</a></span>
+        {$Think.session.name}
+        	<span class="fl">
+                {if empty(session('name'))}
+                   
+                    你好，请
+                <a href="{:url('User/login')}">登录</a>&nbsp; 
+                <a href="{:url('User/regist')}" style="color:#ff4e00;">免费注册</a>
+                {/if}
+                 <a href="{:url('User/memberUser')}">个人中心</a>
+
+                &nbsp;|&nbsp;
+                <a href="{:url('User/regist')}">我的订单</a>&nbsp;|
+                
+            </span>
+
         	<span class="ss">
             	<div class="ss_list">
                 	<a href="#">收藏夹</a>
@@ -127,8 +128,7 @@
                         </div>
                     </div>     
                 </div>
-               
-               
+              
             </span>
            
         </span>
@@ -250,7 +250,8 @@
         <!--End 商品分类详情 End-->                                                     
     	<ul class="menu_r">                                                 
         	<li><a href="Index.html">首页</a></li>
-            <li><a href="BrandList.html">甜品屋</a></li>
+            
+            <li><a href="{:url('Index/brandlist')}">甜品屋</a></li>
             <li><a href="BrandList.html">水果</a></li>
             <li><a href="BrandList.html.html">薯片</a></li>
         </ul>
@@ -286,7 +287,7 @@
         <!--End Banner End-->
         <div class="inews">
         	<div class="news_t">
-            	<span class="fr"><a href="#">更多 ></a></span>新闻资讯
+            	<span class="fr"><a href="#">更多 ></a></span>商家最新消息
             </div>
             <ul>
             	<li><span>[ 特惠 ]</span><a href="#">掬一轮明月 表无尽惦念</a></li>
@@ -759,96 +760,13 @@
             </div>
         </div>
     </div>
-    <!--End 猜你喜欢 End-->
-    
+
+    <!--End 猜你喜欢 End--> 
     <!--Begin Footer Begin -->
-    <div class="b_btm_bg b_btm_c">
-        <div class="b_btm">
-            <table border="0" style="width:210px; height:62px; float:left; margin-left:75px; margin-top:30px;" cellspacing="0" cellpadding="0">
-              <tr>
-                <td width="72"><img src="__CSS__b1.png" width="62" height="62" /></td>
-                <td><h2>正品保障</h2>正品行货  放心购买</td>
-              </tr>
-            </table>
-			<table border="0" style="width:210px; height:62px; float:left; margin-left:75px; margin-top:30px;" cellspacing="0" cellpadding="0">
-              <tr>
-                <td width="72"><img src="__CSS__b2.png" width="62" height="62" /></td>
-                <td><h2>满38包邮</h2>满38包邮 免运费</td>
-              </tr>
-            </table>
-            <table border="0" style="width:210px; height:62px; float:left; margin-left:75px; margin-top:30px;" cellspacing="0" cellpadding="0">
-              <tr>
-                <td width="72"><img src="__CSS__b3.png" width="62" height="62" /></td>
-                <td><h2>天天低价</h2>天天低价 畅选无忧</td>
-              </tr>
-            </table>
-            <table border="0" style="width:210px; height:62px; float:left; margin-left:75px; margin-top:30px;" cellspacing="0" cellpadding="0">
-              <tr>
-                <td width="72"><img src="__CSS__b4.png" width="62" height="62" /></td>
-                <td><h2>准时送达</h2>收货时间由你做主</td>
-              </tr>
-            </table>
-        </div>
-    </div>
-    <div class="b_nav">
-    	<dl>                                                                                            
-        	<dt><a href="#">新手上路</a></dt>
-            <dd><a href="#">售后流程</a></dd>
-            <dd><a href="#">购物流程</a></dd>
-            <dd><a href="#">订购方式</a></dd>
-            <dd><a href="#">隐私声明</a></dd>
-            <dd><a href="#">推荐分享说明</a></dd>
-        </dl>
-        <dl>
-        	<dt><a href="#">配送与支付</a></dt>
-            <dd><a href="#">货到付款区域</a></dd>
-            <dd><a href="#">配送支付查询</a></dd>
-            <dd><a href="#">支付方式说明</a></dd>
-        </dl>
-        <dl>
-        	<dt><a href="#">会员中心</a></dt>
-            <dd><a href="#">资金管理</a></dd>
-            <dd><a href="#">我的收藏</a></dd>
-            <dd><a href="#">我的订单</a></dd>
-        </dl>
-        <dl>
-        	<dt><a href="#">服务保证</a></dt>
-            <dd><a href="#">退换货原则</a></dd>
-            <dd><a href="#">售后服务保证</a></dd>
-            <dd><a href="#">产品质量保证</a></dd>
-        </dl>
-        <dl>
-        	<dt><a href="#">联系我们</a></dt>
-            <dd><a href="#">网站故障报告</a></dd>
-            <dd><a href="#">购物咨询</a></dd>
-            <dd><a href="#">投诉与建议</a></dd>
-        </dl>
-        <div class="b_tel_bg">
-        	<a href="#" class="b_sh1">新浪微博</a>            
-        	<a href="#" class="b_sh2">腾讯微博</a>
-            <p>
-            服务热线：<br />
-            <span>400-123-4567</span>
-            </p>
-        </div>
-        <div class="b_er">
-            <div class="b_er_c"><img src="__CSS__er.gif" width="118" height="118" /></div>
-            <img src="__CSS__ss.png" />
-        </div>
-    </div>    
-    <div class="btmbg">
-		<div class="btm">
-        	备案/许可证编号：蜀ICP备12009302号-1-www.dingguagua.com   Copyright © 2015-2018 尤洪商城网 All Rights Reserved. 复制必究 , Technical Support: Dgg Group <br />
-            <img src="__CSS__b_1.gif" width="98" height="33" /><img src="__CSS__b_2.gif" width="98" height="33" /><img src="__CSS__b_3.gif" width="98" height="33" /><img src="__CSS__b_4.gif" width="98" height="33" /><img src="__CSS__b_5.gif" width="98" height="33" /><img src="__CSS__b_6.gif" width="98" height="33" />
-        </div>    	
-    </div>
+   {include file="common/indexFooter"}
     <!--End Footer End -->    
 </div>
 
 </body>
 
-
-<!--[if IE 6]>
-<script src="//letskillie6.googlecode.com/svn/trunk/2/zh_CN.js"></script>
-<![endif]-->
 </html>
