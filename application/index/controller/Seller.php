@@ -15,6 +15,7 @@ class Seller extends Controller
 		$this->seller = new SellerModel();
 	}
 
+
 	/*添加商家信息*/
 	public function addSellerInfo()
 	{
@@ -26,4 +27,11 @@ class Seller extends Controller
 			return 0;
 		}
 	}
+	
+	/*渲染商家中心的页面*/
+	public function selInfo()
+	{
+		return  $this->fetch();
+	}
+
 }
