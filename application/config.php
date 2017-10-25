@@ -146,7 +146,7 @@ return [
         '__CSS__' => '/static/css/',
         '__IMAGE__' => '/static/image/',
         '__JS__' => '/static/js/',
-        'BOOT'     =>'static/bootstrap/'
+        '__BOOT__'     =>'static/bootstrap/css/bootstrap.css'
     ],
     // 默认跳转页面对应的模板文件
     'dispatch_success_tmpl'  => THINK_PATH . 'tpl' . DS . 'dispatch_jump.tpl',

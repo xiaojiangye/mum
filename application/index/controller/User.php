@@ -10,7 +10,7 @@ use app\index\model\User as UserModel;
 class User extends Controller
 {
 
-protected $user;
+  protected $user;
   public function _initialize()
   {
     $this->user = new UserModel();
@@ -49,11 +49,7 @@ protected $user;
    
      //我的地址
     public function memberAddress()
-    {  //
-      //$user=ModelUser::get(1);
-      // $user = new UserModel();
-      // $res = $user->refre();
-      // $this->assign('res',$res);
+    {  
       return $this->fetch();
     }
     //我的现金
@@ -70,9 +66,6 @@ protected $user;
      public function memberUser()
     {  
       // 
-     
-
-
         $user = new UserModel();
         $res = $user->select()[0]; 
         //dump($res['grade']);
@@ -88,8 +81,6 @@ protected $user;
        $data = $this->request->post();
       //dump($data);
        $res = $this->user->ajaxUser($data);
-
-      
       //dump($res);die;
        if($res) {
         return $res;
@@ -103,7 +94,7 @@ protected $user;
     public function upload(){
   //?获取表单上传文件?例如上传了001.jpg
      $file = $this->request->file("image");
-      //dump($file);
+      dump($file);
         //?移动到框架应用根目录/public/uploads/?目录下
         if($file){
         $info = $file->move(ROOT_PATH . 'public' . DS . 'uploads');
@@ -143,22 +134,46 @@ protected $user;
       return $this->fetch();
     }
     //账户安全验证 电话修改
-    public function pedit()
+    public function editPhone()
     {
       $data = $this->request->post();
-      return 1;
-     /* 
+      //dump($data);die;
       $result = $this->user->ajaxPhone($data);
       if ($result == 0) {
         return 0;//原手机号码不正确
-      }else {
-        if($reult) {
+      }else if($result) {
           return 1;//修改成功
-        }else {
+        }else{
           return 2; //修改失败
         }
-      }*/
 
+    }
+    //账户安全验证 邮箱修改
+    public function editEmail()
+    {
+      $data = $this->request->post();
+      //dump($data);die;
+      $result = $this->user->ajaxEmail($data);
+      if ($result == 0) {
+        return 0;//原邮箱不正确
+      }else if($result) {
+          return 1;//修改成功
+        }else{
+          return 2; //修改失败
+        }
+    }
+
+     //账户安全验证 密码修改
+    public function editPwd()
+    {
+      $data = $this->request->post();
+      //dump($data);die;
+      $result = $this->user->ajaxPwd($data);
+     if($result) {
+          return 1;//修改成功
+        }else{
+          return 2; //修改失败
+        }
     }
 
 

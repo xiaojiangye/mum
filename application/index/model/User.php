@@ -17,17 +17,44 @@ class User  extends Model
 		//dump($data['name']);die;
 		return $this->where('id',session::get('id'))->update(['name'=>$data['name']]);
 	}
+	//电话号码修改
 	public function ajaxPhone($data)
 	{
-		
-		$result = $this->where('phone','$data.phone')->select();
+		//dump($data);
+		$result = $this->where('phone',$data['phone'])->select();
+		//dump($result);
 		if ($result) {
-			 $res =  $this->where('id',session::get('id'))->update(['phone'=>$data['rephone']]);
-			 return $res;
-
+			return   $this->where('id',session::get('id'))->update(['phone'=>$data['rephone']]);
+			 //dump($res);
+			 
 		}else {
-			$res = 0;
-			return $res;
+			return  0;
+		}
+
+	}
+	//邮箱修改
+	public function ajaxEmail($data)
+	{
+		//dump($data);
+		$result = $this->where('email',$data['email'])->select();
+		//dump($result);
+		if ($result) {
+			return   $this->where('id',session::get('id'))->update(['email'=>$data['reemail']]);
+			 //dump($res); 
+		}else {
+			return  0;
+		}
+
+	}
+	//密码修改
+	public function ajaxPwd($data)
+	{
+		//dump($data);
+		$result = $this->where('id',session::get('id'))->select()[0];
+		//dump($result);
+		if ($result['pwd'] == $data['pwd']) {
+			return   $this->where('id',session::get('id'))->update(['pwd'=>$data['npwd']]);
+			 //dump($res); 
 		}
 
 	}
