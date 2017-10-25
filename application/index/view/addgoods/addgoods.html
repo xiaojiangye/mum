@@ -1,11 +1,6 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-    <script>
-    $(window).load(function() {
-        $("#status").fadeOut();
-        $("#preloader").delay(350).fadeOut("slow");
-    })
-    </script>
+  
 <title>addgoods.html</title>
 </head>
 <body >  
@@ -13,21 +8,22 @@
 {include file='seller/selhead' /}
 <!--End Header End--> 
         {include file='seller/selcommon' /}
-    <div class="m_right" style="padding-left: 20px;">  
+    <div class="m_right" >  
         <section id="content" class="pt15" >
             <h3 class="flight_title">
                 <i class="flight_icon"></i>
                 添加商品
             </h3>
-            <div class="indent">
+            <div class="indent" style="margin-left: 0px;margin-top: 20px;">
                 <div class="allweb_box">
+                 <form method="post" action="{:url('Addgoods/uploadPicture')}" enctype="multipart/form-data">
                     <table class="table1 mb20">
                         <tr>
-                            <th width="14%">
+                            <th width="30%">
                                 销售类型：
                             </th>
                             <td width="100%">
-                                <select class="input1 w350">
+                                <select name='small' class="input1 w350">
                                     <option>薯条</option>
                                     <option>烧烤</option>
                                     <option>麻辣烫</option>
@@ -92,11 +88,13 @@
                                 商品描述：
                             </th>
                             <td colspan="3">
-                                <textarea name="description" class="input1 w100" style="height: 100px;"></textarea>
+                                <textarea name="description" class="input1 w100" style="margin-top:5px;height: 100px;border: 1px solid black;"></textarea>
                             </td>
                         </tr>
                     </table>
-                    <input type="button" value="添加商品">
+                    <input type="submit" value="添加商品">
+                  </form>
+                   
                 </div>
             </div>
         </section>
@@ -154,7 +152,6 @@ $(function(){
             var stock = $('input[name=stock]');
             if(!isNaN(stock.val()))
             {
-                alert(stock.val());
                 if(stock.val() < 11)
                 {
                     alert('库存量要大于10');
@@ -176,21 +173,29 @@ $(function(){
             } 
         });
 
-    $('input[type=button]').click(function()
+    /*$('input[type=button]').click(function()
         {
             var small =  $('select').val();
             var name = $('input[name=name]').val();
-            var picture = $("input[name=picture]").val();
+            var picture = $("input[name=picture]");
+            console.log(picture.val());
             var price = $("input[name=price]").val();
             var discount = $("input[name=discount]").val();
             var stock = $('input[name=stock]').val();
             var description = $('textareas').val();
-            if(small || name || picture || price || discount ||stock || description )
+            if(small || name || picture || price || discount || stock || description )
             {
-                alert('先完成信息啦!');
+                alert('信息已完整!');
+                $.post("{:url('Addgoods/addInfo')}" , {'small' :small , 'name' : name , 'picture' : picture , 'price' : price , 'discount' : discount , 'stock' : stock , 'description' : description } , function(data)
+                {
+                    console.log(data);
+                });
             }
-            
-        });
+            else
+            {
+                 alert('先完成信息啦!');
+            } 
+        });*/
 
 
 

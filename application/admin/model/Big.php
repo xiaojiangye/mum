@@ -8,10 +8,10 @@ use think\Model;
 class Big  extends  Model
 {
 	/*关联small的数据表  它们之间有一个big_id的联系*/
-	public function Small()
+/*	public function Small()
 	{
 		$this->belongsTo('small');
-	}
+	}*/
 
 	/*通过某个字段得到数据 也就是在检查某个是否存在*/
 	public function getByType($data)

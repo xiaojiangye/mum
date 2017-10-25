@@ -147,13 +147,16 @@ return [
         '__IMAGE__' => '/static/image/',
         '__JS__' => '/static/js/',
         '__PICTURE__' => '/static/picture/',
-        '__BOOT__'     =>'static/bootstrap/'
+        '__BOOT__'     =>'/static/bootstrap/',
+        '__UPLOADER__'   =>'/static/upload/'
     ],
+
     // 默认跳转页面对应的模板文件
     'dispatch_success_tmpl'  => THINK_PATH . 'tpl' . DS . 'dispatch_jump.tpl',
     'dispatch_error_tmpl'    => THINK_PATH . 'tpl' . DS . 'dispatch_jump.tpl',
 
     // +----------------------------------------------------------------------
+    // 
     // | 异常及错误设置
     // +----------------------------------------------------------------------
 
