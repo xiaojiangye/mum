@@ -1,0 +1,199 @@
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <script>
+    $(window).load(function() {
+        $("#status").fadeOut();
+        $("#preloader").delay(350).fadeOut("slow");
+    })
+    </script>
+<title>addgoods.html</title>
+</head>
+<body >  
+<!--Begin Header Begin-->
+{include file='seller/selhead' /}
+<!--End Header End--> 
+        {include file='seller/selcommon' /}
+    <div class="m_right" style="padding-left: 20px;">  
+        <section id="content" class="pt15" >
+            <h3 class="flight_title">
+                <i class="flight_icon"></i>
+                添加商品
+            </h3>
+            <div class="indent">
+                <div class="allweb_box">
+                    <table class="table1 mb20">
+                        <tr>
+                            <th width="14%">
+                                销售类型：
+                            </th>
+                            <td width="100%">
+                                <select class="input1 w350">
+                                    <option>薯条</option>
+                                    <option>烧烤</option>
+                                    <option>麻辣烫</option>
+                                </select>
+                            </td>
+                            &nbsp;
+                            </td>
+                        </tr>
+                        <tr>
+                            <th >
+                                商品名称：
+                            </th>
+                            <td width="100%">
+                                <input name="name" type="text" class="input1 w350" id="lxs" />
+                            </td>
+                            &nbsp;
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>
+                                商品图片：
+                            </th>
+                            <td width="100%">
+                                <input name="picture" type="file" class="input1 w350" id="cpmc" />
+                            </td>
+                            &nbsp;
+                            </td>
+                        </tr> 
+                        <tr>
+                            <th>
+                                产品单价：
+                            </th>
+                            <td colspan="3">
+                                <input id="jiagejieguo" type="text" name='price' class="input1 w100" />
+                                元
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>
+                               折扣率：
+                            </th>
+                            <td colspan="3">
+                                <input id="datetimepicker3" type="text" name='discount' class="input1 w100" />
+                                <span class="font_grey ml15">
+                                    大于等于0 小于等于1
+                                </span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>
+                                库存量：
+                            </th>
+                            <td colspan="3">
+                                <input id="datetimepicker3" type="text" name='stock' class="input1 w100" />
+                                <span class="font_grey ml15">
+                                    数量大于10
+                                </span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>
+                                商品描述：
+                            </th>
+                            <td colspan="3">
+                                <textarea name="description" class="input1 w100" style="height: 100px;"></textarea>
+                            </td>
+                        </tr>
+                    </table>
+                    <input type="button" value="添加商品">
+                </div>
+            </div>
+        </section>
+    </div>
+    <!--End 用户中心 End-->  
+</body>
+</html>
+<script type="text/javascript">
+$(function(){
+/*$('select').change(function()
+    {
+        alert($('select').val());
+    });*/
+
+/*    $('input[name=name]').blur(function()
+    {
+        alert($('input[name=name]').val());
+    });*/
+
+    /*$('input[name=picture]').click(function()
+        {
+            alert($("input[name=picture]").val());
+        });*/
+
+    $('input[name=price]').blur(function()
+        {
+            var price = $("input[name=price]");
+            if(isNaN(price.val()))
+            {
+                alert('价格是个数字哦,请填写数字!');
+                price.val('');
+            }
+        });
+
+    $('input[name=discount]').blur(function()
+        {
+            var discount = $("input[name=discount]");
+            if(discount.val() &&!isNaN(discount.val()))
+            {
+                if(discount.val() < 0 || discount.val() > 1)
+                {
+                    alert('折扣率请填写0~1的值!');
+                    discount.val("");
+                }
+            }
+            else
+            {
+               alert('折扣率是个数字哦,请填写数字!');
+               discount.val("");
+            }
+        });
+
+    $('input[name=stock]').blur(function()
+        {
+            var stock = $('input[name=stock]');
+            if(!isNaN(stock.val()))
+            {
+                alert(stock.val());
+                if(stock.val() < 11)
+                {
+                    alert('库存量要大于10');
+                    stock.val('');
+                }
+            }
+            else
+            {
+                 alert('库存量是个数字,请填写数字,且数量大于10!');
+                 stock.val('');
+            }
+        });
+
+    $('textarea').blur(function()
+        {
+            if(!$('textarea').val())
+            {
+                alert('不能为空哦');
+            } 
+        });
+
+    $('input[type=button]').click(function()
+        {
+            var small =  $('select').val();
+            var name = $('input[name=name]').val();
+            var picture = $("input[name=picture]").val();
+            var price = $("input[name=price]").val();
+            var discount = $("input[name=discount]").val();
+            var stock = $('input[name=stock]').val();
+            var description = $('textareas').val();
+            if(small || name || picture || price || discount ||stock || description )
+            {
+                alert('先完成信息啦!');
+            }
+            
+        });
+
+
+
+});
+
+</script>
