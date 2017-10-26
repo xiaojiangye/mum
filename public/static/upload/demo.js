@@ -1,13 +1,13 @@
-
+﻿
 $(function(){
 	// 初始化插件
 	$("#demo").zyUpload({
-		width            :   "650px",                 // 宽度
-		height           :   "400px",                 // 宽度
-		itemWidth        :   "120px",                 // 文件项的宽度
-		itemHeight       :   "100px",                 // 文件项的高度
+		width            :   "950px",                 // 宽度
+		height           :   "600px",                 // 宽度
+		itemWidth        :   "160px",                 // 文件项的宽度
+		itemHeight       :   "140px",                 // 文件项的高度
 		//url              :   "/upload/UploadAction",  // 上传文件的路径
-		url              :   "./uploadPicture/uppicture", //模块下的函数名/存储地址
+		url              :   "./uploadPicture/uppicture", ////模块下的函数名/存储地址
 		multiple         :   true,                    // 是否可以多个文件上传
 		dragDrop         :   true,                    // 是否可以拖动上传文件
 		del              :   true,                    // 是否可以删除文件
@@ -30,7 +30,7 @@ $(function(){
 		},
 		onSuccess: function(file, response){          // 文件上传成功的回调方法
 			console.info("此文件上传成功：");
-			//console.info(file.name);
+			console.info(file.name);
 		},
 		onFailure: function(file, response){          // 文件上传失败的回调方法
 			console.info("此文件上传失败：");
@@ -38,7 +38,7 @@ $(function(){
 		},
 		onComplete: function(response){           	  // 上传完成的回调方法
 			console.info("文件上传完成");
-			//console.info(response);
+			console.info(response);
 		}
 	});
 	

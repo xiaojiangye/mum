@@ -1,4 +1,4 @@
-
+﻿
 $(function(){
 	var params = {
 		fileInput: $("#fileImage").get(0),
@@ -79,7 +79,7 @@ $(function(){
 			console.info(file.index);
 		},
 		onSuccess: function(file, response) {
-				$("#uploadInf").append("<p>上传成功，图片地址是：" + response + "</p>");
+				$("#uploadInf").append("<p>上传成功：" + response + "</p>");
 		},
 		onFailure: function(file) {
 			$("#uploadInf").append("<p>图片" + file.name + "上传失败！</p>");	

@@ -9,14 +9,13 @@
 <!--End Header End--> 
         {include file='seller/selcommon' /}
     <div class="m_right" >  
-        <section id="content" class="pt15" >
             <h3 class="flight_title">
                 <i class="flight_icon"></i>
                 添加商品
             </h3>
             <div class="indent" style="margin-left: 0px;margin-top: 20px;">
                 <div class="allweb_box">
-                 <form method="post" action="{:url('Addgoods/uploadPicture')}" enctype="multipart/form-data">
+                 <form method="post" action="">
                     <table class="table1 mb20">
                         <tr>
                             <th width="30%">
@@ -42,16 +41,6 @@
                             &nbsp;
                             </td>
                         </tr>
-                        <tr>
-                            <th>
-                                商品图片：
-                            </th>
-                            <td width="100%">
-                                <input name="picture" type="file" class="input1 w350" id="cpmc" />
-                            </td>
-                            &nbsp;
-                            </td>
-                        </tr> 
                         <tr>
                             <th>
                                 产品单价：
@@ -88,22 +77,24 @@
                                 商品描述：
                             </th>
                             <td colspan="3">
-                                <textarea name="description" class="input1 w100" style="margin-top:5px;height: 100px;border: 1px solid black;"></textarea>
+                                <textarea name="description" class="input1 w100" style="margin-top:5px;height: 100px;"></textarea>
                             </td>
                         </tr>
                     </table>
-                    <input type="submit" value="添加商品">
                   </form>
-                   
                 </div>
-            </div>
-        </section>
+            </div> 
+            <button>添加商品图片</button>
+       <!--  </section> -->
     </div>
+   
+   
     <!--End 用户中心 End-->  
 </body>
 </html>
 <script type="text/javascript">
 $(function(){
+
 /*$('select').change(function()
     {
         alert($('select').val());
@@ -171,6 +162,26 @@ $(function(){
             {
                 alert('不能为空哦');
             } 
+        });
+
+    $('button').click(function()
+        {
+            var small = $('select').val();
+            var name = $('input[name=name]').val();
+            var picture = $("input[name=picture]").val();
+            var price = $("input[name=price]").val();
+            var discount = $("input[name=discount]").val();
+            var stock = $('input[name=stock]').val();
+            var data = {'small' : small , 'name' : name , 'picture' : picture , 'price' : price , 'discount' : discount , 'stock' : stock };
+            $.post("{:url('Upload/getInfo')}" , data , function(data)
+                {
+                   console.log(data);
+                   if(data == 1)
+                   {
+                     window.location.href = "{:url('Upload/uploader')}";
+                   }
+                  
+                });
         });
 
     /*$('input[type=button]').click(function()
