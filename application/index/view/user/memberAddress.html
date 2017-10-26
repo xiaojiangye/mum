@@ -1,7 +1,15 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-{include file="common/mcss"}    
+{include file="common/mcss"}
+<!-- <script src="__JS__distpicker.data.js"></script>
+<script src="__JS__distpicker.js"></script>
+<script src="__JS__main.js"></script> -->
+<!-- <link href="http://www.jq22.com/jquery/bootstrap-3.3.4.css" rel="stylesheet">
+ <script src="http://www.jq22.com/jquery/1.11.1/jquery.min.js"></script>
+ <script src="http://www.jq22.com/jquery/bootstrap-3.3.4.js"></script> -->
+ <script type="text/javascript" src="__JS__area.js"></script>
+ <link rel="stylesheet" type="text/css" href="__CSS__city.css">
 <title>地址</title>
 </head>
 <body>  
@@ -14,12 +22,12 @@
             <div class="mem_tit">收货地址</div>
 			<div class="address">
             	<div class="a_close"><a href="#"><img src="__IMAGE__a_close.png" /></a></div>
-            	<table border="0" class="add_t" align="center" style="width:98%; margin:10px auto;" cellspacing="0" cellpadding="0">
+            	<table border="0" class="add_t" align="center" style="width:98%; margin:10px auto; background-color:pink;" cellspacing="0" cellpadding="0">
                   <tr>
                     <td colspan="2" style="font-size:14px; color:#ff4e00;">杨杨公司</td>
                   </tr>
                   <tr>
-                    <td align="right" width="80">收货人姓名：</td>
+                    <td align="right" width="100">收货人姓名：</td>
                     <td>杨杨</td>
                   </tr>
                   <tr>
@@ -57,11 +65,13 @@
             <div class="mem_tit">
             	<a href="#"><img src="__IMAGE__add_ad.gif" /></a>
             </div>
+    </div>
+          <form action={:url('user/addaddr')} method="post" enctype="multipart/form-data">
             <table border="0" class="add_tab" style="width:930px;"  cellspacing="0" cellpadding="0">
               <tr>
                 <td width="135" align="right">配送地区</td>
                 <td colspan="3" style="font-family:'宋体';">
-                	<select class="jj" name="country" style="background-color:#f6f6f6;">
+                	<!-- <select class="jj" name="country" style="background-color:#f6f6f6;">
                       <option value="0" selected="selected">请选择...</option>
                       <option value="1">中国</option>
                       <option value="2">中国</option>
@@ -88,8 +98,16 @@
                       <option value="2">成华区</option>
                       <option value="3">锦江区</option>
                       <option value="4">青羊区</option>
-                    </select>
-                    （必填）
+                    </select> -->
+                         <div class="info">
+                            <div>
+                                <select id="s_province" name="s_province"></select>       
+                                <select id="s_city" name="s_city" ></select>  
+                                <select id="s_county" name="s_county"></select>
+                                <script type="text/javascript">_init_area();</script>    
+                            </div>
+                            <div id="show"></div>
+                        </div>
                 </td>
               </tr>
               <tr>
@@ -118,9 +136,10 @@
               </tr>
             </table>
            	<p align="right">
-            	<a href="#">删除</a>&nbsp; &nbsp; <a href="#" class="add_b">确认修改</a>
-            </p> 
-         
+            	<!-- <a href="#">删除</a>&nbsp; &nbsp; <a href="#" class="add_b"><确认修改</a>
+            </p>  -->
+            <input type="submit" name="确认添加">
+         </form>
         </div>
     </div>
 	<!--End 用户中心 End--> 
@@ -128,3 +147,22 @@
 </body>
 
 </html>
+
+<script type="text/javascript">
+    
+      var Gid  = document.getElementById ;
+      
+      var showArea = function(){
+      
+        Gid('show').innerHTML = "<h3>省" + Gid('s_province').value + " - 市" +  
+      
+        Gid('s_city').value + " - 县/区" + 
+      
+        Gid('s_county').value + "</h3>"
+      
+                    }
+      
+      Gid('s_county').setAttribute('onchange','showArea()');
+      
+    </script>
+

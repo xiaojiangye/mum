@@ -13,11 +13,13 @@
           
             	<table border="0" style="width:870px; line-height:22px;" cellspacing="0" cellpadding="0" style="background-color: pink;">
                   <tr valign="top">
-                    <td width="115"><img src="{$res['photo']}" width="90" height="90" /></td>
+                    <td width="115"><img src="{$res['photo']}" width="90" height="90" />
+                    <div>签到</div>
+                    </td>
                     <td>
                     	<div class="m_user">
                      <form method="post">
-                       昵称:&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" value="{$res['name']}" name="name" style="border:none;">
+                       昵称:&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" value="{$res['uname']}" name="name" style="border:none;">
                        </div>
                        
                             <div><input type="submit" id="edit" value="确认修改昵称" style="border:none;width: 100px;color:red;background-color:pink;margin-top:10px;" ></div>

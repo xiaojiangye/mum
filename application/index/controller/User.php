@@ -15,18 +15,20 @@ class User extends Controller
       $this->user =  new UserModel();
     }
 
-    /*注册时查询用户名是否存在的判断*/
-    public function selectUser()
-    {
-      $data = $this->request->post();
-      $name = $data['name'];
 
-      if(empty($this->user->getName($name)))
-      {
-        $data = ['status' => 1];
-        echo json_encode($data);
-      }
-    }
+
+    /*注册时查询用户名是否存在的判断*/
+    // public function selectUser()
+    // {
+    //   $data = $this->request->post();
+    //   $name = $data['name'];
+
+    //   if(empty($this->user->getName($name)))
+    //   {
+    //     $data = ['status' => 1];
+    //     echo json_encode($data);
+    //   }
+    // }
 
     /*渲染注册页面*/
     public function regist()
@@ -45,17 +47,20 @@ class User extends Controller
         return 0;
       }
     }
+<<<<<<< HEAD
 
+=======
+>>>>>>> d526bfbc60e2583385b9427d41d5dfd7f9aee88d
     public function login()
     {      
       return $this->fetch();
     }
-
+  //判断登录的条件
     public function dologin()
     {   
-      $name = input('post.name');
+      $uname = input('post.uname');
       $pwd = input('post.pwd');
-      $result =  Db::table('mumma_user')->where('name',"$name")->find();
+      $result =  Db::table('mumma_user')->where('uname',"$uname")->find();
        //查询结果
       if ($result) 
       {
@@ -65,11 +70,17 @@ class User extends Controller
         }
         else
         {
+
           $id = $result['id'];
           //echo "$id";
+         // dump($id);die;
           //添加登录的时间
-          Session::set('name',"$name");
-          Session::set('id',"$id");   
+          Session::set('uname',"$uname");
+         // dump($id);die;
+          Session::set('id',"$id");
+
+          //dump(Session::get('id'));   
+          //dump(Session::get('uname'));die;   
           return 1;
         } 
       }
@@ -82,11 +93,13 @@ class User extends Controller
     /*我的地址*/
     public function memberAddress()
     {  
-      //$user=ModelUser::get(1);
-      // $user = new UserModel();
-      // $res = $user->refre();
-      // $this->assign('res',$res);
+
       return $this->fetch();
+    }
+    //添加我的地址
+    public function addAddr()
+    {
+      dump($_POST);die;
     }
 
     /*我的现金*/
@@ -100,6 +113,8 @@ class User extends Controller
     {   
         return $this->fetch();
     }
+
+   
 
     /*我的信息*/
     public function memberUser()
@@ -131,12 +146,11 @@ class User extends Controller
        } 
     }
 
-    /*上传头像*/
-    public function upload()
-    {
-      //?获取表单上传文件?例如上传了001.jpg
-      $file = $this->request->file("image");
-      //dump($file);
+    //上传头像
+    public function upload(){
+  //?获取表单上传文件?例如上传了001.jpg
+     $file = $this->request->file("image");
+      dump($file);
         //?移动到框架应用根目录/public/uploads/?目录下
       if($file)
       {
@@ -185,23 +199,50 @@ class User extends Controller
       return $this->fetch();
     }
 
-    /*账户安全验证 电话修改*/
-    public function pedit()
+    //账户安全验证 电话修改
+    public function editPhone()
+
     {
       $data = $this->request->post();
-      return 1;
-     /* 
+      //dump($data);die;
       $result = $this->user->ajaxPhone($data);
       if ($result == 0) {
         return 0;//原手机号码不正确
-      }else {
-        if($reult) {
+      }else if($result) {
           return 1;//修改成功
-        }else {
+        }else{
           return 2; //修改失败
         }
-      }*/
+
     }
+    //账户安全验证 邮箱修改
+    public function editEmail()
+    {
+      $data = $this->request->post();
+      //dump($data);die;
+      $result = $this->user->ajaxEmail($data);
+      if ($result == 0) {
+        return 0;//原邮箱不正确
+      }else if($result) {
+          return 1;//修改成功
+        }else{
+          return 2; //修改失败
+        }
+
+    }
+
+     //账户安全验证 密码修改
+    public function editPwd()
+    {
+      $data = $this->request->post();
+      //dump($data);die;
+      $result = $this->user->ajaxPwd($data);
+     if($result) {
+          return 1;//修改成功
+        }else{
+          return 2; //修改失败
+        }
+      }
 
     /*资金管理*/
     public function memberMoney()
