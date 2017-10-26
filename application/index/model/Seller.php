@@ -14,6 +14,11 @@ class Seller  extends Model
 		return $this->id;
 	}
 
+	public function getByType($key , $value)
+	{
+		return $this->where($key , $value)->select();
+	}
+
 }
 
 

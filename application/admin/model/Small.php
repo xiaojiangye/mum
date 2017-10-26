@@ -31,7 +31,16 @@ class  Small extends Model
 	/*根据某种特殊的值得到对应的全部信息*/
 	public function getByType($key , $value)
 	{
-	  return $this->Field('id , big_id')->where($key , $value)->select();
+		if(!$value)
+		{
+			return $this->Field($key)->select();
+			die;	
+		}
+		else
+		{
+			return $this->Field('id , big_id , name')->where($key , $value)->select();
+		}
+	  
 	}
 	
 }

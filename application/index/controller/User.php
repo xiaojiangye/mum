@@ -46,11 +46,6 @@ class User extends Controller
       }
     }
 
-    public function regist()
-    {
-      return $this->fetch();
-    }
-
     public function login()
     {      
       return $this->fetch();

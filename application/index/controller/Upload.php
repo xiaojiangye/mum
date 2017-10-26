@@ -35,7 +35,7 @@ class Upload extends Controller
 	/*得到图片并进行上传*/
 	public function uploadPicture()
 	{
-		dump(Session::get('name'));
+		//dump(Session::get('name'));
 		$rdate=date("Y-m-d",time()); 	//文件名
 		if(!file_exists('./uppicture/' . $rdate))
 		{
