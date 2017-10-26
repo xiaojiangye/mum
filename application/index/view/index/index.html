@@ -68,15 +68,16 @@
         </span>
         <!--End 所在收货地区 End-->
         <span class="fr">
-        {$Think.session.name}
+        {$Think.session.id}
+
         	<span class="fl">
-                {if empty(session('name'))}
-                   
+                <if condition="$Think.session.id eq null">
                     你好，请
-                <a href="{:url('User/login')}">登录</a>&nbsp; 
-                <a href="{:url('User/regist')}" style="color:#ff4e00;">免费注册</a>
-                {/if}
-                 <a href="{:url('User/memberUser')}">个人中心</a>
+                    <a href="{:url('User/login')}">登录</a>&nbsp; 
+                    <a href="{:url('User/regist')}" style="color:#ff4e00;">免费注册</a>
+                <else />
+                    <a href="{:url('User/memberUser')}">个人中心</a>
+              </if>
 
                 &nbsp;|&nbsp;
                 <a href="{:url('User/regist')}">我的订单</a>&nbsp;|

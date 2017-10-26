@@ -18,7 +18,7 @@ class User  extends Model
 	public function getName($name)
 	{
 		/*dump($name);*/
-		return $this->where('name', $name)->select();
+		//return $this->where('name', $name)->select();//name要写uname
 	}
 
 	/*根居id查询用户的信息*/
@@ -31,7 +31,7 @@ class User  extends Model
 	{
 		//return $this->where('id',session::get('id'))->update(['name'=>$data['name'],'phone'=>$data['phone'],'email'=>$data['email']]);*/
 		//dump($data['name']);die;
-		return $this->where('id',session::get('id'))->update(['name'=>$data['name']]);
+		return $this->where('id',session::get('id'))->update(['uname'=>$data['uname']]);
 	}
 	//电话号码修改
 	public function ajaxPhone($data)

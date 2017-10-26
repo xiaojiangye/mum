@@ -18,17 +18,17 @@ class User extends Controller
 
 
     /*注册时查询用户名是否存在的判断*/
-    public function selectUser()
-    {
-      $data = $this->request->post();
-      $name = $data['name'];
+    // public function selectUser()
+    // {
+    //   $data = $this->request->post();
+    //   $name = $data['name'];
 
-      if(empty($this->user->getName($name)))
-      {
-        $data = ['status' => 1];
-        echo json_encode($data);
-      }
-    }
+    //   if(empty($this->user->getName($name)))
+    //   {
+    //     $data = ['status' => 1];
+    //     echo json_encode($data);
+    //   }
+    // }
 
     /*渲染注册页面*/
     public function regist()
@@ -51,12 +51,12 @@ class User extends Controller
     {      
       return $this->fetch();
     }
-
+  //判断登录的条件
     public function dologin()
     {   
-      $name = input('post.name');
+      $uname = input('post.uname');
       $pwd = input('post.pwd');
-      $result =  Db::table('mumma_user')->where('name',"$name")->find();
+      $result =  Db::table('mumma_user')->where('uname',"$uname")->find();
        //查询结果
       if ($result) 
       {
@@ -66,11 +66,17 @@ class User extends Controller
         }
         else
         {
+
           $id = $result['id'];
           //echo "$id";
+         // dump($id);die;
           //添加登录的时间
-          Session::set('name',"$name");
-          Session::set('id',"$id");   
+          Session::set('uname',"$uname");
+         // dump($id);die;
+          Session::set('id',"$id");
+
+          //dump(Session::get('id'));   
+          //dump(Session::get('uname'));die;   
           return 1;
         } 
       }
@@ -85,6 +91,11 @@ class User extends Controller
     {  
 
       return $this->fetch();
+    }
+    //添加我的地址
+    public function addAddr()
+    {
+      dump($_POST);die;
     }
 
     /*我的现金*/

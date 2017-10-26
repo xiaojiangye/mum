@@ -1,0 +1,151 @@
+<!DOCTYPE html> 
+<head>
+<meta charset="utf-8">
+     
+{include file='public/css' /}
+{include file='public/js' /}    
+	
+		<script type="text/javascript">
+			window.jQuery || document.write("<script src='__JS__jquery-2.0.3.min_1.js'>"+"<"+"/script>");
+		</script>
+
+
+		<script type="text/javascript">
+			if("ontouchend" in document) document.write("<script src='__JS__jquery.mobile.custom.min_1.js'>"+"<"+"/script>");
+		</script>
+		<script src="__JS__bootstrap.min_5.js"></script>
+		<script src="__JS__typeahead-bs2.min_4.js"></script>
+		<!-- page specific plugin scripts -->
+		<script src="__JS__jquery.datatables.min_2.js"></script>
+		<script src="__JS__jquery.datatables.bootstrap_2.js"></script>
+        <script type="text/javascript" src="__JS__h-ui_1.js"></script> 
+        <script type="text/javascript" src="__JS__h-ui.admin_1.js"></script> 
+        <script src="__JS__layer_5.js" type="text/javascript" ></script>
+        <script src="__JS__laydate_3.js" type="text/javascript"></script>
+<title>用户列表</title>
+</head>
+
+<body>
+<div class="page-content clearfix">
+    <div id="Member_Ratings">
+      <div class="d_Confirm_Order_style">
+      <from method="post" enctype="multipart/form-data" action="">
+        <div class="search_style">
+          <ul class="search_content clearfix">
+           <li><label class="l_f">会员名称</label><input name="uname" type="text"  class="text_add" placeholder="输入用户名"  style=" width:400px"/></li>
+           <li><label class="l_f">添加时间</label><input name="time" class="inline laydate-icon" id="start" style=" margin-left:10px;"></li>
+           <li style="width:90px;"><button type="button" class="btn_search" id="but"><i class="icon-search"></i>查询</button></li>
+          </ul>
+        </div>
+    </from>
+     <!---->
+     <div class="border clearfix">
+       <span class="l_f">
+        <a href="javascript:ovid()" id="member_add" class="btn btn-warning"><i class="icon-plus"></i>添加用户</a>
+        <a href="javascript:ovid()" class="btn btn-danger"><i class="icon-trash"></i>批量删除</a>
+       </span>
+       <span class="r_f">共：<b>{$count}</b>条</span>
+     </div>
+     <!---->
+     <div class="table_menu_list">
+     
+    <table class="table table-striped table-bordered table-hover" id="sample-table" >
+		<thead>
+		 <tr>
+			<th width="5"><label><input type="checkbox" class="ace"><span class="lbl"></span></label></th>
+			<th width="10">ID</th>
+			<th width="20">用户名</th>
+			<th width="5">性别</th>
+			<th width="10">手机</th>
+			<th width="13">邮箱</th>
+		<!--   <th width="">地址</th> -->
+			<th width="15">加入时间</th>
+            <th width="46">消费记录</th>
+			<th width="6">状态</th>                
+			<th width="25">操作</th>
+			</tr>
+		</thead>
+    {foreach $res as $vo}
+	  <tbody >
+	     	<tr>
+          <td><label><input type="checkbox" class="ace"><span class="lbl"></span></label></td>
+          <td>{$vo.id}</td>
+          <td><u style="cursor:pointer" class="text-primary" )">{$vo.uname}</u></td>
+          <td>{$vo.sex}</td>
+          <td>{$vo.phone}</td>
+          <td>{$vo.email}</td>
+         <!--  <td class="text-l">北京市 海淀区</td> -->
+          <td>{$vo.create_time}</td>
+          <td><a href="user_record.html">消费记录</a></td>
+          <td class="td-status"><span class="label label-success radius">
+          已启用
+          </span></td>
+          <td class="td-manage">
+          <a onClick="member_stop(this,'10001')"  href="javascript:;" title="停用"  class="btn btn-xs btn-success"><i class="icon-ok bigger-120"></i></a> 
+          <a title="编辑" onclick="member_edit('550')" href="javascript:;"  class="btn btn-xs btn-info" ><i class="icon-edit bigger-120"></i></a> 
+          <a title="删除"  onclick="member_del(this,'1')" class="btn btn-xs btn-warning" ><i class="icon-trash  bigger-120"></i></a>
+          </td>
+		    </tr>
+      </tbody>
+       {/foreach}
+       <thead id="tbody">
+        <tr>
+      
+      </tr>
+    </thead>
+	</table>
+ 
+   </div>
+  </div>
+ </div>
+</div>
+<!--添加用户图层-->
+<div class="add_menber" id="add_menber_style" style="display:none">
+    <ul class=" page-content">
+     <li><label class="label_name">用&nbsp;&nbsp;户 &nbsp;名：</label><span class="add_name"><input value="" name="用户名" type="text"  class="text_add"/></span><div class="prompt r_f"></div></li>
+     <li><label class="label_name">密&nbsp;&nbsp;码：</label><span class="add_name"><input value="" name="用户名" type="text"  class="text_add"/></span><div class="prompt r_f"></div></li>
+     <li><label class="label_name">性&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;别：</label><span class="add_name">
+     <label><input name="form-field-radio" type="radio" checked="checked" class="ace"><span class="lbl">男</span></label>&nbsp;&nbsp;&nbsp;
+     <label><input name="form-field-radio" type="radio" class="ace"><span class="lbl">女</span></label>&nbsp;&nbsp;&nbsp;
+     <label><input name="form-field-radio" type="radio" class="ace"><span class="lbl">保密</span></label>
+     </span>
+     <div class="prompt r_f"></div>
+     </li>
+     <li><label class="label_name">移动电话：</label><span class="add_name"><input name="移动电话" type="text"  class="text_add"/></span><div class="prompt r_f"></div></li>
+     <li><label class="label_name">电子邮箱：</label><span class="add_name"><input name="电子邮箱" type="text"  class="text_add"/></span><div class="prompt r_f"></div></li>
+    </ul>
+ </div>
+</body>
+</html>
+
+
+<script type="text/javascript">
+  $(function () {
+    $('#but').click(function(){
+      var uname = $("input[name='uname']").val();
+      var time = $("input[name='time']").val();
+     // alert(name);
+
+      $.post('search',{uname:uname},success)
+      function success(data)
+      {
+        var data = JSON.parse(data);
+        alert(data);
+        if (data == 0 ) {
+          $('#tbody').html('没有查询到结果');
+
+        }else if(data == 1) {
+        $('#tbody').html('查询到结果');
+        }
+        return false;
+      }
+
+
+
+      })
+
+  })
+
+
+
+</script>
