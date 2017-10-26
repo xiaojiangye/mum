@@ -94,22 +94,6 @@
 </html>
 <script type="text/javascript">
 $(function(){
-
-/*$('select').change(function()
-    {
-        alert($('select').val());
-    });*/
-
-/*    $('input[name=name]').blur(function()
-    {
-        alert($('input[name=name]').val());
-    });*/
-
-    /*$('input[name=picture]').click(function()
-        {
-            alert($("input[name=picture]").val());
-        });*/
-
     $('input[name=price]').blur(function()
         {
             var price = $("input[name=price]");
@@ -183,33 +167,6 @@ $(function(){
                   
                 });
         });
-
-    /*$('input[type=button]').click(function()
-        {
-            var small =  $('select').val();
-            var name = $('input[name=name]').val();
-            var picture = $("input[name=picture]");
-            console.log(picture.val());
-            var price = $("input[name=price]").val();
-            var discount = $("input[name=discount]").val();
-            var stock = $('input[name=stock]').val();
-            var description = $('textareas').val();
-            if(small || name || picture || price || discount || stock || description )
-            {
-                alert('信息已完整!');
-                $.post("{:url('Addgoods/addInfo')}" , {'small' :small , 'name' : name , 'picture' : picture , 'price' : price , 'discount' : discount , 'stock' : stock , 'description' : description } , function(data)
-                {
-                    console.log(data);
-                });
-            }
-            else
-            {
-                 alert('先完成信息啦!');
-            } 
-        });*/
-
-
-
 });
 
 </script>
