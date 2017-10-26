@@ -5,17 +5,19 @@ use think\Controller;
 use think\Db;
 use think\Session;
 use app\index\model\User as UserModel;
+use app\admin\model\Big;
 
 class User extends Controller
 {
     protected $user;
+    protected $small;
+    protected $big;
     
     public function _initialize()
     {
       $this->user =  new UserModel();
+      $this->big = new Big();
     }
-
-
 
     /*注册时查询用户名是否存在的判断*/
     // public function selectUser()
@@ -33,6 +35,8 @@ class User extends Controller
     /*渲染注册页面*/
     public function regist()
     {
+       $res = $this->big->selectBig();
+      $this->assign('res' , $res);
       return $this->fetch();
     }
 
@@ -40,21 +44,21 @@ class User extends Controller
     public function addUserInfo()
     {
       $data = $this->request->post();
-      if($this->user->add($data))
+      $res = $this->user->add($data);
+      if($res)
       {
         return 1;
       }else{
         return 0;
       }
     }
-<<<<<<< HEAD
 
-=======
->>>>>>> d526bfbc60e2583385b9427d41d5dfd7f9aee88d
+
     public function login()
     {      
       return $this->fetch();
     }
+
   //判断登录的条件
     public function dologin()
     {   

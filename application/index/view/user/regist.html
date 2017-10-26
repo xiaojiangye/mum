@@ -1,74 +1,127 @@
 <!doctype html>
 <html>
 <head>
-{include file='public/css' /}
-{include file='public/js' /}
+<link rel='stylesheet' href='__CSS__Validstyle.css' type='text/css' />
+<script src='__JS__jquery-1.9.1.min.js'></script>
+<script src='__JS__Validform_v5.3.2_min.js'></script>
 </head>
-
 <body>
-<div class="loginwrapper">
-  <div class="wrap pr">
-    <div class="loginbox">
-      <h1 class="hd">用户注册</h1>
-      <div class="tc" style="margin-top:-30px;"><img src="__IMAGE__regtxt.png"></div>
+    <div style="text-align: center;" >
+      <h1 class="hd" text-align='center'>用户注册</h1><a href="{:url('User/login')}">用户登录</a>
+      <div class="tc" ><img src="__IMAGE__regtxt.png"></div>
 
-      <form id='fm' action=""  method="post" >
+      <form  id='fm' class="registerform" action="">
+        <table width="50%" style="margin-left: 290px;border: 1px solid black;">  
+        <tr id='reg' class="form-group" style='margin-bottom:20px;'>
+            <td class="need" style="width:10px;">*</td>
+            <td style="width:90px;">注册类型：</td>
+            <td style="width:205px;">
+               <label id='seller' class="label">
+                <select name="style" id='select1' class="loginipt key Nickname" style="width: 175px;">
+                  <option>卖家</option>
+                  <option selected = "selected">买家</option>
+                </select>
+               </label>
+            </td>
+            <td><div class="Validform_checktip">请输入您要注册的账户类型</div></td>
+        </tr>
 
-        <div class="boxbd mt20">
+        <tr class="form-group" style='margin-bottom:20px;'>
+            <td class="need" style="width:10px;">*</td>
+            <td style="width:90px;">用&ensp;户&ensp;名:</td>
+            <td style="width:205px;">
+               <input type="text" value="" name="name" class="inputxt" datatype="*3-20" nullmsg="请输入中文名！" errormsg="中文名为2~4个中文字符！" />
+            </td>
+            <td><div class="Validform_checktip">请输入您的用户名3~20</div></td>
+        </tr>
+
+        <tr>
+            <td class="need" >*</td>
+            <td >密&ensp;&ensp;&ensp;&ensp;码：</td>
+            <td >
+            <input type="password" value="" name="pwd" class="inputxt" datatype="s6-18" nullmsg="请输入密码！" errormsg="密码为6~18个字符！" /></td>
+            <td><div class="Validform_checktip">6~18个字符</div></td>
+        </tr>
+         
+        <tr>
+          <td class="need" >*</td>
+          <td >确认密码：</td>
+          <td style="width:205px;">
+          <input type="password" value=""  recheck='rpwd' name="rpwd" class="inputxt" datatype="s6-18" nullmsg="请确认密码！" errormsg="两次密码不一致！" /></td>
+          <td><div class="Validform_checktip">两次密码不一致</div></td>
+        </tr>
+
+        <tr>
+          <td class="need" >*</td>
+          <td >手&ensp;机&ensp;号：</td>
+          <td style="width:205px;">
+          <input type="text" value=""  name="phone" class="inputxt" datatype="m" nullmsg="请输入手机号！" errormsg="手机格式不正确1**-****-****！" /></td>
+          <td><div class="Validform_checktip">手机号格式不正确</div></td>
+        </tr>
+
+        <tr>
+          <td class="need" >*</td>
+          <td >邮&ensp;&ensp;&ensp;&ensp;箱：</td>
+          <td style="width:205px;">
+            <input type="text" value=""  name="email" class="inputxt" datatype="e" nullmsg="请输入邮箱！" errormsg="邮箱格式不正确！***@***.com" /></td>
+          <td><div class="Validform_checktip">邮箱格式不正确</div></td>
+      </tr>
+      <tr>
+          <td class="need"></td>
+          <td></td>
+          <td colspan="2" >
+              <input type="button" id='regist' value="提 交" />
+          </td>
+      </tr>
+    </table>
+  </form>
+
+      <!-- <form id='fm' action=""  method="post" >
+        <div class="boxbd mt20" style="border: 1px solid red;">
          <label id='seller' class="label">
             <select name="style" class="loginipt key Nickname" style="width: 110px;">
               <option>卖家</option>
               <option selected = "selected">买家</option>
             </select>
           </label>
-
+      
           <label class="label">
             <input placeholder="请输入昵称" type="text" name="name" class="loginipt key Nickname">
           </label>
-
+      
           <label class="label">
             <input  placeholder="请输入您的邮箱" type="text" name="email" class="loginipt key user">
           </label>
-
+      
            <label class="label">
             <input placeholder="请输入您的邮箱验证码" style="color:red;" type="text" name="emailCode" class="loginipt key user">
           </label>
-
+      
           <label class="label">
             <input placeholder="请输入您的手机号" type="text" name="phone" class="loginipt key user">
           </label>
-
+      
           <label class="label">
             <input placeholder="请输入您的密码"" type="password" name="pwd" class="loginipt key pwd">
           </label>
           <label class="label">
             <input placeholder="请再次输入您的密码" type="password" name="rpwd" class="loginipt key pwd">
           </label>
-       
-      </form>
-         <input type="button" id='regist' class="button btn-reg" value='立即注册' />
+      </form> -->
+         <!-- <input type="button" id='regist' class="button btn-reg" value='立即注册' /> -->
 
-        <p class="mt20 tc">注册则表示同意<a href="#" class="o">《会员条款》</a></p>
-        <div class="ohter"><span class="ohtertxt">或</span></div>
-        <div class="Prompt" style="padding:0 0 10px">使用以上社交网络帐号登录</div>
-      </div> 
-      <div class="tc">
-        <a href="#" target="_blank" class="ico qq">QQ</a>
-      </div>
-      <p class="boxbd tr">已有帐号？<a href="login.html" class="o">注册</a></p>
-    </div>    
-  </div>
-</div>
+      </div>    
+    </div>   
 </html>
 
 <script type="text/javascript">
-
-$('select').change(function()
+$('#select1').change(function()
   {
-     $("#seller2").remove();
-    if($('select').val() == '卖家')
+    // $("#seller2").remove();
+    if($('#select1').val() == '卖家')
     {
-      $('#seller').append("<select style='width:170px;height:34px;background:#1A1A1A;color:white;border:1px solid #161616'  id='seller2'><option>123</option><option>123</option></select>");
+      /*$('#seller').after("<tr><td><select style='width:170px;height:34px;background:pink;color:white;border:1px solid #161616'  id='seller2'><option>123</option><option>123</option></select></td></tr>");*/
+    $('#reg').after("<tr id='shop'  class='form-group' style='margin-bottom:20px; '><td class='need' style='width:10px;'>*</td><td style='width:90px;'>店铺类型：</td><td style='width:205px;'><select style='width:170px;height:34px;background:pink;color:white;border:1px solid #161616'  id='seller2'>{foreach $res as $val}<option>{$val['style']}</option>{/foreach}</select></td></tr>"); 
     }
   });
 
@@ -168,17 +221,18 @@ $(function ()
    /*注册*/
    $('#regist').click(function()
     {
-      var style = $('select').val();
+      var style = $('#select1').val();
+      var category = $('#seller2').val();
+    alert(category);
       var name = $('input[name=name]').val();
       var email = $('input[name=email]').val();
       var pnumber = $('input[name=phone]').val();
       var pwd = $('input[name=pwd]').val();
-       var rpwd = $('input[name=rpwd]').val();
+      var rpwd = $('input[name=rpwd]').val();
       if(status && name && email && pnumber && pwd && rpwd && (pwd==rpwd))
       {
         console.log('信息正确哦，插入进去吧!');
         var urlpost = null;
-        console.log(style);
         if(style == '买家')
         {
           urlpost = "{:url('User/addUserInfo')}";
@@ -189,9 +243,9 @@ $(function ()
         }
 
         /*注册的ajax请求*/
-        $.post(urlpost, {'style' : style , 'uname' : name , 'email' : email , 'pnumber' : pnumber , 'pwd' : pwd} ,
+        $.post(urlpost, {'style' : category , 'uname' : name , 'email' : email , 'pnumber' : pnumber , 'pwd' : pwd} ,
          function(data){
-          alert(data);
+          console.log(data);
             if(data == 0)
             {
               alert('注册失败,再去试试吧!');
