@@ -15,10 +15,16 @@ class Goods extends Model
 		return $this->id;
 	}
 
-	/*查询商品 根据传入的条件*/
+	public function getGoods($key , $value)
+	{
+		return $this->distinct(true)->field('number , id , name , seller_id , small_id , picture , price , stock , discount , description')->where($key ,  $value)->select();
+	}
+
+	/*查询商品 根据传入的条件  只用来驱动小店首页*/
 	public function selectGoods($key , $value)
 	{
-		return $this->distinct(true)->field('id , name , seller_id , small_id , number , picture , price , stock , discount , description')->where($key ,  $value)->select();
+		
+		return Db::query("SELECT  number , id , name , seller_id , small_id , picture , price , stock , discount , description FROM mumma_goods WHERE $key = $value GROUP BY number;");
 	}
 
 	/*统计每种商品类型的数量*/

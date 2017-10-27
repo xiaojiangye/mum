@@ -40,6 +40,8 @@ class Addgoods extends Controller
 		}
 
 		$number = $res['big_id'] .'_' . $res['id'] . '_' . time();
+		$numRes = $this->goods->getGoods('number' , $number);
+		
 		/*商家id登录时完善*/
 		$info['seller_id'] = 1;
 		$info['big_id'] = 1;
