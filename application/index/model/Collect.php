@@ -2,7 +2,7 @@
 namespace app\index\model;
 use think\model;
 use think\Db;
-class Collect()
+class Collect extends Model
 {
 	
 }

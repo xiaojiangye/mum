@@ -51,6 +51,11 @@ class User extends Controller
     {      
       return $this->fetch();
     }
+    //退出登录
+    public function exit()
+    {
+      return session(null);
+    }
   //判断登录的条件
     public function dologin()
     {   
@@ -86,18 +91,7 @@ class User extends Controller
       }  
     }
    
-    /*我的地址*/
-    public function memberAddress()
-    {  
-
-      return $this->fetch();
-    }
-    //添加我的地址
-    public function addAddr()
-    {
-      dump($_POST);die;
-    }
-
+    
     /*我的现金*/
     public function memberCash()
     {   
@@ -143,7 +137,7 @@ class User extends Controller
     }
 
     //上传头像
-    public function upload(){
+    public function image(){
   //?获取表单上传文件?例如上传了001.jpg
      $file = $this->request->file("image");
       dump($file);
@@ -156,11 +150,11 @@ class User extends Controller
         {
           //?成功上传后?获取上传信息
           //?输出?jpg
-          echo $info->getExtension();
+          //echo $info->getExtension();
           //?输出?20160820/42a79759f284b767dfcb2a0197904287.jpg
           echo $info->getSaveName();
           //?输出?42a79759f284b767dfcb2a0197904287.jpg
-          echo $info->getFilename();
+             echo $info->getFilename();
         }
         else
         {
@@ -191,6 +185,11 @@ class User extends Controller
     
     /*账户安全*/
     public function memberSafe()
+    {
+      return $this->fetch();
+    }
+    //积分
+    public function memberGrade()
     {
       return $this->fetch();
     }
