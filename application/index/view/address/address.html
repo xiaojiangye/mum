@@ -1,32 +1,33 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-{include file="common/mcss"}
- <script type="text/javascript" src="__JS__area.js"></script>
+{include file="common/mcss" /}
+<script type="text/javascript" src="__JS__jquery-1.11.3.js"></script>
+<script type="text/javascript" src="__JS__area.js"></script>
  <link rel="stylesheet" type="text/css" href="__CSS__city.css">
+ <link rel="stylesheet" type="text/css" href="__BOOT__"> 
 <title>地址</title>
 </head>
 <body>  
 <!--Begin Header Begin-->
-{include file="common/mpheader"}
+{include file="common/mpheader" /}
   <div class="m_content" style="background-color:;">
-  {include file="common/mpleft"}
+  {include file="common/mpleft" /}
 		<div class="m_right" style="background-color:;">
-            <p></p>
-            <div class="mem_tit">收货地址</div>{$Think.session.id}
-
+            <p>{$Think.session.id}</p>
+            <div class="mem_tit">收货地址</div>
             <div class="mem_tit">
             	<a href="#"><img src="__IMAGE__add_ad.gif" /></a>
             </div>
    
-          <form action={:url('user/addaddr')} method="post" enctype="multipart/form-data">
+          <form action="" method="post" enctype="multipart/form-data">
             <table border="0" class="add_tab" style="width:930px;"  cellspacing="0" cellpadding="0">
               <tr>
                 <td width="135" align="right">配送地区</td>
                 <td colspan="3" style="font-family:'宋体';">
                      <div class="info">
                         <div>
-                            <select id="s_province" name="s_province"></select>       
+                            <select id="s_province" name="s_province"></select>     
                             <select id="s_city" name="s_city" ></select>  
                             <select id="s_county" name="s_county"></select>
                             <script type="text/javascript">_init_area();</script>    
@@ -37,70 +38,73 @@
               </tr>
               <tr>
                 <td align="right">收货人姓名</td>
-                <td style="font-family:'宋体';"><input type="text" value="姓名" class="add_ipt" name="consignee" />（必填）</td>
+                <td style="font-family:'宋体';"><input type="text"  class="add_ipt" name="consignee" />（必填）<span id="name"></span></td>
                 <td align="right">电子邮箱</td>
-                <td style="font-family:'宋体';"><input type="text" value="12345678@qq.com" class="add_ipt" name="cmeail" />（必填）</td>
+                <td style="font-family:'宋体';"><input type="text"  class="add_ipt" name="cmeail" />（必填）</td>
               </tr>
               <tr>
                 <td align="right">详细地址</td>
-                <td style="font-family:'宋体';"><input type="text" value="世外桃源" class="add_ipt" name="deaddr" />（必填）</td>
+                <td style="font-family:'宋体';"><input type="text"  class="add_ipt" name="deaddr" />（必填）</td>
                 <td align="right">邮政编码</td>
-                <td style="font-family:'宋体';"><input type="text" value="610000" class="add_ipt" name=code /></td>
+                <td style="font-family:'宋体';"><input type="text"  class="add_ipt" name=code /></td>
               </tr>
               <tr>
                 <td align="right">手机</td>
-                <td style="font-family:'宋体';"><input type="text" value="1361234587" class="add_ipt" name="cphone" />（必填）</td>
+                <td style="font-family:'宋体';"><input type="text"  class="add_ipt" name="cphone" />（必填）</td>
                 <td align="right">标志建筑</td>
-                <td style="font-family:'宋体';"><input type="text" value="世外桃源大酒店" class="add_ipt" name="cbulid"/></td>
+                <td style="font-family:'宋体';"><input type="text"  class="add_ipt" name="cbulid"/></td>
               </tr>
               
             </table>
            	<p align="right">
-            	<input type="button" value="确认添加" style="float: left;"" class="add_b" id="but">
+            <!-- <button id="but">确认添加</button> -->
+             <button class="btn btn-danger" id="but" style="float: left;">确认添加</button>
             </p> 
             
          </form>
-
+         
+   {foreach $res as $vo}
          <div class="address">
-              <div class="a_close"><a href="#"><img src="__IMAGE__a_close.png" /></a></div>
-              <table border="0" class="add_t" align="center" style="width:98%; margin:10px auto; background-color:pink;" cellspacing="0" cellpadding="0">
+              <div class="a_close"><img src="__IMAGE__a_close.png" /></div>
+              
+              <table border="0" class="add_t" align="center" style="width:98%; margin:10px auto; background-color:;" cellspacing="0" cellpadding="0">
                   <tr>
-                    <td colspan="2" style="font-size:14px; color:#ff4e00;">杨杨公司</td>
+                    <td colspan="2" style="font-size:14px; color:#ff4e00;">地址</td>
                   </tr>
                   <tr>
                     <td align="right" width="100">收货人姓名：</td>
-                    <td>杨杨</td>
+                    <td>{$vo.addr_name}</td>
                   </tr>
                   <tr>
                     <td align="right">配送区域：</td>
-                    <td>四川成都市武侯区三环以内</td>
+                    <td>{$vo.addr_addr}</td>
                   </tr>
                   <tr>
                     <td align="right">详细地址：</td>
-                    <td>科华北路66号世外桃源写字楼3楼</td>
-                  </tr>
-                  <tr>
-                    <td align="right">手机：</td>
-                    <td>12345678998</td>
+                    <td>{$vo.addr_detail}</td>
                   </tr>
                   <tr>
                     <td align="right">电话：</td>
-                    <td>028-12345678</td>
+                    <td>{$vo.addr_phone}</td>
                   </tr>
                   <tr>
                     <td align="right">电子邮箱：</td>
-                    <td>123456789@qq.com</td>
+                    <td>{$vo.addr_email}</td>
                   </tr>
                   <tr>
                     <td align="right">标志建筑：</td>
-                    <td>世外桃源</td>
+                    <td>{$vo.addr_bulid}</td>
                   </tr>
                 </table>
+
         
                 <p align="right">
-                  <a href="#" style="color:#ff4e00;">设为默认</a>&nbsp; &nbsp; &nbsp; &nbsp; <a href="#" style="color:#ff4e00;">编辑</a>&nbsp; &nbsp; &nbsp; &nbsp; 
+                <button id="mo" value="{$vo.id}">{if $vo.is_default == 1}默认{else}设为默认{/if}</button>
+                <button id="edit">编辑</button>
+                  <!-- <a href="" style="color:#ff4e00;"></a>&nbsp; &nbsp; &nbsp; &nbsp; 
+                  <a href="#" style="color:#ff4e00;"></a>&nbsp; &nbsp; &nbsp; &nbsp;  -->
                 </p>
-
+     {/foreach}
             </div>
         </div>
     </div>
@@ -108,50 +112,61 @@
   {include file="common/mpfooter"}
 </body>
 
+
 </html>
-
 <script type="text/javascript">
-    
-    /*  var Gid  = document.getElementById ;
-      
-      var showArea = function(){
-      
-        Gid('show').innerHTML = "<h3>省" + Gid('s_province').value + " - 市" +  
-      
-        Gid('s_city').value + " - 县/区" + 
-      
-        Gid('s_county').value + "</h3>"
-      
-                }
-      
-      Gid('s_county').setAttribute('onchange','showArea()');*/
-
       $(function (){
-        var province = $('#s_province').val()
-        var city = $('#s_city').val()
-        var county = $('#s_county').val();
-        var consignee = $("input[name='consignee']").val();
-        var cmeali = $("input[name='cemail']").val();
-        var cphone = $("input[name='cphone']").val();
-        var deaddr = $("input[name='deaddr']");
-        var cbuild = $("input[name='cbulid']");
-        $("#but").click(function (){
-          $.post('address/addaddr',{province:province,city:city,county:county,consignee:consignee,cmeali:cemail,cphone:cphone,deaddr:deaddr,cbulid:cbulic},success)
-          function success (data)
-          {
-            var data = JSON.parse(data);
-            console.log(data);
+          $('#but').click(function () {
+          var province = $('#s_province').val();
+          var city = $('#s_city').val()
+          var county = $('#s_county').val();
+          var consignee = $("input[name='consignee']").val();
+          var cmeail = $("input[name='cemail']").val();
+          var cphone = $("input[name='cphone']").val();
+          var deaddr = $("input[name='deaddr']").val();
+          var cbuild = $("input[name='cbulid']").val();
+          //alert(city);
+          if (consignee.length == '')
+           {
+            $('#name').html('收货人不能为空');
+           }else {
 
+              $.post('addAddr',{province:province,city:city,county:county,consignee:consignee,cmeail:cemail,cphone:cphone,deaddr:deaddr,cbulid:cbulic},success)
+            //$.post('addAddr',{city:city},success);
+            function success (data)
+            {
+              var data = JSON.parse(data);
+              if(data == 1) {
+                alert('添加成功');
+              }else {
+                alert('添加失败');
+              }
+
+            }
           }
 
 
-        })
+          })
 
+       
 
+          
 
+     //是否是默认的地址
+  // $('#mo').click(function (){
+  //      var name =  $('#mo').val();
+  //      //alert(name);
+  //      $.post('addrMo',{name:name},success)
+  //      function success(data)
+  //      {
+  //       var data = JSON.parse(data);
+  //      }
 
+  //     })
 
-      })
+  //     });
+
+    
       
     </script>
 

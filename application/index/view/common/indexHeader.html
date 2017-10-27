@@ -6,16 +6,16 @@
 <body>
 <!--Begin Header Begin-->
 <div class="soubg">
-	<div class="sou">
-    	<!--Begin 所在收货地区 Begin-->
-    	<span class="s_city_b">
-        	<span class="fl">送货至：</span>
+    <div class="sou">
+        <!--Begin 所在收货地区 Begin-->
+        <!-- <span class="s_city_b">
+            <span class="fl">送货至：</span>
             <span class="s_city">
-            	<span>四川</span>
+                <span>深圳</span>
                 <div class="s_city_bg">
-                	<div class="s_city_t"></div>
+                    <div class="s_city_t"></div>
                     <div class="s_city_c">
-                    	<h2>请选择所在的收货地区</h2>
+                        <h2>请选择所在的收货地区</h2>
                         <table border="0" class="c_tab" style="width:235px; margin-top:10px;" cellspacing="0" cellpadding="0">
                           <tr>
                             <th>A</th>
@@ -57,49 +57,43 @@
                             <th>Q</th>
                             <td class="c_h"><span>青海</span></td>
                           </tr>
-                          <tr>
-                            <th>S</th>
-                            <td class="c_h"><span>上海</span><span>山东</span><span>山西</span><span class="c_check">四川</span><span>陕西</span></td>
-                          </tr>
-                          <tr>
-                            <th>T</th>
-                            <td class="c_h"><span>台湾</span><span>天津</span></td>
-                          </tr>
-                          <tr>
-                            <th>X</th>
-                            <td class="c_h"><span>西藏</span><span>香港</span><span>新疆</span></td>
-                          </tr>
-                          <tr>
-                            <th>Y</th>
-                            <td class="c_h"><span>云南</span></td>
-                          </tr>
-                          <tr>
-                            <th>Z</th>
-                            <td class="c_h"><span>浙江</span></td>
-                          </tr>
                         </table>
                     </div>
                 </div>
             </span>
-        </span>
+        </span> -->
         <!--End 所在收货地区 End-->
         <span class="fr">
-        	<span class="fl">你好，请<a href="Login.html">登录</a>&nbsp; <a href="Regist.html" style="color:#ff4e00;">免费注册</a>&nbsp;|&nbsp;<a href="#">我的订单</a>&nbsp;|个人中心</span>
-        	<span class="ss">
-            	<div class="ss_list">
-                	<a href="#">收藏夹</a>
+        {$Think.session.id}
+
+            <span class="fl">
+                <if condition="$Think.session.id eq null">
+                    你好，请
+                    <a href="{:url('User/login')}">登录</a>&nbsp; 
+                    <a href="{:url('User/regist')}" style="color:#ff4e00;">免费注册</a>
+                <else />
+                    <a href="{:url('User/memberUser')}">个人中心</a>
+              </if>
+
+                &nbsp;|&nbsp;
+                <a href="{:url('User/regist')}">我的订单</a>&nbsp;|
+                
+            </span>
+
+            <span class="ss">
+                <div class="ss_list">
+                    <a href="#">收藏夹</a>
                     <div class="ss_list_bg">
-                    	<div class="s_city_t"></div>
+                        <div class="s_city_t"></div>
                         <div class="ss_list_c">
-                        	<ul>
-                            	<li><a href="#">收藏店铺</a></li>
-                                <li><a href="#">收藏商品</a></li>
+                            <ul>
+                                <li><a href="#">收藏的商家</a></li>
+                                <li><a href="#">收藏的商品</a></li>
                             </ul>
                         </div>
                     </div>     
                 </div>
-               
-               
+              
             </span>
            
         </span>
@@ -118,7 +112,7 @@
     	<div class="car_t">购物车 [ <span>3</span> ]</div>
         <div class="car_bg">
        		<!--Begin 购物车未登录 Begin-->
-        	<div class="un_login">还未登录！<a href="Login.html" style="color:#ff4e00;">马上登录</a> 查看购物车！</div>
+        <!-- 	<div class="un_login">还未登录！<a href="Login.html" style="color:#ff4e00;">马上登录</a> 查看购物车！</div> -->
             <!--End 购物车未登录 End-->
             <!--Begin 购物车已登录 Begin-->
             <ul class="cars">
