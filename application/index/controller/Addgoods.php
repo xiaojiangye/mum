@@ -64,6 +64,7 @@ class Addgoods extends Controller
 		$this->success('执行成功!' ,  'Addgoods/showSellerGoods');	
 	}
 
+
 	/*驱动小店首页 得到展示所需数据*/
 	public function showSellerGoods()
 	{

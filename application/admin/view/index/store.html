@@ -25,57 +25,33 @@
        <thead>
 		 <tr>
 				<th width="5px"><label><input type="checkbox" class="ace"><span class="lbl"></span></label></th>
-                <th width="30px">排序</th>
+                <th width="30px">ID</th>
 				<th width="120">店铺名称</th>
 			<!--   <th width="70px">所属分类</th> -->
                 <th width="100px">店铺类型</th>
-				<th width="100px">简介</th>
+				<th width="90px">简介</th>
 				<th width="70px">添加时间</th>
-                <th width="100px">审核状态</th>                
-				<th width="150px">操作</th>
+              
+				<th width="130px">操作</th>
 			</tr>
 		</thead>
         <tbody>
+
+        {foreach $seller as $val }
          <tr>
           <td><label><input type="checkbox" class="ace"><span class="lbl"></span></label></td>
-          <td>1</td>
-          <td>泡吧食品旗舰店</td>
-      <!--     <td> 食品</td> -->
-           <td> 企业店铺</td>
-          <td class="displayPart" displayLength="60">泡吧食品旗舰店是福建泡吧食品有限公司商城唯一旗舰店，直营销售</td>
-          <td>2016-7-25 12:34</td>
-          <td>通过</td>
+          <td>{$val['id']}</td>
+          <td>{$val['name']}</td>
+           <td> {$val['big_id']}</td>
+          <td class="displayPart" displayLength="60">{$val['description']}</td>
+          <td>{$val['create_time']}</td>
+
           <td class="td-manage">        
            <a title="删除" href="javascript:;"  onclick="member_del(this,'1')" class="btn btn-xs btn-danger" ><i class="fa fa-trash  bigger-120"></i></a>
           </td>
          </tr>
-         <tr>
-          <td><label><input type="checkbox" class="ace"><span class="lbl"></span></label></td>
-          <td>2</td>
-          <td>保健食品</td>
-         <!--  <td> 保健食品</td> -->
-          <td> 个人店铺</td>
-          <td class="displayPart" displayLength="60">付款方式分为以下几种：（注：先款订单请您在订单提交后24小时内完成支付， 否则订单会自动取消）</td>
-          <td>2016-7-25 12:34</td>
-          <td>通过</td>
-           
-          <td class="td-manage">     
-           <a title="删除" href="javascript:;"  onclick="member_del(this,'1')" class="btn btn-xs btn-danger" ><i class="fa fa-trash  bigger-120"></i></a>
-          </td>
-         </tr>
-         <tr>
-          <td><label><input type="checkbox" class="ace"><span class="lbl"></span></label></td>
-          <td>3</td>
-          <td>三天数码旗舰店</td>
-          <td> 数码</td>
-         <!--   <td> 企业店铺</td> -->
-          <td class="displayPart" displayLength="60">付款方式分为以下几种：（注：先款订单请您在订单提交后24小时内完成支付， 否则订单会自动取消）</td>
-          <td>2016-7-25 12:34</td>
-          <td>通过</td>
-          <td class="td-manage">       
-           <a title="删除" href="javascript:;"  onclick="member_del(this,'1')" class="btn btn-xs btn-danger" ><i class="fa fa-trash  bigger-120"></i></a>
-          </td>
-         </tr>
+         
+         {/foreach}
         </tbody>
        </table>    
      </div>

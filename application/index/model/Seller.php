@@ -19,6 +19,11 @@ class Seller  extends Model
 		return $this->where($key , $value)->select();
 	}
 
+	public function selectSeller()
+	{
+		return $this->field('id,big_id,name,description,create_time')->select();
+	}
+
 }
 
 
