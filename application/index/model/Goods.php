@@ -4,6 +4,7 @@ namespace app\index\model;
 
 use think\Model;
 use think\Db;
+use app\admin\model\Small;
 
 class Goods extends Model
 {
@@ -22,8 +23,7 @@ class Goods extends Model
 
 	/*查询商品 根据传入的条件  只用来驱动小店首页*/
 	public function selectGoods($key , $value)
-	{
-		
+	{	
 		return Db::query("SELECT  number , id , name , seller_id , small_id , picture , price , stock , discount , description FROM mumma_goods WHERE $key = $value GROUP BY number;");
 	}
 
@@ -37,6 +37,12 @@ class Goods extends Model
 	public function getBySmallId( $key ,  $small_id)
 	{
 		return $this->where($key , $small_id)->select();
+	}
+
+	/*得到缺货商品*/
+	public function getStockGoods($key , $value)
+	{
+		return Db::query("SELECT  number , id , name , small_id , stock , description , create_time FROM mumma_goods WHERE $key = $value GROUP BY number ORDER BY stock ASC ;");
 	}
 
 }

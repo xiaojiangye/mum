@@ -64,7 +64,6 @@ class Addgoods extends Controller
 		$this->success('执行成功!' ,  'Addgoods/showSellerGoods');	
 	}
 
-
 	/*驱动小店首页 得到展示所需数据*/
 	public function showSellerGoods()
 	{
@@ -100,6 +99,23 @@ class Addgoods extends Controller
 		$this->assign('seller_name' , $seller_name);
 		$this->assign('info' , $info);
 		return $this->fetch();	
+	}
+
+	/*驱动缺货统计页面*/
+	public function stockGoods()
+	{
+		/*这里需更新卖家登录之后对应的id值*/
+		$key = 'seller_id';
+		$value = 1;
+		$res = $this->goods->getStockGoods($key , $value);
+
+		foreach ($res as $key => $value) 
+		{
+			$data = $this->small->getByType('id' , $value['small_id'])[0]['name'];
+			$res[$key]['small_id'] = $data ;
+		}
+		$this->assign('res' , $res);
+		return $this->fetch('addgoods/stockGoods');
 	}
 
 
