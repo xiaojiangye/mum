@@ -1,0 +1,56 @@
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+{include file='public/css' /}
+{include file='public/js' /}
+<title>showSellerGoods.html</title>
+</head>
+<body >  
+{include file='seller/selhead' /}
+<!--Begin Header Begin-->
+<!--End Header End--> 
+<!-- <div class="i_bg bg_color"  > -->
+    <!--Begin 用户中心 Begin -->
+    <!-- <div class="m_content"  style="border: 1px solid red;"> -->
+         {include file='seller/selcommon' /} 
+
+        <div class="m_right" style="border: 1px solid red;">
+            <div class="f-r">
+                
+                <div class="confirmation">
+                    <div class="in-tit" >
+                        <h1> {$seller_name} </h1>
+                    </div>
+                </div>
+
+               {foreach $info as $vo}
+                <div class="browse" style="border: 1px solid green;padding-left: 12px;width: 970px;">
+                    <div class="browse-hd">
+                        <p><b>{$vo['lable']}<b></p><span>{$vo['count']}件宝贝</span>
+                    </div>             
+                    <ul >
+                        {foreach $vo['obj'] as $val}
+                            <li style="height: 280px;width: 225px;">
+                                <div class="li-top"  >
+                                    <a href="#" style="height: 180px; " class="li-top-tu"><img src="{$val.picture|substr=1}" /></a>
+                                    <p class="jiage"><span class="sp1">￥{$val.price * $val.discount}</span><span class="sp2">￥{$val.price}</span></p>
+                                </div>
+
+                               <a href="#"><b>{$val.name}</b></a>&ensp;
+                                <span>{$val.number}</span>
+                                 &ensp;库&ensp;存:&ensp;{$val.stock}&ensp;&ensp;
+                                &ensp;&ensp;&ensp;&ensp;<br />&ensp;&ensp;&ensp;&ensp;&ensp;<input type="button" name="" value="编辑商品">
+                                &ensp;&ensp;&ensp;&ensp;&ensp;&ensp;<input type="button" name="" value="删除商品">
+                            </li>
+                        {/foreach}
+
+                    </ul>
+                </div>
+                {/foreach}
+            </div>
+        </div>
+
+    </div>
+    <!--End 用户中心 End-->  
+</div>
+</body>
+</html>

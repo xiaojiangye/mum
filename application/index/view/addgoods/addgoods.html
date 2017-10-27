@@ -1,11 +1,6 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-    <script>
-    $(window).load(function() {
-        $("#status").fadeOut();
-        $("#preloader").delay(350).fadeOut("slow");
-    })
-    </script>
+  
 <title>addgoods.html</title>
 </head>
 <body >  
@@ -13,24 +8,24 @@
 {include file='seller/selhead' /}
 <!--End Header End--> 
         {include file='seller/selcommon' /}
-    <div class="m_right" style="padding-left: 20px;">  
-        <section id="content" class="pt15" >
+    <div class="m_right" style="border: 1px solid red;">  
             <h3 class="flight_title">
                 <i class="flight_icon"></i>
                 添加商品
             </h3>
-            <div class="indent">
+            <div class="indent" style="margin-top: 20px;">
                 <div class="allweb_box">
-                    <table class="table1 mb20">
+                 <form method="post" action="">
+                    <table class="table1 mb20" >
                         <tr>
-                            <th width="14%">
+                            <th width="20%">
                                 销售类型：
                             </th>
                             <td width="100%">
-                                <select class="input1 w350">
-                                    <option>薯条</option>
-                                    <option>烧烤</option>
-                                    <option>麻辣烫</option>
+                                <select name='small' style="width: 162px;margin-left: 10px;" class="input1 w350">
+                                    {foreach $small as $vo}
+                                        <option>{$vo['name']}</option>
+                                    {/foreach}
                                 </select>
                             </td>
                             &nbsp;
@@ -46,16 +41,6 @@
                             &nbsp;
                             </td>
                         </tr>
-                        <tr>
-                            <th>
-                                商品图片：
-                            </th>
-                            <td width="100%">
-                                <input name="picture" type="file" class="input1 w350" id="cpmc" />
-                            </td>
-                            &nbsp;
-                            </td>
-                        </tr> 
                         <tr>
                             <th>
                                 产品单价：
@@ -92,35 +77,23 @@
                                 商品描述：
                             </th>
                             <td colspan="3">
-                                <textarea name="description" class="input1 w100" style="height: 100px;"></textarea>
+                                <textarea name="description" class="input1 w100" style="border: 1px solid black;margin-top:8px;margin-left: 10px;height: 100px;"></textarea>
                             </td>
                         </tr>
                     </table>
-                    <input type="button" value="添加商品">
+                  </form>
                 </div>
-            </div>
-        </section>
+            </div> 
+            <button>添加商品图片</button>
+       <!--  </section> -->
     </div>
+   
+   
     <!--End 用户中心 End-->  
 </body>
 </html>
 <script type="text/javascript">
 $(function(){
-/*$('select').change(function()
-    {
-        alert($('select').val());
-    });*/
-
-/*    $('input[name=name]').blur(function()
-    {
-        alert($('input[name=name]').val());
-    });*/
-
-    /*$('input[name=picture]').click(function()
-        {
-            alert($("input[name=picture]").val());
-        });*/
-
     $('input[name=price]').blur(function()
         {
             var price = $("input[name=price]");
@@ -154,7 +127,6 @@ $(function(){
             var stock = $('input[name=stock]');
             if(!isNaN(stock.val()))
             {
-                alert(stock.val());
                 if(stock.val() < 11)
                 {
                     alert('库存量要大于10');
@@ -176,24 +148,25 @@ $(function(){
             } 
         });
 
-    $('input[type=button]').click(function()
+    $('button').click(function()
         {
-            var small =  $('select').val();
+            var small = $('select').val();
             var name = $('input[name=name]').val();
             var picture = $("input[name=picture]").val();
             var price = $("input[name=price]").val();
             var discount = $("input[name=discount]").val();
             var stock = $('input[name=stock]').val();
-            var description = $('textareas').val();
-            if(small || name || picture || price || discount ||stock || description )
-            {
-                alert('先完成信息啦!');
-            }
-            
+            var data = {'small' : small , 'name' : name , 'picture' : picture , 'price' : price , 'discount' : discount , 'stock' : stock };
+            $.post("{:url('Upload/getInfo')}" , data , function(data)
+                {
+                   console.log(data);
+                   if(data == 1)
+                   {
+                     window.location.href = "{:url('Upload/uploader')}";
+                   }
+                  
+                });
         });
-
-
-
 });
 
 </script>
