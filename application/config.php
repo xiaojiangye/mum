@@ -146,10 +146,10 @@ return [
         '__CSS__' => '/static/css/',
         '__IMAGE__' => '/static/image/',
         '__JS__' => '/static/js/',
-
         '__PICTURE__' => '/static/picture/',
         '__UPLOADER__'   =>'/static/upload/',
-        '__BOOT__'     =>'static/bootstrap/css/bootstrap.css'
+        '__BOOT__'     =>'static/bootstrap/css/bootstrap.css',
+        '__CAROUSEL__' => '/carousel/'
     ],
 
     // 默认跳转页面对应的模板文件

@@ -16,6 +16,8 @@ class Carousel extends Controller
 
 	public function carousel()
 	{
+		$res = $this->carousel->selectCarousel();
+		$this->assign('res' , $res);
 		return $this->fetch();
 	}
 
@@ -53,7 +55,9 @@ class Carousel extends Controller
 	    $data['administor_name'] = '小馋猫';
 	    $data['sort'] = $sort;
 	    $data['link'] = $pictureUrl;
-	    $data['url'] = './carousel/' . $mes;
+	    
+	    $date = date('Ymd');
+	    $data['url'] = $date . '/' .$mes;
 
 	    $res = $this->carousel->add($data);
 	    return json_encode($res);
