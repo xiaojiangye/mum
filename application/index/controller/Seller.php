@@ -41,6 +41,12 @@ class Seller extends Controller
 	/*渲染商家中心的页面  小店信息*/
 	public function selInfo()
 	{
+		/*这里需要登录之后进行改值*/
+		$Info = $this->seller->getByType('id' , 1)[0];
+
+		$Info['big_id'] = $this->big->getByField('id' , $Info['big_id'])[0]['style'];
+		
+		$this->assign('Info' , $Info);
 		return  $this->fetch();
 	}
 
