@@ -13,7 +13,7 @@
     <script type="text/javascript" src="__JS__hban.js"></script>
     <script type="text/javascript" src="__JS__tban.js"></script>
 	<script type="text/javascript" src="__JS__lrscroll_1.js"></script>
-<title>登录页面</title>
+<title>商家登录页面</title>
 </head>
 <body>  
 <!--Begin Header Begin-->
@@ -21,21 +21,21 @@
     <div class="top">
         <div class="logo"><a href="Index.html"><img src="__IMAGE__logo.png" /></a></div>
     </div>
-	<div class="login" style="height: 600px;" style="background-color: ;margin-top:-20px;">
+	<div class="login" style="height: 600px;" style="background-color: blue;margin-top:-20px;">
     	<div class="log_img"><!-- <img src="__IMAGE__l_img.png" width="611" height="425" /> --></div>
-		<div class="log_c" style="height: 600px; background-color:;">
-        	<form action="{url:('User/dologin')}" method="post" enctype="multipart/form-data">
+		<div class="log_c" style="height: 600px; background-color: ;">
+        	<form action="" method="post" enctype="multipart/form-data">
             <table border="0" style="width:370px; font-size:14px; margin-top:30px;" cellspacing="0" cellpadding="0">
               <tr height="50" valign="top">
               	<td width="55">&nbsp;</td>
                 <td>
-                	<span class="fl" style="font-size:24px;">用户登录</span>
+                	<span class="fl" style="font-size:24px;">商家登录</span>
                     <span class="fr">还没有商城账号，<a href="{:url('User/regist')}" style="color:#ff4e00;">立即注册</a></span>
                 </td>
               </tr>
               <tr height="70">
                 <td>用户名</td>
-                <td><input type="text" name="uname" class="l_user" id="username" /></td>
+                <td><input type="text" name="name" class="l_user" id="username" /></td>
               </tr>
               <tr height="10">
                 <td></td>
@@ -75,14 +75,17 @@
               </tr>
               <tr height="60">
               	<td>&nbsp;</td>
-                <td><input type="submit" id="log" value="登录" style="width:300px;height:30px;background-color: pink;border:none;" /></td>
+                <td>
+                <button type="button" id="log" value="登录" style="width:300px;height:30px;background-color: pink;border:none;">登录</button>
+                </td>
               </tr>
             </table>
             </form>
-            <div style="float: right;"><a href="{:url('seller/sellogin')}">商家登录</a></div>
-            <div style="float: left;"><a href="{:url('index/index')}">返回首页</a></div>
+            <div style="float: right;"><a href="{:url('user/login')}">用户登录</div>
+            <div style="float: left;"><a href="{:url('index/index')}">返回首页</div>
         </div>
     </div>
+    
 </div>
 <!--End Login End--> 
 <!--Begin Footer Begin-->
@@ -100,12 +103,13 @@
 <script type="text/javascript">
   $(function(){
         $('#log').click(function () {
-          var uname = $('#username').val();
-          //alert(name);
+          var name = $('#username').val();
+         // alert(name);
           var pwd = $('#pad').val();
-          //alert(pwd);
-           $.post("{:url('User/dologin')}",{uname:uname,pwd:pwd},function (data) {
-            //console.log(data);
+         // alert(pwd);
+        //alert(11);
+           $.post("{:url('seller/dologin')}",{name:name,pwd:pwd},function (data) {
+            alert(data);
             var data = JSON.parse(data);
             if(data == 0){
               $('#perror').html('密码不正确');
@@ -135,15 +139,8 @@
 
             $('#uerror').html("用户名不能为空");
             }
-            /*$.post("{url('User/login')}",{name:name},function (data) {
-             alert(data);
-             },'json');*/
-            /*if($("#usernaem").val() !== "" ) {
-               $('#uerror').html("用户名不存在");
-            }*/
             $("#username").css("background-color","");
         })
-
           //密码失去焦点
         $("#pad").blur(function(){
           if($("#pad").val() == "") {

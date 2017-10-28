@@ -1,6 +1,5 @@
 <?php
 namespace app\index\controller;
-
 use think\Controller; 
 use think\Db;
 use think\Session;
@@ -62,7 +61,8 @@ class User extends Controller
     //退出登录
     public function exit()
     {
-      return session(null);
+       session(null);
+        return $this->fetch('index/index');
     }
 
   //判断登录的条件
@@ -88,6 +88,7 @@ class User extends Controller
           Session::set('uname',"$uname");
          // dump($id);die;
           Session::set('id',"$id");
+          Session::set('type',0);
 
           //dump(Session::get('id'));   
           //dump(Session::get('uname'));die;   
