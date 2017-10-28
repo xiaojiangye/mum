@@ -1,21 +1,28 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <title>selinfo.html</title>
+<style type="text/css">
+    input
+    {
+      background-color: #F6F6F6;
+      border:none;
+      readonly:readonly;
+    }
+</style>
 </head>
 <body>  
 <!--Begin Header Begin-->
 {include file='seller/selhead' /}
 <!--End Header End--> 
 
-
   {include file='seller/selcommon'}
   <div class="m_right" style="padding-left: 20px;" >
     <div class="mem_t">资产信息</div>
     <table border="0" class="mon_tab" style="width:870px; margin-bottom:20px;" cellspacing="0" cellpadding="0">
       <tr>
-        <td width="60%">商家等级：<span style="color:#555555;">普通商家</span></td>
-        <td width="15%">积分：<span>99</span></td>
-        <td> <font color="#ff4e00">您还差 270 积分达到 分红100</font><br /></td>
+        <td width="50%">商家等级 ：<span style="color:#555555;">普通商家</span></td>
+        <td width="15%">积分：<span>{$Info['grade']}</span></td>
+        <td><font color="#ff4e00">您还差 270 积分达到银牌</font><br /></td>
       </tr>
       <tr>
         <td colspan="3">订单提醒：
@@ -24,32 +31,45 @@
       </tr>
     </table>
 
-    <div class="mem_t">小店信息</div>
+    <div class="mem_t">小店信息 <button class="btn btn-success">修改信息</button></div>
     <table border="0" class="acc_tab" style="width:870px;" cellspacing="0" cellpadding="0">
       <tr>
         <td class="td_l">用户ID： </td>
-        <td>12345678</td>
+        <td><input  readonly='readonly' type="text/css" name="" value="{$Info['id']}" /></td>
       </tr>
+      <tr>
+        <td class="td_l">小店名称：</td>
+        <td ><input  readonly='readonly' type="text/css" name="" value="{$Info['name']}" /></td>
+      </tr>
+      <tr>
+        <td class="td_l b_none">店主：</td>
+        <td><input readonly='readonly' type="text/css" name="" value="{$Info['leader']}asdf" /></td>
+      </tr> 
       <tr>
         <td class="td_l b_none">运营执照：</td>
-        <td>522124***********8</td>
+        <td><input readonly='readonly' type="text/css" name="" value="522124***********8" /></td>
       </tr>
       <tr>
-        <td class="td_l b_none">联系电话：</td>
-        <td>186****1234</td>
+        <td class="td_l">经营类型：</td>
+        <td><input  readonly='readonly' type="text/css" name="" value="{$Info['big_id']}" /></td>
+      </tr>
+      <tr>
+        <td class="td_l">小店说明：</td>
+        <td><input  readonly='readonly' type="text/css" name="" value="{$Info['description']}" /></td>
+      </tr>
+      <tr>
+        <td class="td_l b_none">联系小店：</td>
+        <td><input  readonly='readonly' type="text/css" name="" value="手机 : {$Info['pnumber']}" />&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;<input readonly='readonly' type="text/css" name="" value="邮箱 : {$Info['email']}" /></td>
       </tr>
       <tr>
         <td class="td_l b_none">注册时间：</td>
-        <td>2015/10/10</td>
+        <td><input  readonly='readonly' type="text/css" name="" value="{$Info['create_time']}" /></td>
       </tr>
       <tr>
-        <td class="td_l">完成订单：</td>
-        <td>0</td>
+        <td class="td_l">最近一次登录(退出登录之前更新update_time)：</td>
+        <td><input  readonly='readonly' type="text/css" name="" value="{$Info['update_time']}" /></td>
       </tr>
-      <tr>
-        <td class="td_l">登录次数：</td>
-        <td>3</td>
-      </tr>
+      
     </table>
   </div>
 

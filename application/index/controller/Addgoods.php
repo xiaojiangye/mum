@@ -101,6 +101,23 @@ class Addgoods extends Controller
 		return $this->fetch();	
 	}
 
+	/*驱动缺货统计页面*/
+	public function stockGoods()
+	{
+		/*这里需更新卖家登录之后对应的id值*/
+		$key = 'seller_id';
+		$value = 1;
+		$res = $this->goods->getStockGoods($key , $value);
+
+		foreach ($res as $key => $value) 
+		{
+			$data = $this->small->getByType('id' , $value['small_id'])[0]['name'];
+			$res[$key]['small_id'] = $data ;
+		}
+		$this->assign('res' , $res);
+		return $this->fetch('addgoods/stockGoods');
+	}
+
 
 }
 
