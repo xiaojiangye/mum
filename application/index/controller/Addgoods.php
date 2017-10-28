@@ -114,6 +114,9 @@ class Addgoods extends Controller
 			$data = $this->small->getByType('id' , $value['small_id'])[0]['name'];
 			$res[$key]['small_id'] = $data ;
 		}
+
+		$count = $this->goods->getCount();
+		$this->assign('count' , $count);
 		$this->assign('res' , $res);
 		return $this->fetch('addgoods/stockGoods');
 	}

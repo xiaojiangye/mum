@@ -27,11 +27,13 @@ class Goods extends Model
 		return Db::query("SELECT  number , id , name , seller_id , small_id , picture , price , stock , discount , description FROM mumma_goods WHERE $key = $value GROUP BY number;");
 	}
 
+
 	/*统计每种商品类型的数量*/
 	public function groupGoods($seller_id)
 	{
 		return Db::query("SELECT small_id , COUNT(*) as count FROM mumma_goods where seller_id = $seller_id GROUP BY small_id;");
 	}
+
 
 	/*根据传入的条件得到对应的所有数据*/
 	public function getBySmallId( $key ,  $small_id)
@@ -39,10 +41,21 @@ class Goods extends Model
 		return $this->where($key , $small_id)->select();
 	}
 
+
 	/*得到缺货商品*/
 	public function getStockGoods($key , $value)
 	{
 		return Db::query("SELECT  number , id , name , small_id , stock , description , create_time FROM mumma_goods WHERE $key = $value GROUP BY number ORDER BY stock ASC ;");
+	}
+
+	public function getCount()
+	{
+		$small_count = Db::table('mumma_goods')->count('distinct small_id');
+		$goods_count = Db::table('mumma_goods')->count('distinct number');
+
+		return ['small_count' => $small_count , 'goods_count' => $goods_count];
+		
+		/*return $this->fetchSql(true)->field('small_id , count(small_id)')->group('small_id')->select();*/
 	}
 
 }
