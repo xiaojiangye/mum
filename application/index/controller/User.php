@@ -5,31 +5,42 @@ use think\Db;
 use think\Session;
 use app\index\model\User as UserModel;
 use app\admin\model\Big;
+use app\index\model\Seller;
 
 class User extends Controller
 {
     protected $user;
     protected $small;
     protected $big;
+    protected $seller;
     
     public function _initialize()
     {
       $this->user =  new UserModel();
       $this->big = new Big();
+      $this->seller = new Seller();
     }
 
     /*注册时查询用户名是否存在的判断*/
     public function selectUser()
     {
-      return 1;
       $data = $this->request->post();
       $name = $data['name'];
-
-      if(empty($this->user->getName($name)))
+      if($data['style'] == '买家')
       {
-        $data = ['status' => 1];
-        echo json_encode($data);
+        if(!empty($this->user->getName($name)))
+          {
+            return 0;
+          }
       }
+      else if($data['style'] == '卖家')
+      {
+         if(!empty($this->seller->getByType('name' , $name)))
+         {
+           return 0;
+         }
+      }
+      return 1;
     }
 
     /*渲染注册页面*/

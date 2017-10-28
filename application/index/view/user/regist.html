@@ -5,13 +5,19 @@
 <script src='__JS__jquery-1.9.1.min.js'></script>
 <script src='__JS__Validform_v5.3.2_min.js'></script>
 </head>
+<script type="text/javascript">
+$(function()
+{
+  $("body").css("background","url(__IMAGE__regist.jpg)");
+});
+</script>
 <body>
     <div style="text-align: center;" >
       <h1 class="hd" text-align='center'>用户注册</h1><a href="{:url('User/login')}">用户登录</a>
       <div class="tc" ><img src="__IMAGE__regtxt.png"></div>
 
       <form  id='fm' class="registerform" action="">
-        <table width="50%" style="margin-left: 290px;border: 1px solid black;">  
+        <table width="40%" style="margin-left: 348px;margin-top: 30px;">  
         <tr id='reg' class="form-group" style='margin-bottom:20px;'>
             <td class="need" style="width:10px;">*</td>
             <td style="width:90px;">注册类型：</td>
@@ -30,9 +36,9 @@
             <td class="need" style="width:10px;">*</td>
             <td style="width:90px;">用&ensp;户&ensp;名:</td>
             <td style="width:205px;">
-               <input type="text" value="" name="name" class="inputxt" datatype="*3-20" nullmsg="请输入中文名！" errormsg="中文名为2~4个中文字符！" />
+               <input type="text" value="" name="name" class="inputxt"  datatype="*3-20" nullmsg="请输入中文名！" errormsg="中文名为2~4个中文字符！" />
             </td>
-            <td><div class="Validform_checktip">请输入您的用户名3~20</div></td>
+            <td><div id='testname' style="color: red;" class="Validform_checktip"></div></td>
         </tr>
 
         <tr>
@@ -129,11 +135,12 @@ $('#select1').change(function()
     if($('#select1').val() == '卖家')
     {
       /*$('#seller').after("<tr><td><select style='width:170px;height:34px;background:pink;color:white;border:1px solid #161616'  id='seller2'><option>123</option><option>123</option></select></td></tr>");*/
-    $('#reg').after("<tr id='shop'  class='form-group' style='margin-bottom:20px; '><td class='need' style='width:10px;'>*</td><td style='width:90px;'>店铺类型：</td><td style='width:205px;'><select style='width:170px;height:34px;background:pink;color:white;border:1px solid #161616'  id='seller2'>{foreach $res as $val}<option>{$val['style']}</option>{/foreach}</select></td></tr>"); 
+    $('#reg').after("<tr id='shop'  class='form-group' style='margin-bottom:20px; '><td class='need' style='width:10px;'>*</td><td style='width:90px;'>店铺类型：</td><td style='width:205px;'><select style='width:173px;height:34px;background:#FFF;border:1px solid #A9A9A9'  id='seller2'>{foreach $res as $val}<option>{$val['style']}</option>{/foreach}</select></td></tr><tr id='shops'  class='form-group' style='margin-bottom:20px; '><td class='need' style='width:10px;'>*</td><td style='width:90px;'>简单描述：</td><td style='width:235px;'><textarea style='width:170px;height:60px;'></textarea></td></tr>"); 
     }
     if($('#select1').val() == '买家')
     {
-      
+       $('#shop').remove();
+       $('#shops').remove();
     }
 
   });
@@ -144,14 +151,36 @@ $(function ()
    /*验证用户名*/
    $('input[name=name]').blur(function()
     {
+      var style = $('#select1').val();
       var name =  $('input[name=name]').val();
       len = name.length;
-      if( (!name && typeof(name)!="undefined" && name!=0) || len < 3 || $len > 10)
+      if( (!name && typeof(name)!="undefined" && name!=0) || len < 3 || len > 10)
       {
-        status = false;
         alert('长度不能小于3或大于10或者为空');
       }
-      status = true;
+      else
+      {
+        var postUrl = null;
+        if(style == '买家')
+        {
+            postUrl = "{:url('User/selectUser')}";
+        }
+        else
+        {
+            postUrl = "{:url('User/selectUser')}";
+        }
+        $.post("{:url('User/selectUser')}" , {'name' : name , 'style' : style } , function(data)
+        {
+            if(data == 0)
+            {
+              $('#testname').html('用户已存在!');
+            }
+            else if(data == 1)
+            {
+              $('#testname').html('用户可用!');
+            }
+        })
+      }
     });
 
    /*验证邮箱*/
@@ -236,12 +265,13 @@ $(function ()
     {
       var style = $('#select1').val();
       var category = $('#seller2').val();
-    alert(category);
+      alert(category);
       var name = $('input[name=name]').val();
       var email = $('input[name=email]').val();
       var pnumber = $('input[name=phone]').val();
       var pwd = $('input[name=pwd]').val();
       var rpwd = $('input[name=rpwd]').val();
+      var description = $('textarea').val();
       if(status && name && email && pnumber && pwd && rpwd && (pwd==rpwd))
       {
         console.log('信息正确哦，插入进去吧!');
@@ -256,7 +286,7 @@ $(function ()
         }
 
         /*注册的ajax请求*/
-        $.post(urlpost, {'style' : category , 'uname' : name , 'email' : email , 'pnumber' : pnumber , 'pwd' : pwd} ,
+        $.post(urlpost, {'style' : category , 'uname' : name , 'email' : email , 'pnumber' : pnumber , 'pwd' : pwd , 'description' :  description } ,
          function(data){
           console.log(data);
             if(data == 0)

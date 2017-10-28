@@ -18,10 +18,8 @@ class Index  extends Controller
       $this->big = new Big();
     }
 
-
     public function index()
     {
-
       //大商品的种类 big
       $res1 = $this->big->referBig();
       foreach ($res1 as $vo ) {
