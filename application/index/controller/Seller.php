@@ -4,6 +4,8 @@ namespace app\index\controller;
 use think\Controller; 
 use think\View;
 use think\Request;
+use think\Db;
+use think\Session;
 use app\index\model\Seller as SellerModel;
 use app\admin\model\Big;
 
@@ -36,7 +38,47 @@ class Seller extends Controller
 			return 0;
 		}
 	}
+	//登录页面
+	public function sellogin()
+	{
+		return $this->fetch();
+	}
 	
+	//验证登录的条件
+	 public function dologin()
+    {  
+      $name = input('post.name');
+      $pwd = input('post.pwd');
+     // return $pwd;
+      $result =  Db::table('mumma_seller')->where('name',"$name")->find();
+
+      if ($result){
+        if ($pwd !== $result['pwd']){
+          return 0;
+        }else{
+
+          $id = $result['id'];
+           
+          //添加登录的时间
+          //$time = time();
+          ///$this->selle->
+          Session::set('name',"$name");
+         
+          Session::set('id',"$id");
+          Session::set('type',1); //存值判断商家  
+          return 1;
+        } 
+      }else{
+          return 2;
+      }  
+    }
+
+    //退出登录
+    public function exit()
+    {
+    	session(null);
+    	$this->fetch('index/index');
+    }
 
 	/*渲染商家中心的页面  小店信息*/
 	public function selInfo()
