@@ -49,10 +49,29 @@ class Goods extends Model
 	//首页查询查询商品
 	public function selectGood($data)
 	{
-		$res = $this->field('name,price,discount,picture')->where('big_id', $data)->limit(6)->select();
+		$res = $this->field('name,price,discount,picture,id,small_id,big_id')->where('big_id', $data)->limit(6)->select();
 		return $res;
 		//dump($res);die;
 		
+	}
+
+	//根据类型差商品
+	public function selectList($big)
+	{	
+		
+		$res = $this->where('big_id',$big['big'])->select();
+		return $res;
+	}
+	//根据商品的id得到商品的详细的信息
+	public function goodsDetails($good)
+	{
+		$res = $this->where('id',$good['good'])->select();
+		return $res;
+	}
+	public function samePhoto($data)
+	{	//dump($data);die;
+		$res = $this->where('number',$data)->select();
+		return $res;
 	}
 
 }

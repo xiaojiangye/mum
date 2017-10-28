@@ -222,13 +222,17 @@
         <!--End 商品分类详情 End-->                                                     
         <ul class="menu_r">
            <li><a href="Index.html">首页</a></li>
-        {foreach $res1 as $vo}                                                
-            <li><a href="BrandList.html">{$vo['style']}</a></li>
+
+        {foreach $res1 as $vo} 
+
+            <li><a href="{:url('index/brandlist',['big'=>$vo['id']])}">
+           
+            {$vo['style']} </a></li>
             {/foreach}
         </ul>
         <div class="m_ad">预购双十一！</div>
-    </div>
-</div>
+    </iv>
+</div
 <!--End Menu End--> 
 <div class="i_bg bg_color">
     <div class="i_ban_bg">
@@ -405,132 +409,22 @@
    
     <div class="i_t mar_10">
         <span class="floor_num">1F</span>
+
         <span class="fl"></span>
+
     </div>
-    <div class="content">
-        <div class="fresh_left">
-            <div class="fre_ban">
-                <div id="imgPlay1">
-                    <ul class="imgs" id="actor1">
-                        <li><a href="#"><img src="images/fre_r.jpg" width="211" height="286" /></a></li>
-                        <li><a href="#"><img src="images/fre_r.jpg" width="211" height="286" /></a></li>
-                        <li><a href="#"><img src="images/fre_r.jpg" width="211" height="286" /></a></li>
-                    </ul>
-                    <div class="prevf">上一张</div>
-                    <div class="nextf">下一张</div> 
-                </div>   
-            </div>
-            <div class="fresh_txt">
-                <div class="fresh_txt_c">
-                    <a href="#">进口水果</a><a href="#">奇异果</a><a href="#">西柚</a><a href="#">海鲜水产</a><a href="#">品质牛肉</a><a href="#">奶粉</a><a href="#">鲜活禽蛋</a><a href="#">进口酒</a><a href="#">进口奶粉</a><a href="#">鲜活禽蛋</a>
-                </div>
-            </div>
-        </div>
-        <div class="fresh_mid" style="background-color:;">
-          
-                <li>
-                    <div class="name"><a href="#">name</a></div>
-                    <div class="price">
-                        <font>￥<span style="font-size:14px;text-decoration:line-through">['price']</span></font> &nbsp; <font color:red size="16px">discount'</font>
-                    </div>
-                    <div class="img"><a href="#"><img src="$vo.picture|substr=1" width="185" height="155" /></a></div>
-                </li>
-               
-            </ul>
-          
-        </div>
-        <div class="fresh_right">
-            <ul>
-                <li><a href="#"><img src="images/fre_b1.jpg" width="260" height="220" /></a></li>
-                <li><a href="#"><img src="images/fre_b2.jpg" width="260" height="220" /></a></li>
-            </ul>
-        </div>
-    </div> 
-      
+   
     <!--End 进口 生鲜 End-->
     <!--Begin 食品饮料 Begin-->
-    <div class="i_t mar_10">
-        <span class="floor_num">2F</span>
-        <span class="fl">水果</span>                                
-        <span class="i_mores fr"><a href="#">咖啡</a>&nbsp; &nbsp; | &nbsp; &nbsp;<a href="#">休闲零食</a>&nbsp; &nbsp; | &nbsp; &nbsp;<a href="#">饼干糕点</a>&nbsp; &nbsp; | &nbsp; &nbsp;<a href="#">冲饮谷物</a>&nbsp; &nbsp; | &nbsp; &nbsp;<a href="#">营养保健</a></span>
-    </div>
-    <div class="content">
-        <div class="food_left">
-            <div class="food_ban">
-                <div id="imgPlay2">
-                    <ul class="imgs" id="actor2">
-                        <li><a href="#"><img src="images/food_r.jpg" width="211" height="286" /></a></li>
-                        <li><a href="#"><img src="images/food_r.jpg" width="211" height="286" /></a></li>
-                        <li><a href="#"><img src="images/food_r.jpg" width="211" height="286" /></a></li>
-                    </ul>
-                    <div class="prev_f">上一张</div>
-                    <div class="next_f">下一张</div> 
-                </div>   
-            </div>
-            <div class="fresh_txt">
-                <div class="fresh_txt_c">
-                    <a href="#">饼干糕点</a><a href="#">休闲零食</a><a href="#">饮料果汁</a><a href="#">牛奶乳品</a><a href="#">冲饮谷物</a><a href="#">营养保健</a><a href="#">冲饮谷物</a><a href="#">营养保健</a>
-                </div>
-            </div>
-        </div>
-        <div class="fresh_mid">
-            <ul>
-                <li>
-                    <div class="name"><a href="#">莫斯利安酸奶</a></div>
-                    <div class="price">
-                        <font>￥<span>96.00</span></font> &nbsp; 25R
-                    </div>
-                    <div class="img"><a href="#"><img src="images/food_1.jpg" width="185" height="155" /></a></div>
-                </li>
-                <li>
-                    <div class="name"><a href="#">莫斯利安酸奶</a></div>
-                    <div class="price">
-                        <font>￥<span>96.00</span></font> &nbsp; 25R
-                    </div>
-                    <div class="img"><a href="#"><img src="images/food_2.jpg" width="185" height="155" /></a></div>
-                </li>
-                <li>
-                    <div class="name"><a href="#">莫斯利安酸奶</a></div>
-                    <div class="price">
-                        <font>￥<span>96.00</span></font> &nbsp; 25R
-                    </div>
-                    <div class="img"><a href="#"><img src="images/food_3.jpg" width="185" height="155" /></a></div>
-                </li>
-                <li>
-                    <div class="name"><a href="#">莫斯利安酸奶</a></div>
-                    <div class="price">
-                        <font>￥<span>96.00</span></font> &nbsp; 25R
-                    </div>
-                    <div class="img"><a href="#"><img src="images/food_4.jpg" width="185" height="155" /></a></div>
-                </li>
-                <li>
-                    <div class="name"><a href="#">莫斯利安酸奶</a></div>
-                    <div class="price">
-                        <font>￥<span>96.00</span></font> &nbsp; 25R
-                    </div>
-                    <div class="img"><a href="#"><img src="images/food_5.jpg" width="185" height="155" /></a></div>
-                </li>
-                <li>
-                    <div class="name"><a href="#">莫斯利安酸奶</a></div>
-                    <div class="price">
-                        <font>￥<span>96.00</span></font> &nbsp; 25R
-                    </div>
-                    <div class="img"><a href="#"><img src="images/food_6.jpg" width="185" height="155" /></a></div>
-                </li>
-            </ul>
-        </div>
-        <div class="fresh_right">
-            <ul>
-                <li><a href="#"><img src="images/food_b1.jpg" width="260" height="220" /></a></li>
-                <li><a href="#"><img src="images/food_b2.jpg" width="260" height="220" /></a></li>
-            </ul>
-        </div>
-    </div>    
-    <!--End 食品饮料 End-->
-    <!--Begin 个人美妆 Begin-->
+
+  
+    
+
+    <!--Begin 个人美妆 Begin-->  
+    {volist name="res1" id="vo"}  
     <div class="i_t mar_10">
         <span class="floor_num">3F</span>
-        <span class="fl">薯片</span>                                
+        <span class="fl">{$vo.style}</span>                                
         <span class="i_mores fr"><a href="#">洗发护发</a>&nbsp; &nbsp; | &nbsp; &nbsp;<a href="#">面膜</a>&nbsp; &nbsp; | &nbsp; &nbsp;<a href="#">洗面奶</a>&nbsp; &nbsp; | &nbsp; &nbsp;<a href="#">香水</a>&nbsp; &nbsp; | &nbsp; &nbsp;<a href="#">沐浴露</a></span>                
     </div>
     <div class="content">
@@ -554,48 +448,17 @@
         </div>
         <div class="fresh_mid">
             <ul>
+            {volist name="goods_res" id="v"}
+            {if condition="$v.big_id eq $vo.id"}
                 <li>
-                    <div class="name"><a href="#">美宝莲粉饼</a></div>
+                    <div class="name"><a href="#">{$v.name}</a></div>
                     <div class="price">
-                        <font>￥<span>260.00</span></font> &nbsp; 16R
+                        <font>￥<span>{$v.price}</span></font> &nbsp; 16R
                     </div>
                     <div class="img"><a href="#"><img src="images/make_1.jpg" width="185" height="155" /></a></div>
                 </li>
-                <li>
-                    <div class="name"><a href="#">美宝莲粉饼</a></div>
-                    <div class="price">
-                        <font>￥<span>260.00</span></font> &nbsp; 16R
-                    </div>
-                    <div class="img"><a href="#"><img src="images/make_2.jpg" width="185" height="155" /></a></div>
-                </li>
-                <li>
-                    <div class="name"><a href="#">美宝莲粉饼</a></div>
-                    <div class="price">
-                        <font>￥<span>260.00</span></font> &nbsp; 16R
-                    </div>
-                    <div class="img"><a href="#"><img src="images/make_3.jpg" width="185" height="155" /></a></div>
-                </li>
-                <li>
-                    <div class="name"><a href="#">美宝莲粉饼</a></div>
-                    <div class="price">
-                        <font>￥<span>260.00</span></font> &nbsp; 16R
-                    </div>
-                    <div class="img"><a href="#"><img src="images/make_4.jpg" width="185" height="155" /></a></div>
-                </li>
-                <li>
-                    <div class="name"><a href="#">美宝莲粉饼</a></div>
-                    <div class="price">
-                        <font>￥<span>260.00</span></font> &nbsp; 16R
-                    </div>
-                    <div class="img"><a href="#"><img src="images/make_5.jpg" width="185" height="155" /></a></div>
-                </li>
-                <li>
-                    <div class="name"><a href="#">美宝莲粉饼</a></div>
-                    <div class="price">
-                        <font>￥<span>260.00</span></font> &nbsp; 16R
-                    </div>
-                    <div class="img"><a href="#"><img src="images/make_6.jpg" width="185" height="155" /></a></div>
-                </li>
+            {/if}
+            {/volist}
             </ul>
         </div>
         <div class="fresh_right">
@@ -605,6 +468,7 @@
             </ul>
         </div>
     </div>    
+    {/volist}
     <!--End 个人美妆 End-->
     <div class="content mar_20">
         <img src="images/mban_1.jpg" width="1200" height="110" />
