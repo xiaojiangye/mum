@@ -3,16 +3,49 @@ namespace app\index\controller;
 
 use think\Controller; 
 use think\View;
+use app\admin\model\Big;
+use app\index\model\Goods;
 use app\index\controller\SendEmail;
 
 class Index  extends Controller
-{
-    public function index()
+{   
+
+    protected $goods;
+    protected $big;
+    public function _initialize()
     {
-    	return $this->fetch();
+      $this->goods = new Goods(); 
+      $this->big = new Big();
     }
 
-    /*发送邮件 并返回验证码*/
+
+    public function index()
+    {
+
+      //大商品的种类 big
+      $res1 = $this->big->referBig();
+      foreach ($res1 as $vo ) {
+       // $vo['id']
+       $res = $this->goods->selectGood($vo['id']);
+       //foreach ($res2 as $res) {
+        
+        foreach($res as $val){
+          dump($val);
+        }
+      }
+        //dump($res['name']);
+    //     }
+    //   }
+    //   //die;
+    //   //查询商品
+     
+    //   //dump($res);
+    //   //$this->assign('res',$res);
+    //   //$this->assign('res1',$res1);
+     	return $this->fetch();
+    }
+
+     /*发送邮件 并返回验证码*/
     public function getEmailCode()
     {
     	$address = $this->request->post();

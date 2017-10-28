@@ -45,6 +45,16 @@ class Goods extends Model
 		return Db::query("SELECT  number , id , name , small_id , stock , description , create_time FROM mumma_goods WHERE $key = $value GROUP BY number ORDER BY stock ASC ;");
 	}
 
+
+	//首页查询查询商品
+	public function selectGood($data)
+	{
+		$res = $this->field('name,price,discount,picture')->where('big_id', $data)->limit(6)->select();
+		return $res;
+		//dump($res);die;
+		
+	}
+
 }
 
 

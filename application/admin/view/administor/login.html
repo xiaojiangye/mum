@@ -1,4 +1,4 @@
-﻿<html xmlns="http://www.w3.org/1999/xhtml">
+<html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 {include file='public/css' /}
 {include file='public/js' /}
@@ -35,12 +35,12 @@
 
 						<div class="login_icon"><img src="__PICTURE__/login.png" /></div>
 
-				<form name='fm' action="{:url('User/index')}" method="post" >
+				<form name='fm' action="{:url('Administor/dologin')}" method="post" >
 					<fieldset>
 					<ul>
-						<li class="frame_style form_error"><label class="user_icon"></label><input name="name" type="text"  id="username"/><i>用户名</i></li>
+						<li class="frame_style"><label class="user_icon"></label><input name="uname" type="text"  id="username"/><i>用户名</i></li>
 
-						<li class="frame_style form_error"><label class="password_icon"></label><input name="pwd" type="password"   id="pad"/><i>密码</i></li>
+						<li class="frame_style"><label class="password_icon"></label><input name="pwd" type="password"   id="pad"/><i>密码</i></li>
 
 						<li class="frame_style form_error"><label class="Codes_icon"></label><input name="验证码" type="text"   id="Codes_text"/><i>验证码</i><div class="Codes_region"></div></li>
 
@@ -84,15 +84,16 @@
           //alert(name);
           var pwd = $('#pad').val();
           //alert(pwd);
-           $.post("{:url('User/dologin')}",{uname:uname,pwd:pwd},function (data) {
+           $.post("{:url('Administor/dologin')}",{uname:uname,pwd:pwd},function (data) {
             //console.log(data);
+            alert(data);
             var data = JSON.parse(data);
             if(data == 0){
               $('#write').html('密码不正确');
             }else if(data == 2){
               $('#write').html('用户名不正确');
             }else if(data == 1) {
-             window.location.href="/index/index/index"; 
+             window.location.href="admin/index/index"; 
             }
            },'json');
            return false;

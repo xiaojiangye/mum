@@ -41,6 +41,12 @@ class Big  extends  Model
 		return $this->field('id , style , description , create_time')->order('create_time' , 'desc')->select();
 	}
 
+	//查询所有的大板块
+	public function referBig()
+	{
+		return $res = $this->field('id,style')->select();
+	}
+
 }
 
 
