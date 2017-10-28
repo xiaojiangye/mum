@@ -64,8 +64,8 @@ class Seller extends Controller
           $id = $result['id'];
            
           //添加登录的时间
-          //$time = time();
-          ///$this->selle->
+          $time = time();
+         // $this->selle->save([])
           Session::set('name',"$name");
          
           Session::set('id',"$id");

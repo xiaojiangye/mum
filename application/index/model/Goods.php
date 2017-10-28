@@ -50,6 +50,7 @@ class Goods extends Model
 		return Db::query("SELECT  number , id , name , small_id , stock , description , create_time FROM mumma_goods WHERE $key = $value GROUP BY number ORDER BY stock ASC ;");
 	}
 
+
 	/*得到该商店销售的类型数量 以及共有多少种商品*/
 	public function getCount()
 	{
@@ -60,6 +61,14 @@ class Goods extends Model
 		
 		/*return $this->fetchSql(true)->field('small_id , count(small_id)')->group('small_id')->select();*/
 	}
+
+	//首页查询查询商品
+	/*public function selectGood($data)
+	{
+		$res = $this->field('name,price,discount,picture')->where('big_id', $data)->limit(6)->select();
+		return $res;
+		//dump($res);die;
+	}*/
 
 }
 

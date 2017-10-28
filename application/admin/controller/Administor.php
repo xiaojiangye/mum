@@ -1,9 +1,9 @@
 <?php
-
 namespace app\admin\controller;
 use think\Controller;
 use think\Request;
 use think\Db;
+use think\Session;
 use app\admin\model\User;
 use app\admin\model\Administor as AdministorModel;
 
@@ -17,17 +17,39 @@ class Administor  extends Controller
 		$this->admin = new AdministorModel();
 		
 	}
+	public function login()
+	{
+		return $this->fetch('');
+	}
+	//登录的判断条件 管理员
+	 public function dologin()
+    {   
+      $uname = input('post.uname');
+      $pwd = input('post.pwd');
+      $result =  Db::table('mumma_user')->where('uname',"$uname")->find();
+       //查询结果
+      if ($result) {
+        if ($pwd !== $result['pwd']) 
+        {
+          return 0;
+        } else {
 
+          $id = $result['id'];
+          //echo "$id";
+         // dump($id);die;
+          //添加登录的时间
+          Session::set('uname',"$uname");
+         // dump($id);die;
+          Session::set('id',"$id");
+          return 1;
+        } 
+      }
+      else 
+      {
+          return 2;
+      }  
+    }
 	
-	// public function login()
-	// {
-	// 	/*$data = $_POST;*/
-	// 	$data = $this->request->post();
-	// 	$data = json_decode($data , true);
-
-		/*$arr = ['status' => 1];*/
-	// 	echo json_encode($data);
-	// }
 
 	public function administor()
 	{	//所有的管理员
