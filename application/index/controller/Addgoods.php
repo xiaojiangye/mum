@@ -7,23 +7,31 @@ use app\index\model\Goods;
 use app\admin\model\Small;
 use app\index\model\Seller;
 use think\Session;
+use app\index\controller\Index;
 
 class Addgoods extends Controller
 {
 	protected $goods ;
 	protected $small;
 	protected $seller;
+	protected $index;
 
 	public function _initialize()
 	{
 		$this->goods = new Goods();
 		$this->small = new Small();
 		$this->seller = new Seller();
+		$this->index = new Index();
 	}
 
 	/*驱动商家添加商品的页面*/
 	public function addGoods()
 	{
+		if(empty(Session::get('id')))
+		{
+			$this->index->index();
+			die;
+		}
 		$small = $this->small->getByType('name' , '');
 		$this->assign('small' , $small);
 		return $this->fetch();
@@ -32,10 +40,17 @@ class Addgoods extends Controller
 	/*添加商品的详细信息*/
 	public function addInfo()
 	{	
+		if(empty(Session::get('id')))
+		{
+			$this->index->index();
+			die;
+		}
+
 		$number = Session::get('small');
 		$res = $this->small->getByType('name' , $number)[0];
 		if(!$res)
 		{
+			$this->addInfo();
 			die;
 		}
 
@@ -43,8 +58,10 @@ class Addgoods extends Controller
 		$numRes = $this->goods->getGoods('number' , $number);
 		
 		/*商家id登录时完善*/
-		$info['seller_id'] = 1;
-		$info['big_id'] = 1;
+		$info['seller_id'] = Session::get('id');
+
+		/*先假设有id 待会处理session问题*/
+		$info['big_id'] = $this->seller->getByType('id', $info['seller_id'])[0]['big_id'];;
 
 		$info['small_id'] = $res['id'];
 		$info['number'] = $number;
@@ -59,18 +76,24 @@ class Addgoods extends Controller
 		{
 			$this->error('执行错误' , 'Addgoods/addGoods');
 			die;
-			return 0;
 		}
 		$this->success('执行成功!' ,  'Addgoods/showSellerGoods');	
 	}
+
 
 	/*驱动小店首页 得到展示所需数据*/
 	public function showSellerGoods()
 	{
 		$info= [];
+		$id = Session::get('id');
+		
+		if(empty($id))
+		{
+			$this->index->index();
+			die;
+		}
 
-		/*这里也先写死了店铺id*/
-		$groupRes = $this->goods->groupGoods(1); 
+		$groupRes = $this->goods->groupGoods($id); 
 		if(!$groupRes)
 		{
 			die;
@@ -92,10 +115,9 @@ class Addgoods extends Controller
 			$info[$key]['obj'] = $obj;
 		}
 
-		/*登录的时候存储了id name 这里先写死  */
-		$seller_name = '小馋猫';
+		/*用户名*/
+		$seller_name = Session::get('name');
 		
-		//dump($info);
 		$this->assign('seller_name' , $seller_name);
 		$this->assign('info' , $info);
 		return $this->fetch();	
@@ -104,9 +126,8 @@ class Addgoods extends Controller
 	/*驱动缺货统计页面*/
 	public function stockGoods()
 	{
-		/*这里需更新卖家登录之后对应的id值*/
 		$key = 'seller_id';
-		$value = 1;
+		$value = Session::get('id');
 		$res = $this->goods->getStockGoods($key , $value);
 
 		foreach ($res as $key => $value) 

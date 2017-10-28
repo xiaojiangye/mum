@@ -22,6 +22,7 @@ class Index  extends Controller
     	$data = ['code' => $code];
     	return json_encode($data);
     }
+    
     public function brandList()
     {
     	return $this->fetch();

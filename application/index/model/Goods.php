@@ -5,6 +5,7 @@ namespace app\index\model;
 use think\Model;
 use think\Db;
 use app\admin\model\Small;
+use think\Session;
 
 class Goods extends Model
 {
@@ -16,6 +17,7 @@ class Goods extends Model
 		return $this->id;
 	}
 
+	/*根据传入的条件得到产品信息*/
 	public function getGoods($key , $value)
 	{
 		return $this->distinct(true)->field('number , id , name , seller_id , small_id , picture , price , stock , discount , description')->where($key ,  $value)->select();
@@ -24,7 +26,8 @@ class Goods extends Model
 	/*查询商品 根据传入的条件  只用来驱动小店首页*/
 	public function selectGoods($key , $value)
 	{	
-		return Db::query("SELECT  number , id , name , seller_id , small_id , picture , price , stock , discount , description FROM mumma_goods WHERE $key = $value GROUP BY number;");
+		$seller_id = Session::get('id');
+		return Db::query("SELECT  number , id , name , seller_id , small_id , picture , price , stock , discount , description FROM mumma_goods WHERE $key = $value AND seller_id = $seller_id GROUP BY number;");
 	}
 
 
@@ -41,13 +44,13 @@ class Goods extends Model
 		return $this->where($key , $small_id)->select();
 	}
 
-
 	/*得到缺货商品*/
 	public function getStockGoods($key , $value)
 	{
 		return Db::query("SELECT  number , id , name , small_id , stock , description , create_time FROM mumma_goods WHERE $key = $value GROUP BY number ORDER BY stock ASC ;");
 	}
 
+	/*得到该商店销售的类型数量 以及共有多少种商品*/
 	public function getCount()
 	{
 		$small_count = Db::table('mumma_goods')->count('distinct small_id');
