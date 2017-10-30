@@ -6,31 +6,31 @@ use think\Session;
 
 class Address extends Model
 {
-	// public function add($data)
-	// {	
-	// 	$time = time();
-	// 	//dump($time);
-	// 	$addr = $data['s_province'] . $data['s_city'] . $data['s_county'];
-	// 	//dump($addr);
-	// 	$id = Session::get('id');
-	// 	//dump($id);die;
-	// 	$list=[
-	// 			'addr_name'  => $data['consignee'],
-	// 			'addr_phone' => $data['cphone'],
-	// 			'addr_addr'  => $addr,
-	// 			'addr_email' => $data['cmeail'],
-	// 			'addr_detail' => $data['deaddr'],
-	// 			'addr_code'  => $data['code'],
-	// 			'addr_bulid'     => $data['cbulid'],
-	// 			'create_time' => $time,
-	// 			'user_id'     => $id
+	public function add($data)
+	{	
+		$time = time();
+		//dump($time);
+		$addr = $data['s_province'] . $data['s_city'] . $data['s_county'];
+		//dump($addr);
+		$id = Session::get('id');
+		//dump($id);die;
+		$list=[
+				'addr_name'  => $data['consignee'],
+				'addr_phone' => $data['cphone'],
+				'addr_addr'  => $addr,
+				'addr_email' => $data['cmeail'],
+				'addr_detail' => $data['deaddr'],
+				'addr_code'  => $data['code'],
+				'addr_bulid'     => $data['cbulid'],
+				'create_time' => $time,
+				'user_id'     => $id
 
-	// 	];
+		];
 
-	// 	$res = $this->save($list);
-	// 	return $res;
+		$res = $this->save($list);
+		return $res;
 
-	// }
+	}
 
 	public function select()
 	{

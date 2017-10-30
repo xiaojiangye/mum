@@ -17,7 +17,6 @@ class Index  extends Controller
       $this->goods = new Goods(); 
       $this->big = new Big();
     }
-
     //首页展示
     public function index()
     {
