@@ -22,15 +22,15 @@
         <div class="logo"><a href="Index.html"><img src="__IMAGE__logo.png" /></a></div>
     </div>
 	<div class="login" style="height: 600px;" style="background-color: ;margin-top:-20px;">
-    	<div class="log_img"><!-- <img src="__IMAGE__l_img.png" width="611" height="425" /> --></div>
-		<div class="log_c" style="height: 600px; background-color:;">
+    	<!-- <div class="log_img"><img src="__IMAGE__l_img.png" width="611" height="425" /></div> -->
+		<div class="log_c" style="background-color:#ffffff; height: 600px">
         	<form action="{url:('User/dologin')}" method="post" enctype="multipart/form-data">
             <table border="0" style="width:370px; font-size:14px; margin-top:30px;" cellspacing="0" cellpadding="0">
               <tr height="50" valign="top">
               	<td width="55">&nbsp;</td>
                 <td>
                 	<span class="fl" style="font-size:24px;">用户登录</span>
-                    <span class="fr">还没有商城账号，<a href="{:url('User/regist')}" style="color:#ff4e00;">立即注册</a></span>
+                  <span class="fr">还没有商城账号，<a href="{:url('User/regist')}" style="color:#ff4e00;">立即注册</a></span>
                 </td>
               </tr>
               <tr height="70">
@@ -44,6 +44,10 @@
               <tr height="70">
                 <td>密&nbsp; &nbsp; 码</td>
                 <td><input type="password" id="pad" class="l_pwd" name="pwd" /></td>
+              </tr>
+              <tr height="70">
+                <td>验证码</td>
+                <td><input type="text" name="uname" class="l_user" id="username" /></td>
               </tr>
                <tr height="20">
                 <td></td>
@@ -79,8 +83,21 @@
               </tr>
             </table>
             </form>
-            <div style="float: right;"><a href="{:url('seller/sellogin')}">商家登录</a></div>
-            <div style="float: left;"><a href="{:url('index/index')}">返回首页</a></div>
+            <div class="xiaotubiao" style="margin-left: 80px; height: 50px; margin-top: 20px">
+              <a href="#" class="xtbqq" style="width: 70px;display: inline-block; text-align: center;">
+                <img src="__IMAGE__l_1.png"><br /><i>qq登录</i>
+              </a>
+              <a href="#" class="xtbchat" style="width: 70px;display: inline-block; text-align: center;">
+                <img src="__IMAGE__l_4.png"><br /><i>微信登录</i>
+              </a>
+              <a href="#" class="xtbxlwb" style="width: 70px;display: inline-block; text-align: center;">
+                <img src="__IMAGE__l_2.png"><br /><i>微博登录</i>
+              </a>
+            </div>
+            <div style="margin-top: 20px">
+              <a href="{:url('index/index')}" style=";margin-left:100px;display:inline-block;">返回首页</a>
+              <a href="{:url('seller/sellogin')}" style="margin-left:60px;display: inline-block;">商家登录</a>
+            </div>
         </div>
     </div>
 </div>
@@ -152,6 +169,24 @@
           $("#pad").css("background-color","");
         })
       });
-   
- 
+      
+      //图标点击
+      $(".xtbqq img").mouseenter(function(){
+       $(this).attr("src","__IMAGE__l_1_h.png");
+      })
+      $(".xtbqq img").mouseout(function(){
+       $(this).attr("src","__IMAGE__l_1.png");
+      })
+       $(".xtbchat img").mouseenter(function(){
+       $(this).attr("src","__IMAGE__l_4_h.png");
+      })
+      $(".xtbchat img").mouseout(function(){
+       $(this).attr("src","__IMAGE__l_4.png");
+      })
+       $(".xtbxlwb img").mouseenter(function(){
+       $(this).attr("src","__IMAGE__l_2_h.png");
+      })
+      $(".xtbxlwb img").mouseout(function(){
+       $(this).attr("src","__IMAGE__l_2.png");
+      })
 </script>

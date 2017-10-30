@@ -16,6 +16,10 @@ class ComposerStaticInit0e5a20f54bf215fd957bc14489129d05
     );
 
     public static $prefixLengthsPsr4 = array (
+        'u' => 
+        array (
+            'ucpass\\' => 7,
+        ),
         't' => 
         array (
             'think\\testing\\' => 14,
@@ -52,6 +56,10 @@ class ComposerStaticInit0e5a20f54bf215fd957bc14489129d05
     );
 
     public static $prefixDirsPsr4 = array (
+        'ucpass\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/ucpass',
+        ),
         'think\\testing\\' => 
         array (
             0 => __DIR__ . '/..' . '/topthink/think-testing/src',

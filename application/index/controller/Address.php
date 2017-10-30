@@ -11,7 +11,6 @@ class Address extends Controller
 	public function _initialize()
 	{
 		$this->address = new AddressModel();
-
 	}
 	public function address()
 	{	
@@ -24,7 +23,7 @@ class Address extends Controller
 	public function addAddr()
 	{
 		$data = $this->request->post();
-		dump($data);die;
+		//dump($data);die;
 		$res = $this->address->add($data);
 		//$res1 = $this->count()->where('user_id',Session::get('id'));
 		 //dump($res1);die;

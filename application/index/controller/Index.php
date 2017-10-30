@@ -10,7 +10,6 @@ use app\index\controller\SendEmail;
 
 class Index  extends Controller
 {   
-
     protected $goods;
     protected $big;
     public function _initialize()
@@ -19,10 +18,9 @@ class Index  extends Controller
       $this->big = new Big();
     }
 
-
+    //首页展示
     public function index()
     {
-
       //大商品的种类 big
         $res1 = $this->big->referBig();
         $goods = model('goods');
@@ -47,7 +45,7 @@ class Index  extends Controller
     public function brandList()
     { 
      $big = input('param.');
-     //dump($big);die;
+    // dump($big);
      //根据传过来的big得到
      $res = $this->goods->selectList($big);
     //dump($res);die;
@@ -59,17 +57,16 @@ class Index  extends Controller
    	{ 
       $good = input('param.');
       $res = $this->goods->goodsDetails($good);
-      //相同的照片
-      $res1 = $this->goods->samePhoto($res[0]['number'])[0];
-      //dump($res1);
-
-      //dump($res[0]);die;
+      //dump($res[0]['stock']);die;
+      //同一产品的图片
+      $res1 = $this->goods->samePhoto($res[0]['number']);
+      //用户还喜欢 like
+      $res_like = $this->goods->likeGood();
       $this->assign('res',$res);
       $this->assign('res1',$res1);
+      $this->assign('res_like',$res_like);
    		return $this->fetch();
    	}
-
-
    	public function sellDetails()
    	{
    		return $this->fetch();
@@ -78,6 +75,5 @@ class Index  extends Controller
    	{
    		return $this->fetch();
    	}
-   
 
 }
