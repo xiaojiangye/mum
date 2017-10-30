@@ -44,7 +44,11 @@ class Big  extends  Model
 	//查询所有的大板块
 	public function referBig()
 	{
-		return $res = $this->field('id,style')->select();
+		
+		$res = $this->field('id,style,description,create_time')->select();
+		return $res;
+		//dump($res);die;
+		//return 
 	}
 
 }

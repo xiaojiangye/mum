@@ -26,9 +26,15 @@
         "topthink/think-captcha": "^1.0",
         "topthink/think-angular": "^1.0"
     },
+    "autoload":{
+        "psr-4":{
+            "ucpass\\":"vendor/ucpass"
+        }
+    },
     "extra": {
         "think-path": "thinkphp"
     },
+    
     "config": {
         "preferred-install": "dist"
     }

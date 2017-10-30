@@ -41,6 +41,16 @@
                             </td>
                         </tr>
                         <tr>
+                            <th >
+                                重量：
+                            </th>
+                            <td width="100%">
+                                <input name="weight" type="text" class="input1 w350" id="lxs" />克
+                            </td>
+                            &nbsp;
+                            </td>
+                        </tr>
+                        <tr>
                             <th>
                                 产品单价：
                             </th>
@@ -92,6 +102,16 @@
 </body>
 </html>
 <script type="text/javascript">
+$('input[name=weight]').blur(function()
+        {
+            var weight = $("input[name=weight]");
+            if(isNaN(weight.val()))
+            {
+                alert('重量是个数字哦,请填写数字!');
+                weight.val('');
+            }
+        });
+
 $(function(){
     $('input[name=price]').blur(function()
         {
@@ -151,11 +171,12 @@ $(function(){
         {
             var small = $('select').val();
             var name = $('input[name=name]').val();
+            var weight = $('input[name=weight]').val();
             var picture = $("input[name=picture]").val();
             var price = $("input[name=price]").val();
             var discount = $("input[name=discount]").val();
             var stock = $('input[name=stock]').val();
-            var data = {'small' : small , 'name' : name , 'picture' : picture , 'price' : price , 'discount' : discount , 'stock' : stock };
+            var data = {'small' : small , 'name' : name , 'weight' : weight ,'picture' : picture , 'price' : price , 'discount' : discount , 'stock' : stock };
             $.post("{:url('Upload/getInfo')}" , data , function(data)
                 {
                    console.log(data);

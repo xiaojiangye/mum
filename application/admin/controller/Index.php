@@ -60,6 +60,27 @@ class Index  extends Controller
 		return $this->fetch('index/store');
 	}
 
+	/*渲染店铺列表已经拒绝商店的页面*/
+	public function delstore()
+	{
+		$res = $this->seller->selectCheckedSeller('checkout' , 2);
+		if($res)
+		{
+			foreach ($res as $key => $val) 
+			{
+				$big_id = $val['big_id'];
+				$data = $this->big->getByField('id' , $big_id);
+				if($data)
+				{
+					$res[$key]['big_id'] = $data[0]['style'];
+				}
+			}
+		  
+		} 
+		$this->assign('seller' , $res );
+		return $this->fetch('index/store');
+	}
+
 	/*渲染店铺列表待审核的商店*/
 	public function checkedStore()
 	{
@@ -84,7 +105,8 @@ class Index  extends Controller
 	/*驱动商家申请的信息的页面*/
 	public function checkSeller()
 	{
-		$res = $this->seller->selectSeller('id' , $this->request->param('id'))[0];
+		$id = $this->request->param('id');
+		$res = $this->seller->selectCheckedSeller('id' , $id)[0];	
 		if(!$res)
 		{
 			$this->login();
@@ -93,6 +115,7 @@ class Index  extends Controller
 		$this->assign('res' , $res);
 		return $this->fetch();
 	}
+
 
 	/*管理员对商家申请店铺做出的回应*/
 	public function checkResult()
@@ -104,7 +127,7 @@ class Index  extends Controller
 		{
 			$res = $this->seller->check($id , 1);
 		}
-		else if($data['status'] == 0)
+		else if($data['status'] == 2)
 		{
 			$res = $this->seller->check($id , 2);
 		}

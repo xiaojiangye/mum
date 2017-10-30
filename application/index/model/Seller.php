@@ -18,6 +18,7 @@ class Seller  extends Model
 		return $this->where($key , $value)->select();
 	}
 
+	/*得到所有的店铺*/
 	public function selectSeller()
 	{
 		return $this->field('id,big_id,name,leader,pnumber,email,description,create_time,checkout')->select();
@@ -25,7 +26,7 @@ class Seller  extends Model
 
 	public function selectCheckedSeller($key , $value)
 	{
-		return $this->field('id,big_id,name,description,create_time')->where($key , $value)->select();
+		return $this->field('id,big_id,name,leader,pnumber,email,description,create_time')->where($key , $value)->select();
 	}
 
 	public function check($value1 , $value2)

@@ -2,6 +2,7 @@
 namespace app\index\controller;
 use think\Controller; 
 use think\Db;
+use ucpaas\Ucpaas;
 use think\Session;
 use app\index\model\User as UserModel;
 use app\admin\model\Big;
@@ -20,6 +21,7 @@ class User extends Controller
       $this->big = new Big();
       $this->seller = new Seller();
     }
+
 
     /*注册时查询用户名是否存在的判断*/
     public function selectUser()
@@ -43,6 +45,7 @@ class User extends Controller
       return 1;
     }
 
+
     /*渲染注册页面*/
     public function regist()
     {
@@ -50,6 +53,7 @@ class User extends Controller
       $this->assign('res' , $res);
       return $this->fetch();
     }
+    
 
     /*添加注册时的个人信息*/
     public function addUserInfo()
@@ -64,7 +68,7 @@ class User extends Controller
       }
     }
 
-
+      // 登录时渲染页面
     public function login()
     {      
       return $this->fetch();
@@ -77,6 +81,12 @@ class User extends Controller
         return $this->fetch('index/index');
     }
 
+
+    //发送短信验证码
+
+
+
+
   //判断登录的条件
     public function dologin()
     {   
@@ -86,13 +96,9 @@ class User extends Controller
        //查询结果
       if ($result) 
       {
-        if ($pwd !== $result['pwd']) 
-        {
+        if ($pwd !== $result['pwd']) {
           return 0;
-        }
-        else
-        {
-
+        }else{
           $id = $result['id'];
           //echo "$id";
          // dump($id);die;
@@ -113,6 +119,35 @@ class User extends Controller
       }  
     }
    
+
+    //发送短信验证码
+  /*  public function sendYzm()
+    {
+      $request = Request::instance();
+       $to = $request->parm()['name'];
+       $param="1234";
+       $options['accountsid']='43fab68019f837bb6835460d13310a52';
+       $options['token']='93c07db4fa07055cb6a9ee40642228e8';
+       //初始化 $options必填
+       $ucpass = new Ucpaas($options);
+      //开发者账号信息查询默认为json或xml
+      header("Content-Type:text/html;charset=utf-8");
+    //短信验证码（模板短信）,默认以65个汉字（同65个英文）为一条（可容纳字数受您应用名称占用字符影响），超过长度短信平台将会自动分割为多条发送。分割后的多条短信将按照具体占用条数计费。
+    $appId = "73e13615718e48b0b73a4051e3cad024";
+    $templateId = "159108";
+
+    $result = $ucpass->templateSMS($appId,$to,$templateId,$param);
+    $result = json_encode($result)->resp->respCode;
+    if ($result == "000000") {
+      return json_encode('2');
+    }else {
+      return json_encode('1');
+    }
+    }*/
+
+
+
+
     
     /*我的现金*/
     public function memberCash()
@@ -132,7 +167,8 @@ class User extends Controller
     public function memberUser()
     {  
       $user = new UserModel();
-      $res = $user->select()[0]; 
+      $res = $user->where('id',session::get('id'))->select()[0]; 
+      //dump($res);die;
       //dump($res['grade']);
 
       $this->assign('res',$res);
@@ -218,10 +254,8 @@ class User extends Controller
 
     //账户安全验证 电话修改
     public function editPhone()
-
     {
       $data = $this->request->post();
-      //dump($data);die;
       $result = $this->user->ajaxPhone($data);
       if ($result == 0) {
         return 0;//原手机号码不正确
@@ -245,7 +279,6 @@ class User extends Controller
         }else{
           return 2; //修改失败
         }
-
     }
 
      //账户安全验证 密码修改
@@ -260,12 +293,10 @@ class User extends Controller
           return 2; //修改失败
         }
       }
-
     /*资金管理*/
     public function memberMoney()
     {
       return $this->fetch();
     }
- 
 }
 

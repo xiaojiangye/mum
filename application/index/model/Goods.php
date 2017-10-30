@@ -4,6 +4,7 @@ namespace app\index\model;
 
 use think\Model;
 use think\Db;
+use app\admin\model\Big;
 use app\admin\model\Small;
 use think\Session;
 
@@ -65,10 +66,46 @@ class Goods extends Model
 	//首页查询查询商品
 	/*public function selectGood($data)
 	{
-		$res = $this->field('name,price,discount,picture')->where('big_id', $data)->limit(6)->select();
+		$res = $this->field('name,price,discount,picture,id,small_id,big_id')->where('big_id', $data)->limit(6)->select();
 		return $res;
 		//dump($res);die;
 	}*/
+
+	//根据类型查商品
+	public function selectList($big)
+	{	
+		//dump($big);
+		//dump($big['big']);
+		
+		$res = $this->where('big_id',$big['big'])->select();
+		//dump($res);
+		//die;
+		//dump($res);die;
+		return $res;
+		
+	}
+	//根据商品的id得到商品的详细的信息
+	public function goodsDetails($good)
+	{	//默认
+		$res = $this->where('id',$good['good'])->select();
+		//新品
+		/*$res_time =  $this->where('id',$good['good'])->desc('cteate_time')->select();
+		//价钱
+		$res_hot = $this->where('id',$good['good')->desc('price')->select();
+		$res_*/
+		return $res;
+	}
+	public function samePhoto($data)
+	{	//dump($data);die;
+		$res = $this->field('picture')->where('number',$data)->select();
+		return $res;
+	}
+	//同款产品推荐展示前前六
+	public function likeGood()
+	{
+		$res = $this->limit(6)->select();
+		return $res;
+	}
 
 }
 

@@ -6,6 +6,7 @@ $vendorDir = dirname(dirname(__FILE__));
 $baseDir = dirname($vendorDir);
 
 return array(
+    'ucpass\\' => array($vendorDir . '/ucpass'),
     'think\\testing\\' => array($vendorDir . '/topthink/think-testing/src'),
     'think\\mongo\\' => array($vendorDir . '/topthink/think-mongo/src'),
     'think\\migration\\' => array($vendorDir . '/topthink/think-migration/src'),
