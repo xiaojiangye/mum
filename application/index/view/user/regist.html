@@ -45,8 +45,8 @@ $(function()
             <td class="need" >*</td>
             <td >密&ensp;&ensp;&ensp;&ensp;码：</td>
             <td >
-            <input type="password" value="" name="pwd" class="inputxt" datatype="s6-18" nullmsg="请输入密码！" errormsg="密码为6~18个字符！" /></td>
-            <td><div class="Validform_checktip">6~18个字符</div></td>
+            <input type="password" value="" name="pwd" class="inputxt"   /></td>
+            <td><div class="Validform_checktip">3~18个字符</div></td>
         </tr>
          
         <tr>
@@ -70,15 +70,23 @@ $(function()
           <td >邮&ensp;&ensp;&ensp;&ensp;箱：</td>
           <td style="width:205px;">
             <input type="text" value=""  name="email" class="inputxt" datatype="e" nullmsg="请输入邮箱！" errormsg="邮箱格式不正确！***@***.com" /></td>
-          <td><div class="Validform_checktip">邮箱格式不正确</div></td>
-      </tr>
+          <td><div class="Validform_checktEmail sendEmail"  style="color:red;"></div></td>
+        </tr>
+        <tr>
+          <td class="need" >*</td>
+          <td >邮箱验证码:</td>
+          <td style="width:205px;">
+            <input type="text" value=""  name="emailCode" class="inputxt" datatype="e" nullmsg="请输入邮箱！" errormsg="邮箱格式不正确！***@***.com" /></td>
+          <td><div class="Validform_checkEmailCode checkCode" style="color: red;"></div></td>
+        </tr>
+
       <tr>
           <td class="need" >*</td>
           <td >验&ensp;证&ensp;码：</td>
           <td style="width:205px;">
-            <input type="text" value=""  name="code" class="inputxt" datatype="e" nullmsg="请输入验证码！" errormsg="验证码不正确!" />
+            <input type="text" value=""  name="imageCode" class="inputxt" datatype="e" nullmsg="请输入验证码！" errormsg="验证码不正确!" />
           </td>
-          <td><img src="{:captcha_src()}" alt="captcha" /></td>
+          <td><img onclick="this.src=this.src+'?abc='+Math.random();" src="{:captcha_src()}" alt="captcha"  style="" /><label class="imageCode" style="width: 100px;color: red; float: left;"></label></td>
       </tr>
       <tr>
           <td class="need"></td>
@@ -90,44 +98,10 @@ $(function()
     </table>
   </form>
 
-      <!-- <form id='fm' action=""  method="post" >
-        <div class="boxbd mt20" style="border: 1px solid red;">
-         <label id='seller' class="label">
-            <select name="style" class="loginipt key Nickname" style="width: 110px;">
-              <option>卖家</option>
-              <option selected = "selected">买家</option>
-            </select>
-          </label>
-      
-          <label class="label">
-            <input placeholder="请输入昵称" type="text" name="name" class="loginipt key Nickname">
-          </label>
-      
-          <label class="label">
-            <input  placeholder="请输入您的邮箱" type="text" name="email" class="loginipt key user">
-          </label>
-      
-           <label class="label">
-            <input placeholder="请输入您的邮箱验证码" style="color:red;" type="text" name="emailCode" class="loginipt key user">
-          </label>
-      
-          <label class="label">
-            <input placeholder="请输入您的手机号" type="text" name="phone" class="loginipt key user">
-          </label>
-      
-          <label class="label">
-            <input placeholder="请输入您的密码"" type="password" name="pwd" class="loginipt key pwd">
-          </label>
-          <label class="label">
-            <input placeholder="请再次输入您的密码" type="password" name="rpwd" class="loginipt key pwd">
-          </label>
-      </form> -->
-         <!-- <input type="button" id='regist' class="button btn-reg" value='立即注册' /> -->
-
       </div>    
     </div>   
 </html>
-
+<script src='__JS__jquery-1.9.1.min.js'></script>
 <script type="text/javascript">
 $('#select1').change(function()
   {
@@ -142,7 +116,6 @@ $('#select1').change(function()
        $('#shop').remove();
        $('#shops').remove();
     }
-
   });
 
 $(function ()
@@ -192,30 +165,52 @@ $(function ()
            if(!email.match(/^([a-zA-Z0-9_-])+@([a-zA-Z0-9_-])+((\.[a-zA-Z0-9_-]{2,3}){1,2})$/))
             {
               status = false;
-              alert("格式不正确！请重新输入");
+              //alert("格式不正确！请重新输入");
+              $('.Validform_checktEmail').html('格式不正确！请重新输入');
               return false;
             }
-            status = true;
-            /*$.post("{:url('Index/getEmailCode')}" , {'email' : email} , function(data)
+            else
+            {
+              $('.Validform_checktEmail').html('');
+            }
+            $.post("{:url('Index/getEmailCode')}" , {'email' : email} , function(data)
               {
-                $data = JSON.parse(data);
-                alert(data);
-                if($('input[name=emailCode]') != data.code)
+                if(data)
                 {
-                  alert($('input[name=emailCode]'));
-                    status = false;
-                    alert('验证码不正确');
-                    return false;
+                  $('.sendEmail').html('邮件已发送!');
                 }
-
-              },'json');*/
+                else
+                {
+                  $('.sendEmail').html('邮件发送失败,请重新填写!');
+                }
+                console.log(data);
+               
+              },'json');
         }
         else
         {
-          alert('邮箱不能为空!');
+          //alert('邮箱不能为空!');
+          $('.Validform_checktEmail').html('邮箱不能为空!');
           return false;
         }
       });
+
+   /*验证邮箱验证码*/
+   $('input[name=emailCode]').blur(function(data)
+   {
+      var code = $('input[name=emailCode]').val();
+     $.post("{:url('Index/checkEmailCode')}" , {'code' : code} , function(data)
+      {
+        if(data == 0)
+        {
+          $('.checkCode').text('验证码不正确哦!');
+        }
+        else{
+          $('.checkCode').text('验证成功!');
+        }   
+          console.log(data);
+      }, "json");
+   });
 
 
    /*验证密码*/
@@ -259,6 +254,25 @@ $(function ()
         alert('两次密码不一致!');
       }
     });
+
+   /*验证验证码*/
+   $('input[name=imageCode]').blur(function()
+    {
+
+      var imageCode = $('input[name=imageCode]').val();
+      $.post("{:url('Index/checkImageCode')}", {'imageCode' : imageCode} , function(data)
+        {
+          alert(data);
+          if(data == 1)
+          {
+            $('.imageCode').html('验证通过');
+          }else{
+            $('.imageCode').html('验证码不正确');
+          }
+
+        } , "json");
+    });
+   
 
    /*注册*/
    $('#regist').click(function()

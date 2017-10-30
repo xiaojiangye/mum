@@ -34,18 +34,21 @@ class SendEmail extends Controller
 
 		$code = $this->createCode();
 
+
 		$mail->Subject = "小馋猫商城验证";// 邮件标题
 		$mail->Body = "欢迎来到小馋猫,馋小喵一定会为您提供最好的服务!您的验证码是 $code , 不要告诉别人哦!";// 邮件正文
 		//$mail->AltBody = "This is the plain text纯文本";// 这个是设置纯文本方式显示的正文内容，如果不支持Html方式，就会用到这个，基本无用
-
+		
 		if(!$mail->send()){// 发送邮件
 		    echo "Message could not be sent.";
 		    echo "Mailer Error: ".$mail->ErrorInfo;// 输出错误信息
 		}else{
+			return $code;
+			//return $code;
 		    echo 'Message has been sent.';
 		}
 
-		return $code;
+		//return $code;
 	}
 
 	public function createCode()

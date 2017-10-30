@@ -53,7 +53,7 @@ class User extends Controller
       $this->assign('res' , $res);
       return $this->fetch();
     }
-    
+
 
     /*添加注册时的个人信息*/
     public function addUserInfo()
@@ -146,9 +146,6 @@ class User extends Controller
     }*/
 
 
-
-
-    
     /*我的现金*/
     public function memberCash()
     {   
@@ -160,8 +157,6 @@ class User extends Controller
     {   
         return $this->fetch();
     }
-
-   
 
     /*我的信息*/
     public function memberUser()
@@ -266,6 +261,7 @@ class User extends Controller
         }
 
     }
+
     //账户安全验证 邮箱修改
     public function editEmail()
     {
