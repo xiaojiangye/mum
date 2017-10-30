@@ -23,17 +23,18 @@ class User extends Controller
 
 
     /*注册时查询用户名是否存在的判断*/
-    // public function selectUser()
-    // {
-    //   $data = $this->request->post();
-    //   $name = $data['name'];
+    public function selectUser()
+    {
+      return 1;
+      $data = $this->request->post();
+      $name = $data['name'];
 
-    //   if(empty($this->user->getName($name)))
-    //   {
-    //     $data = ['status' => 1];
-    //     echo json_encode($data);
-    //   }
-    // }
+      if(empty($this->user->getName($name)))
+      {
+        $data = ['status' => 1];
+        echo json_encode($data);
+      }
+    }
 
 
     /*渲染注册页面*/

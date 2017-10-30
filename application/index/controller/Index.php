@@ -41,7 +41,9 @@ class Index  extends Controller
     	return json_encode($data);
     }
 
+
     //类型商品类型
+
     public function brandList()
     { 
      $big = input('param.');
@@ -67,6 +69,8 @@ class Index  extends Controller
       $this->assign('res_like',$res_like);
    		return $this->fetch();
    	}
+
+    
    	public function sellDetails()
    	{
    		return $this->fetch();
@@ -75,5 +79,6 @@ class Index  extends Controller
    	{
    		return $this->fetch();
    	}
+
 
 }

@@ -8,17 +8,20 @@ use think\Db;
 use think\Session;
 use app\index\model\Seller as SellerModel;
 use app\admin\model\Big;
+use app\index\controller\Index;
 
 class Seller extends Controller
 {
 	protected $seller ;
 	protected $big;
+	protected $index;
 	
 
 	public function _initialize()
 	{
 		$this->seller = new SellerModel();
 		$this->big = new Big();
+		$this->index = new Index();
 	}
 
 	/*添加商家信息  先查出可以注册成哪种商家*/
@@ -38,13 +41,14 @@ class Seller extends Controller
 			return 0;
 		}
 	}
-	//登录页面
+
+	/*登录页面*/
 	public function sellogin()
 	{
 		return $this->fetch();
 	}
 	
-	//验证登录的条件
+	/*验证登录的条件*/
 	 public function dologin()
     {  
       $name = input('post.name');
@@ -73,7 +77,7 @@ class Seller extends Controller
       }  
     }
 
-    //退出登录
+    /*退出登录*/
     public function exit()
     {
     	session(null);
@@ -83,9 +87,14 @@ class Seller extends Controller
 	/*渲染商家中心的页面  小店信息*/
 	public function selInfo()
 	{
-		/*这里需要登录之后进行改值*/
-		$Info = $this->seller->getByType('id' , 1)[0];
+		$id = Session::get('id');
+		if(empty($id))
+		{
+			return $this->fetch('index/index');
+		}
 
+		/*这里需要登录之后进行改值*/
+		$Info = $this->seller->getByType('id' , Session::get('id'))[0];
 		$Info['big_id'] = $this->big->getByField('id' , $Info['big_id'])[0]['style'];
 		
 		$this->assign('Info' , $Info);

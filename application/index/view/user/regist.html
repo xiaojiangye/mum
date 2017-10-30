@@ -67,6 +67,14 @@
           <td><div class="Validform_checktip">邮箱格式不正确</div></td>
       </tr>
       <tr>
+          <td class="need" >*</td>
+          <td >验&ensp;证&ensp;码：</td>
+          <td style="width:205px;">
+            <input type="text" value=""  name="code" class="inputxt" datatype="e" nullmsg="请输入验证码！" errormsg="验证码不正确!" />
+          </td>
+          <td><img src="{:captcha_src()}" alt="captcha" /></td>
+      </tr>
+      <tr>
           <td class="need"></td>
           <td></td>
           <td colspan="2" >
@@ -123,6 +131,11 @@ $('#select1').change(function()
       /*$('#seller').after("<tr><td><select style='width:170px;height:34px;background:pink;color:white;border:1px solid #161616'  id='seller2'><option>123</option><option>123</option></select></td></tr>");*/
     $('#reg').after("<tr id='shop'  class='form-group' style='margin-bottom:20px; '><td class='need' style='width:10px;'>*</td><td style='width:90px;'>店铺类型：</td><td style='width:205px;'><select style='width:170px;height:34px;background:pink;color:white;border:1px solid #161616'  id='seller2'>{foreach $res as $val}<option>{$val['style']}</option>{/foreach}</select></td></tr>"); 
     }
+    if($('#select1').val() == '买家')
+    {
+      
+    }
+
   });
 
 $(function ()
