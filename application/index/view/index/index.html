@@ -52,7 +52,7 @@
                 {if session('type') ==0}
                     <a href="{:url('User/memberUser')}">用户个人中心</a>
                 {else}
-                 <a href="{:url('seller/selInfo')}">商家个人中心</a>
+                 <a href="{:url('Seller/selInfo')}">商家个人中心</a>
                  {/if}
                 
              {/if}
@@ -121,6 +121,7 @@
             <!--Begin 购物车已登录 Begin-->
             <ul class="cars">
 
+
             	<li>
                 	<div class="img"><a href="#"><img src="__IMAGE__car1.jpg" width="58" height="58" /></a></div>
 
@@ -166,25 +167,18 @@
                         <div class="zj">
                             <div class="zj_l">
                                 <div class="zj_l_c">
-<<<<<<< HEAD
+
                                   {volist name="goods_res" id="v"}
                                     {if condition="$v.big_id eq $vo.id"}
                                     <a href="#">{$v.name}</a>|
                                      {/if}
                                      {/volist}
-
-                            </div>
-                        </div>
-                    </li>
-                    <li>
-
-                    	<div class="fj">
-                        	<span class="n_img"><span></span><img src="__IMAGE__nav2.png" /></span>
-
                                 </div>
-                            </div> 
+                            </div>
+                            
                         </div>
                     </li>
+
                     {/volist}                 
                 </ul>            
             </div>
@@ -205,7 +199,6 @@
         <div class="banner">        
             <div class="top_slide_wrap">
                 <ul class="slide_box bxslider">
-
 
                     <li><img src="__IMAGE__ban1.jpg" width="740" height="401" /></li>
                     <li><img src="__IMAGE__ban1.jpg" width="740" height="401" /></li> 
@@ -521,7 +514,6 @@
         </div>
     </div>
 
-    
     <!--Begin Footer Begin -->
 {include file="common/indexFooter"}
   

@@ -37,34 +37,7 @@
                     	<font>￥<span>368.00</span></font> &nbsp; 18R
                     </div>
                 </li>
-                <li>
-                    <div class="img"><a href="#"><img src="__IMAGE__his_2.jpg" width="185" height="162" /></a></div>
-                	<div class="name"><a href="#">Dior/迪奥香水2件套装</a></div>
-                    <div class="price">
-                    	<font>￥<span>768.00</span></font> &nbsp; 18R
-                    </div>
-                </li>
-                <li>
-                    <div class="img"><a href="#"><img src="__IMAGE__his_3.jpg" width="185" height="162" /></a></div>
-                	<div class="name"><a href="#">Dior/迪奥香水2件套装</a></div>
-                    <div class="price">
-                    	<font>￥<span>680.00</span></font> &nbsp; 18R
-                    </div>
-                </li>
-                <li>
-                    <div class="img"><a href="#"><img src="__IMAGE__his_4.jpg" width="185" height="162" /></a></div>
-                	<div class="name"><a href="#">Dior/迪奥香水2件套装</a></div>
-                    <div class="price">
-                    	<font>￥<span>368.00</span></font> &nbsp; 18R
-                    </div>
-                </li>
-                <li>
-                    <div class="img"><a href="#"><img src="__IMAGE__his_5.jpg" width="185" height="162" /></a></div>
-                	<div class="name"><a href="#">Dior/迪奥香水2件套装</a></div>
-                    <div class="price">
-                    	<font>￥<span>368.00</span></font> &nbsp; 18R
-                    </div>
-                </li>
+              
         	</ul>
         </div>
         <div class="l_list">
@@ -89,20 +62,20 @@
             	
                 <ul class="cate_list">
                {foreach $res as $vo}
-                <form action="" method="post" enctype="multipart/form-data"> 
+                
                 	<li style="background-color:;">
                     	<div class="img"><a href="{:url('index/details',['good'=>$vo['id']])}"><img src="{$vo.picture|substr=1}" width="210" height="185" /></a></div>
                         <div class="price">
                             <font>￥<span>{$vo['price'] * $vo['discount']}</span></font> &nbsp; <span style="text-decoration: line-through;">{$vo['price']}</span>
                         </div>
                         <div class="name"><a href="#">{$vo['name']}</a></div>
-                        <input type="hidden" name="good" value="{$vo['id']}">
                         <div class="carbg">
                         	<a href="#" class="ss">收藏</a>
-                           <button style="width:100px;height: 30px;background-color:white;" id="addcar">加入购物车</button>
+                        <div style="width:75px;height: 30px;background-color: pink;">
+                        <a href="{:url('car/addcar',['good'=>$vo['id']])}">加入购物车</a></div>
                         </div>
                     </li>  
-                    </form>
+                    
               {/foreach}
                   </ul>
                 
@@ -120,19 +93,3 @@
 
 </body>
 </html>
-<!-- <script type="text/javascript">
-    $(function () {
-        $('#addcar').click(function() {
-            alert(11);
-            var good = $("input[name='good']").val();
-            alert(good);
-            return false;
-
-        })
-
-    });
-
-
-
-
-</script> -->

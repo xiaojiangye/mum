@@ -21,7 +21,7 @@ class Goods extends Model
 	/*根据传入的条件得到产品信息*/
 	public function getGoods($key , $value)
 	{
-		return $this->distinct(true)->field('number , id , name , seller_id , small_id , picture , price , stock , discount , description')->where($key ,  $value)->select();
+		return $this->distinct(true)->field('number , id , name , seller_id , small_id , picture , price , stock ,weight, discount , description')->where($key ,  $value)->select();
 	}
 
 	/*查询商品 根据传入的条件  只用来驱动小店首页*/
@@ -105,6 +105,13 @@ class Goods extends Model
 	{
 		$res = $this->limit(6)->select();
 		return $res;
+	}
+
+
+	/*更新商品信息*/
+	public function updateGoods($data)
+	{
+		return $this->allowField(true)->save($data,['id' => $data['id']]);
 	}
 
 }

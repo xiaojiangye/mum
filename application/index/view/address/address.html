@@ -53,15 +53,12 @@
                 <td align="right">标志建筑</td>
                 <td style="font-family:'宋体';"><input type="text"  class="add_ipt" name="cbulid"/></td>
               </tr>
-              
             </table>
            	<p align="right">
             <!-- <button id="but">确认添加</button> -->
-             <button class="btn btn-danger" id="but" style="float: left;">确认添加</button>
+             <input type='button' class="btn btn-danger" id="but" style="float: left;" value="确认提交"/>
             </p> 
-            
          </form>
-         
    {foreach $res as $vo}
          <div class="address">
               <div class="a_close"><img src="__IMAGE__a_close.png" /></div>
@@ -95,13 +92,9 @@
                     <td>{$vo.addr_bulid}</td>
                   </tr>
                 </table>
-
-        
                 <p align="right">
                 <button id="mo" value="{$vo.id}">{if $vo.is_default == 1}默认{else}设为默认{/if}</button>
                 <button id="edit">编辑</button>
-                  <!-- <a href="" style="color:#ff4e00;"></a>&nbsp; &nbsp; &nbsp; &nbsp; 
-                  <a href="#" style="color:#ff4e00;"></a>&nbsp; &nbsp; &nbsp; &nbsp;  -->
                 </p>
      {/foreach}
             </div>
@@ -110,8 +103,6 @@
 	<!--End 用户中心 End--> 
   {include file="common/mpfooter"}
 </body>
-
-
 </html>
 <script type="text/javascript">
       $(function (){
@@ -124,33 +115,23 @@
           var cphone = $("input[name='cphone']").val();
           var deaddr = $("input[name='deaddr']").val();
           var cbuild = $("input[name='cbulid']").val();
-          //alert(city);
-          if (consignee.length == '')
-           {
-            $('#name').html('收货人不能为空');
-           }else {
 
-              $.post('addAddr',{province:province,city:city,county:county,consignee:consignee,cmeail:cemail,cphone:cphone,deaddr:deaddr,cbulid:cbulic},success)
+          //alert(deaddr);
+              $.post('aasd',{province:province,city:city,county:county,consignee:consignee,cmeail:cemail,cphone:cphone,deaddr:deaddr,cbuild:cbulid},success);
             //$.post('addAddr',{city:city},success);
             function success (data)
-            {
+            { 
+              console.log(data);
               var data = JSON.parse(data);
               if(data == 1) {
                 alert('添加成功');
               }else {
                 alert('添加失败');
               }
-
             }
-          }
-
-
+              return false;
           })
-
-       
-
-          
-
+        });
      //是否是默认的地址
   // $('#mo').click(function (){
   //      var name =  $('#mo').val();
@@ -163,9 +144,6 @@
 
   //     })
 
-  //     });
-
-    
-      
+  //     });   
     </script>
 

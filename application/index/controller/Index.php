@@ -19,7 +19,6 @@ class Index  extends Controller
       $this->goods = new Goods(); 
       $this->big = new Big();
     }
-
     //首页展示
     public function index()
     {
@@ -86,6 +85,7 @@ class Index  extends Controller
      $this->assign('res',$res);
     	return $this->fetch();
     }
+    
   //商品的具体详情
     public function details()
    	{ 

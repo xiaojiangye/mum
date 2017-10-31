@@ -12,6 +12,7 @@ class Address extends Controller
 	{
 		$this->address = new AddressModel();
 	}
+	//渲染页面
 	public function address()
 	{	
 		//查询地址
@@ -21,18 +22,11 @@ class Address extends Controller
 	}
 	//添加地址
 	public function addAddr()
-	{
+	{	
+
 		$data = $this->request->post();
-		//dump($data);die;
-		$res = $this->address->add($data);
-		//$res1 = $this->count()->where('user_id',Session::get('id'));
-		 //dump($res1);die;
-		//dump($res);
-		if ($res) {
-			return 1;
-		}else {
-			return 0;
-		}	
+		dump($data);die;
+		
 	}
 	//是否设为默认
 	// public function addrMo()
