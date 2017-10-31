@@ -3,6 +3,7 @@ namespace app\index\controller;
 use think\Controller;
 use think\Session;
 use think\Db;
+use think\Request;
 use app\index\model\Goods;
 use app\index\model\Car as CarModel;
 
@@ -35,9 +36,9 @@ class Car extends Controller
 			$res = $this->car->save();
 		  }
 		if ($res) {
-			$this->success('添加成功','index/branlist');
+			$this->redirect('index/branlist',['big'=>$big['good']]);
 		}else {
-			$this->error('添加失败','index/branlist');
+			$this->error('添加失败',"index/branlist");
 		}
 	}
 
@@ -53,11 +54,11 @@ class Car extends Controller
 		return $this->fetch();
 	}
 
-	public function buy()
+	public function number()
 	{	
-
+		//return 1;die;
 		$data = $this->request->post();
-		dump($data);die;
+		//dump($data);die;
 
 		//生成订单号
 		$number = time(); //用时间戳生成订单号

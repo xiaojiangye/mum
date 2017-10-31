@@ -62,14 +62,7 @@
                     <li>100ml<div class="ch_img"></div></li>
                 </ul>
             </div>
-            <div class="des_choice">
-            	<span class="fl">颜色选择：</span>
-                <ul>
-                	<li>红色<div class="ch_img"></div></li>
-                    <li class="checked">白色<div class="ch_img"></div></li>
-                    <li>黑色<div class="ch_img"></div></li>
-                </ul>
-            </div>
+            
             <div class="des_share">
             	<div class="d_sh">
                 	分享
@@ -81,7 +74,10 @@
                         <a href="#"><img src="__IMAGE__sh_5.gif" /></a>
                     </div>
                 </div>
-                <div class="d_care"><a onclick="ShowDiv('MyDiv','fade')">收藏商品</a></div>
+                <div class="d_care">
+                    <a href="{:url('collect/coll',['good'=>$res[0]['id']])}">
+                    收藏商品</a>
+                </div>
             </div>
             <div>库存量:{$res[0]['stock']}</div>
             <div class="des_join">

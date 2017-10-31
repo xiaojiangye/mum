@@ -113,7 +113,7 @@
         <span class="fl"><a href="#">咖啡</a><a href="#">iphone 6S</a><a href="#">新鲜美食</a><a href="#">蛋糕</a><a href="#">日用品</a><a href="#">连衣裙</a></span>
     </div>
     <div class="i_car">
-        <div class="car_t">购物车 [ <span>3</span> ]</div>
+        <div class="car_t"><a href="{:url('car/car')}">购物车</a> [ <span>3</span> ]</div>
         <div class="car_bg">
             <!--Begin 购物车未登录 Begin-->
             <div class="un_login">还未登录！<a href="{:url('user/login')}" style="color:#ff4e00;">马上登录</a> 查看购物车！</div>
@@ -382,6 +382,7 @@
                 <div class="fresh_txt_c">
                 {foreach $goods_res as $val}
                 {if condition="$val.big_id eq $vo.id"}
+
                     <a href="{:url('index/details',['good'=>$val['id']])}">{$val.name}</a> 
                 {/if}
                {/foreach} 
