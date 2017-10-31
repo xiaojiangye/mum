@@ -106,6 +106,12 @@ class Goods extends Model
 		$res = $this->limit(6)->select();
 		return $res;
 	}
+	//查询所有的商品
+	public function allGoods($data)
+	{	//dump($data);die;
+		$res = $this->where('id',$data)->select();
+		return $res;
+	}
 
 
 	/*更新商品信息*/
