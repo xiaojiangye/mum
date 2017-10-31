@@ -9,15 +9,18 @@ use app\index\model\Goods;
 use app\index\controller\SendEmail;
 use think\Session;
 use think\Validate;
+use app\admin\model\Carousel;
 
 class Index  extends Controller
 {   
     protected $goods;
     protected $big;
+    protected $carousel;
     public function _initialize()
     {
       $this->goods = new Goods(); 
       $this->big = new Big();
+      $this->carousel = new Carousel();
     }
     //首页展示
     public function index()
@@ -28,7 +31,15 @@ class Index  extends Controller
         $goods_res = $goods->select();
         $this->assign('res1',$res1);
         $this->assign('goods_res',$goods_res);
-        return $this->fetch();
+
+      /*得到轮播图*/
+      $carousel = $this->carousel->selectCarousel();
+      $this->assign('carousel' , $carousel);
+
+      /*得到最新商品*/
+      $latest = $this->goods->getLatest();
+
+      return $this->fetch();
     }
 
      /*发送邮件 并返回验证码*/
@@ -71,7 +82,6 @@ class Index  extends Controller
         return 0;
       }
       return 1;
-      
     }
 
     //类型商品类型
