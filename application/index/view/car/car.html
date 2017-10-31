@@ -100,22 +100,23 @@
 </html>
 <script type="text/javascript">
     $(function() {
-        //增加
+
+        //增加 点击—号时
          $(".car_btn_2").click(function() {
             //alert($(this).prev().val());
             var num =parseInt($(this).prev().val());
              num++;  
              $(this).prev().val(num);
              alert(num++);
-             // console.log($(this).parent().parent().prev().prev().prev().val());
             $.post("{:url('car/number')}",{number:num++},success)
             function success(data)
             {
               alert(data);
             }
           
-          })
-         //减少 最小为1
+          });
+
+         //减少 最小为1 点击+时
           $(".car_btn_1").click(function() {
             var num =parseInt($(this).next().val());
             num--;
@@ -130,10 +131,7 @@
                 }
             }
             $(this).next().val(num);
-          })
-
-          //商品数量的改变
-        
+          });
 
 
     });

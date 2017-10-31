@@ -246,8 +246,8 @@
     	<div class="h_l_img">
         	<div class="img"><img src="{$latest[0]['picture']|substr=1}" width="188" height="188" /></div>
             <div class="pri_bg">
-                <span class="price fl">￥53.00</span>
-                <span class="fr">16R</span>
+                <span class="price fl">￥{$latest[0]['price']*$latest[0]['discount']}</span>
+                <span class="fr" style="text-decoration: line-through;">{$latest[0]['price']}</span>
             </div>
         </div>
         <div class="hot_pro">           
