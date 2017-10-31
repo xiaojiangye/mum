@@ -12,6 +12,7 @@
 </head>
 <body>  
 <!--Begin Header Begin-->
+<<<<<<< HEAD
 <!DOCTYPE html >
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -151,14 +152,18 @@
 });
 
 </script>
+=======
+{include file="common/indexHeader"}
+>>>>>>> 57f80345d50ec056c7b1de79eebd7f684adc4aad
 <!--End Menu End--> 
-
- <div class="i_bg"> 
+<div class="i_bg">  
     <div class="content mar_20">
     	<img src="images/img1.jpg" />        
     </div>
-        <!--Begin 第一步：查看购物车 Begin -->
+    
+    <!--Begin 第一步：查看购物车 Begin -->
     <div class="content mar_20">
+<<<<<<< HEAD
         <form action="" method="post" enctype="multipart/form-data">
          <table border="0" class="car_tab" style="width:1200px; margin-bottom:50px;" cellspacing="0" cellpadding="0">
               <tr>
@@ -227,13 +232,29 @@
                     </table>
                         
                 </div>
+
             </div>
-        </div> 
+            <div class="notice_c">
+           		
+                <table border="0" align="center" style="font-size:16px;" cellspacing="0" cellpadding="0">
+                  <tr valign="top">
+                    <td>您确定要把该商品移除购物车吗？</td>
+                  </tr>
+                  <tr height="50" valign="bottom">
+                    <td><a href="#" class="b_sure">确定</a><a href="#" class="b_buy">取消</a></td>
+                  </tr>
+                </table>
+                    
+            </div>
+        </div>
+    </div>    
    {include file="common/indexFooter"}   
 </div>
 </body>
 </html>
 <script type="text/javascript">
+
+<<<<<<< HEAD
  $(function() 
  {
     $(".car_btn_1").click(function() 
@@ -250,32 +271,14 @@
         $(this).parent().parent().next().next().children(':first-child').val(money);
         /*发送ajax请求到数据库*/
         $.post("{:url('Car/updateAddCarNum')}" , {'goods_id' : id } , function(data)
-            {
-               // alert(data);
-                //console.log(data);
-            });
-        $(this).next().val(num);
+        {
+            alert(data);
+        }
     });
 
 
 
-    $(".car_btn_2").click(function() 
-     {
-        var num =parseInt($(this).prev().val());
-        num++;
-
-        var id = $(this).prev().prev().prev().val();
-        var money = $(this).next().val()*num;
-        //$(this).parent().parent().next().next().children(':first-child').val(money);
-        $(this).parent().parent().next().next().children(':first-child').val(money);
-        $.post("{:url('Car/updateSubCarNum')}" , {'goods_id' : id } , function(data)
-            {
-                //alert(data);
-               // console.log(data);
-            });
-        $(this).prev().val(num);
     });
 
-});
 
 </script>

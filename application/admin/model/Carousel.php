@@ -21,7 +21,7 @@ class Carousel extends Model
 
 	public function selectCarousel()
 	{
-		return $this->order('create_time' , 'desc')->select();
+		return $this->order('sort' , 'desc')->where('status' , 0)->select();
 	}
 
 
