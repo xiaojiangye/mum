@@ -126,6 +126,17 @@ class Goods extends Model
 	{
 		return $this->field('id')->where('seller_id' , $seller_id)->order('create_time','desc')->select();
 	}
+
+	/*得到最新商品*/
+	public function getLatest()
+	{
+		return $this->limit(4)->order('create_time')->select();
+	}
+
+
+
+
+
 }
 
 

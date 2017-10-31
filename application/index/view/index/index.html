@@ -241,48 +241,39 @@
         </div>
     </div>
    
-    <!--Begin 热门商品 Begin-->
+    <!--Begin 最新商品 Begin-->
     <div class="content mar_10">
     	<div class="h_l_img">
-        	<div class="img"><img src="__IMAGE__l_img.jpg" width="188" height="188" /></div>
-
+        	<div class="img"><img src="{$latest[0]['picture']|substr=1}" width="188" height="188" /></div>
             <div class="pri_bg">
                 <span class="price fl">￥53.00</span>
                 <span class="fr">16R</span>
             </div>
         </div>
         <div class="hot_pro">           
-            <div id="featureContainer">
-                <div id="feature">
-                    <div id="block">
-                        <div id="botton-scroll">
-                            <ul class="featureUL">
-                                <li class="featureBox">
-                                    <div class="box">
-
-                                    	<div class="h_icon"><img src="__IMAGE__hot.png" width="50" height="50" /></div>
-
-                                        <div class="imgbg">
-                                            <a href="#"><img src="images/hot1.jpg" width="160" height="136" /></a>
-                                        </div>                                        
-                                        <div class="name">
-                                            <a href="#">
-                                            <h2>德国进口</h2>
-                                            德亚全脂纯牛奶200ml*48盒
-                                            </a>
-                                        </div>
-                                        <div class="price">
-                                            <font>￥<span>189</span></font> &nbsp; 26R
-                                        </div>
-                                    </div>
-                                </li>
-                                
-                            </ul>
+            <div id="block">
+                <ul class="featureUL">
+                {foreach $latest as $val}
+                    <li class="featureBox">
+                        <div class="box">
+                        	<div class="h_icon"><img src="__IMAGE__hot.png" width="50" height="50" /></div>
+                            <div class="imgbg">
+                                <a href="{:url('Index/details' , ['good' => $val['id']])}"><img src="{$val['picture']|substr=1}" width="160" height="136" /></a>
+                            </div>                                        
+                            <div class="name">
+                                <a href="#">
+                                <h2>{$val['name']}</h2>
+                                {$val['description']}
+                                </a>
+                            </div>
+                            <div class="price">
+                                <font>￥<span>{$val['price']*$val['discount']}</span></font> &nbsp; <span style="font-size: 12px;text-decoration: line-through;">￥{$val['price']}</span>
+                            </div>
                         </div>
-                    </div>
-                    <a class="h_prev" href="javascript:void();">Previous</a>
-                    <a class="h_next" href="javascript:void();">Next</a>
-                </div>
+                    </li>
+                {/foreach}
+
+                </ul>
             </div>
         </div>
     </div>

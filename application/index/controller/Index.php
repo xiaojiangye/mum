@@ -38,6 +38,7 @@ class Index  extends Controller
 
       /*得到最新商品*/
       $latest = $this->goods->getLatest();
+      $this->assign('latest' , $latest);
 
       return $this->fetch();
     }
