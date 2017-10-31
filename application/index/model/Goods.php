@@ -106,6 +106,7 @@ class Goods extends Model
 		$res = $this->limit(6)->select();
 		return $res;
 	}
+
 	//查询所有的商品
 	public function allGoods($data)
 	{	//dump($data);die;
@@ -119,6 +120,12 @@ class Goods extends Model
 		return $this->allowField(true)->save($data,['id' => $data['id']]);
 	}
 
+
+	/*得到某个商店的所有商品的id*/
+	public function selectSellerGoods($seller_id)
+	{
+		return $this->field('id')->where('seller_id' , $seller_id)->order('create_time','desc')->select();
+	}
 }
 
 

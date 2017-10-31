@@ -91,6 +91,8 @@ class Index  extends Controller
    	{ 
       $good = input('param.');
       $res = $this->goods->goodsDetails($good);
+      $big_style = $this->big->getByField( 'id' , $res[0]['big_id'])[0]['style'];
+      $res[0]['big_style'] = $big_style;
       //dump($res[0]['stock']);die;
       //同一产品的图片
       $res1 = $this->goods->samePhoto($res[0]['number']);

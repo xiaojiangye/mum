@@ -9,18 +9,21 @@ use think\Session;
 use app\index\model\Seller as SellerModel;
 use app\admin\model\Big;
 use app\index\controller\Index;
+use app\index\model\Goods;
 
 class Seller extends Controller
 {
 	protected $seller ;
 	protected $big;
 	protected $index;
+	protected $good;
 
 	public function _initialize()
 	{
 		$this->seller = new SellerModel();
 		$this->big = new Big();
 		$this->index = new Index();
+		$this->goods = new Goods();
 	}
 
 	/*添加商家信息  先查出可以注册成哪种商家*/
@@ -98,6 +101,27 @@ class Seller extends Controller
 		
 		$this->assign('Info' , $Info);
 		return  $this->fetch();
+	}
+
+	/*通过传过来的goods_id 得到店铺id 再向卖家展示该小店的东西*/
+	public function toSeller()
+	{
+		$data = $this->request->param();
+		$seller_id = $this->goods->getGoods('id' , $data['id'])[0]['seller_id'];
+
+		$seller_name = $this->seller->getByType('id' , $seller_id)[0]['name'];
+		$res = $this->goods->selectSellerGoods($seller_id);
+		$info = [];
+		foreach ($res as $key => $value) 
+		{
+			$info[$key] = $this->goods->getGoods('id' , $value['id'] )[0];
+		}
+		
+		$this->assign('seller_name' , $seller_name);
+		$this->assign('info' , $info);
+		//dump($info);
+	
+		return $this->fetch('seller/toSeller');
 	}
 
 
