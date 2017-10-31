@@ -216,16 +216,15 @@
 </html>
 <script type="text/javascript">
     $(function() {
+        //增加
          $(".car_btn_2").click(function() {
             //alert($(this).prev().val());
             var num =parseInt($(this).prev().val());
             num++;
             $(this).prev().val(num);
-
           })
-
+         //减少 最小为1
           $(".car_btn_1").click(function() {
-            //alert($(this).prev().val());
             var num =parseInt($(this).next().val());
             num--;
             if(num <=0) {
