@@ -56,7 +56,6 @@
                 商品重量：<span>{$res[0]['weight']}g</span><br />
                 消费积分：<span>28R</span>
             </div>
-
             <div class="des_share">
             	<div class="d_sh">
                 	分享
@@ -69,8 +68,8 @@
                     </div>
                 </div>
                 <div class="d_care">
-                    <input type="hidden" value="{$res[0]['id']}">
-                    <a id='collect' >收藏商品</a>
+                    <a href="{:url('collect/coll',['good'=>$res[0]['id']])}">
+                    收藏商品</a>
                 </div>
             </div>
             <div>库存量:{$res[0]['stock']}</div>
@@ -266,21 +265,6 @@ $(function(){
                 console.log(data);
             } , "json");
         });
-
-    /*由某个商品跳转到某个小店*/
-    /*$('#seller').click(function()
-        {
-            var goods_id = $(this).prev().val();
-            $.post("{:url('Seller/getSellerId')}" , {'id' : goods_id} , function(data)
-                {
-                    console.log(data);
-                    
-                    window.location.href = "http://mumma.com/index/Seller/toSeller/id/"+data;
-                    
-
-                },"json");
-           
-        });*/
 
 
     /*收藏小店*/
