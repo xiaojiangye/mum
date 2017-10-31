@@ -13,243 +13,134 @@
 </head>
 <body>  
 <!--Begin Header Begin-->
-<div class="soubg">
-	<div class="sou">
-    	<!--Begin 所在收货地区 Begin-->
-    	
-        <!--End 所在收货地区 End-->
-        <span class="fr">
-        	<span class="fl">你好，请
-            <a href="Login.html">登录</a>&nbsp; 
-            <a href="Regist.html" style="color:#ff4e00;">免费注册</a>&nbsp;|&nbsp;
-            <a href="#">我的订单</a>&nbsp;|</span>
-        	<span class="ss">
-            	<div class="ss_list">
-                	<a href="#">收藏夹</a>
-                    <div class="ss_list_bg">
-                    	<div class="s_city_t"></div>
-                        <div class="ss_list_c">
-                        	<ul>
-                            	<li><a href="#">我的收藏夹</a></li>
-                                <li><a href="#">我的收藏夹</a></li>
-                            </ul>
-                        </div>
-                    </div>     
-                </div>
-                <div class="ss_list">
-                	<a href="#">客户服务</a>
-                    <div class="ss_list_bg">
-                    	<div class="s_city_t"></div>
-                        <div class="ss_list_c">
-                        	<ul>
-                            	<li><a href="#">客户服务</a></li>
-                                <li><a href="#">客户服务</a></li>
-                                <li><a href="#">客户服务</a></li>
-                            </ul>
-                        </div>
-                    </div>    
-                </div>
-                <div class="ss_list">
-                	<a href="#">网站导航</a>
-                    <div class="ss_list_bg">
-                    	<div class="s_city_t"></div>
-                        <div class="ss_list_c">
-                        	<ul>
-                            	<li><a href="#">网站导航</a></li>
-                                <li><a href="#">网站导航</a></li>
-                            </ul>
-                        </div>
-                    </div>    
-                </div>
-            </span>
-            
-        </span>
-    </div>
-</div>
-<div class="top">
-    <div class="logo"><a href="Index.html"><img src="images/logo.png" /></a></div>
-    <div class="search">
-    	<form>
-        	<input type="text" value="" class="s_ipt" />
-            <input type="submit" value="搜索" class="s_btn" />
-        </form>                      
-        <span class="fl"><a href="#">咖啡</a><a href="#">iphone 6S</a><a href="#">新鲜美食</a><a href="#">蛋糕</a><a href="#">日用品</a><a href="#">连衣裙</a></span>
-    </div>
-    <div class="i_car">
-    	<div class="car_t">购物车 [ <span>3</span> ]</div>
-        <div class="car_bg">
-       		<!--Begin 购物车未登录 Begin-->
-        	<div class="un_login">还未登录！<a href="Login.html" style="color:#ff4e00;">马上登录</a> 查看购物车！</div>
-            <!--End 购物车未登录 End-->
-            <!--Begin 购物车已登录 Begin-->
-            <ul class="cars">
-            	<li>
-                	<div class="img"><a href="#"><img src="images/car1.jpg" width="58" height="58" /></a></div>
-                    <div class="name"><a href="#">法颂浪漫梦境50ML 香水女士持久清新淡香 送2ML小样3只</a></div>
-                    <div class="price"><font color="#ff4e00">￥399</font> X1</div>
-                </li>
-            </ul>
-            <div class="price_sum">共计&nbsp; <font color="#ff4e00">￥</font><span>1058</span></div>
-            <div class="price_a"><a href="#">去购物车结算</a></div>
-            <!--End 购物车已登录 End-->
-        </div>
-    </div>
-</div>
-<!--End Header End--> 
-<!--Begin Menu Begin-->
-<div class="menu_bg">
-	<div class="menu">
-    	<!--Begin 商品分类详情 Begin-->    
-    	<div class="nav">
-        	<div class="nav_t">全部商品分类</div>
-            <div class="leftNav none">
-                <ul>      
-                    <li>
-                    	<div class="fj">
-                        	<span class="n_img"><span></span><img src="images/nav1.png" /></span>
-                            <span class="fl">进口食品、生鲜</span>
-                        </div>
-                        <div class="zj">
-                            <div class="zj_l">
-                                <div class="zj_l_c">
-                                    <h2>零食 / 糖果 / 巧克力</h2>
-                                    <a href="#">坚果</a>|<a href="#">蜜饯</a>|<a href="#">红枣</a>|<a href="#">牛肉干</a>|<a href="#">巧克力</a>|
-                                    <a href="#">口香糖</a>|<a href="#">海苔</a>|<a href="#">鱼干</a>|<a href="#">蜜饯</a>|<a href="#">红枣</a>|
-                                    <a href="#">蜜饯</a>|<a href="#">红枣</a>|<a href="#">牛肉干</a>|<a href="#">蜜饯</a>|
-                                </div>
-                            </div>
-                            
-                        </div>
-                    </li>     	
-                </ul>            
-            </div>
-        </div>  
-        <!--End 商品分类详情 End-->                                                     
-    	<ul class="menu_r">                                                                                                                                               
-        	<li><a href="Index.html">首页</a></li>
-            <li><a href="Food.html">美食</a></li>
-        </ul>
-        <div class="m_ad">预购双十一！</div>
-    </div>
-</div>
+{include file='common/indexHeader' /}
+
 <!--End Menu End--> 
-<div class="i_bg">  
+
+ <div class="i_bg"> 
     <div class="content mar_20">
     	<img src="images/img1.jpg" />        
     </div>
-    
-    <!--Begin 第一步：查看购物车 Begin -->
+        <!--Begin 第一步：查看购物车 Begin -->
     <div class="content mar_20">
-      <form action="" method="post" enctype="multipart/form-data">
-    	<table border="0" class="car_tab" style="width:1200px; margin-bottom:50px;" cellspacing="0" cellpadding="0">
-          <tr>
-            <td></td>
-            <td class="car_th" width="390">商品名称</td>
-            <td class="car_th" width="140">属性</td>
-            <td class="car_th" width="150">购买数量</td>
-            <td class="car_th" width="130">小计</td>
-            <td class="car_th" width="140">返还积分</td>
-            <td class="car_th" width="150">操作</td>
-          </tr> 
-          {foreach $res_id as $vo}
-          {foreach $good_res as $val}
-          {if condition="$vo['goods_id'] eq $val['id']"}
-          <tr>
-          <td><input type="checkbox" name="good_id" value="{$val['id']}"></td>
-            <td>
-            	<div class="c_s_img"><img src="{$val.picture|substr=1}" width="73" height="73" /></div>
-                {$val['name']}
-            </td>
-            <td align="center">重量:200g</td>
-            <td align="center">
-            	<div class="c_num">
-                    <input type="button" value="-" class="car_btn_1" id="sub" />
-                    <input type="text" value="{$vo.number}" name="number[]" class="car_ipt" />  
-                    <input type="button" value="+"  class="car_btn_2" id=" "/>
-                </div> 
-            </td>
-            <td align="center" style="color:#ff4e00;">
-            <input type="text"  style="border:none; width:50px;height:20px;" name="money" value="{$val.price * $val.discount * $vo.number }">
-            </td>
-            <td align="center">26R</td>
-            <td align="center"><a onclick="ShowDiv('MyDiv','fade')">删除</a>&nbsp; &nbsp;<a href="{:url('collect/collect',['good'=>$val['id']])}">加入收藏</a></td>
-          </tr>
-          {/if}
-         {/foreach}
-       {/foreach}
-          <tr valign="top" height="150">
-          	<td colspan="6" align="right">
-            	<a href="{:url('index/index')}">继续购物</a>&nbsp; &nbsp; 
-                <input type="button" id="shop" value="去结算">
-            </td>
-          </tr>
-        </table> 
-        </form>  
-    </div>
-	<!--End 第一步：查看购物车 End--> 
-    
-    
-    <!--Begin 弹出层-删除商品 Begin-->
-    <div id="fade" class="black_overlay"></div>
-    <div id="MyDiv" class="white_content">             
-        <div class="white_d">
-            <div class="notice_t">
-                <span class="fr" style="margin-top:10px; cursor:pointer;" onclick="CloseDiv('MyDiv','fade')"><img src="images/close.gif" /></span>
-            </div>
-            <div class="notice_c">
-           		
-                <table border="0" align="center" style="font-size:16px;" cellspacing="0" cellpadding="0">
-                  <tr valign="top">
-                    <td>您确定要把该商品移除购物车吗？</td>
-                  </tr>
-                  <tr height="50" valign="bottom">
-                    <td><a href="#" class="b_sure">确定</a><a href="#" class="b_buy">取消</a></td>
-                  </tr>
-                </table>
-                    
-            </div>
+        <form action="" method="post" enctype="multipart/form-data">
+         <table border="0" class="car_tab" style="width:1200px; margin-bottom:50px;" cellspacing="0" cellpadding="0">
+              <tr>
+                <td></td>
+                <td class="car_th" width="390">商品名称</td>
+                <td class="car_th" width="140">属性</td>
+                <td class="car_th" width="140">单价</td>
+                <td class="car_th" width="150">购买数量</td>
+                <td class="car_th" width="140">折扣率</td>
+                <td class="car_th" width="130">小计</td>
+                <td class="car_th" width="140">返还积分</td>
+                <td class="car_th" width="150">操作</td>
+              </tr> 
+        {foreach $carGoods as $val} 
+            <tr>
+                <td><input type="checkbox" name="good_id" value="{ $val['id']}"></td>
+                <td>{$val['name']}
+                	<div class="c_s_img"><img src="{$val.picture|substr=1}" width="73" height="73" /></div>
+                </td>
+                <td align="center">重量:{$val.weight}g</td>
+                <td align="center">单价:{$val.price}</td>
+                <td align="center">
+                	<div class="c_num"> 
+                        <input type="hidden" value="{$val['id']}" />
+                        <input type="button"  value="-" class="car_btn_1"  />
+                        <input type="text" value="{$val.count}" name="number[]" class="car_ipt" />  
+                        <input type="button" value="+"  class="car_btn_2" id="more"/>
+                        <input type="hidden" value="{$val.price*$val.discount}">
+                    </div> 
+                </td>
+                <td align="center">{$val.discount}</td>
+                <td align="center" style="color:#ff4e00;">
+                    <input type="text"  style="border:none; width:50px;height:20px;" name="money" value="{$val.price*$val.discount*$val.count }">
+                </td>
+                <td align="center">26R</td>
+                <td align="center"><a onclick="ShowDiv('MyDiv','fade')">删除</a>&nbsp; &nbsp;<a href="{//   :url('collect/collect',['good'=>$val['id']])}">加入收藏</a></td>
+              </tr>
+        {/foreach}  
+              <tr valign="top" height="150">
+              	<td colspan="6" align="right">
+                	<a href="{// :url('index/index')}">继续购物</a>&nbsp; &nbsp; 
+                    <input type="button" id="shop" value="去结算">
+                </td>
+              </tr>
+            </table> 
+            </form>  
         </div>
-    </div>    
+    	<!--End 第一步：查看购物车 End--> 
+        
+        <!--Begin 弹出层-删除商品 Begin-->
+        <div id="fade" class="black_overlay"></div>
+        <div id="MyDiv" class="white_content">             
+            <div class="white_d">
+                <div class="notice_t">
+                    <span class="fr" style="margin-top:10px; cursor:pointer;" onclick="CloseDiv('MyDiv','fade')"><img src="images/close.gif" /></span>
+                </div>
+                <div class="notice_c">
+               		
+                    <table border="0" align="center" style="font-size:16px;" cellspacing="0" cellpadding="0">
+                      <tr valign="top">
+                        <td>您确定要把该商品移除购物车吗？</td>
+                      </tr>
+                      <tr height="50" valign="bottom">
+                        <td><a href="#" class="b_sure">确定</a><a href="#" class="b_buy">取消</a></td>
+                      </tr>
+                    </table>
+                        
+                </div>
+            </div>
+        </div> 
    {include file="common/indexFooter"}   
 </div>
 </body>
 </html>
 <script type="text/javascript">
-    $(function() {
-         $(".car_btn_2").click(function() {
-            //alert($(this).prev().val());
-            var num =parseInt($(this).prev().val());
-            num++;
-            $(this).prev().val(num);
+ $(function() 
+ {
+    $(".car_btn_1").click(function() 
+    {
+        var num =parseInt($(this).next().val());
+        num--;
+        if(num <=0) 
+        {
+            num=1;
+        }
 
-          })
-
-          $(".car_btn_1").click(function() {
-            //alert($(this).prev().val());
-            var num =parseInt($(this).next().val());
-            num--;
-            if(num <=0) {
-                num=1;
-            }
-            $(this).next().val(num);
-          })
-
-          //商品数量的改变
-          $("#shop").click(function(){
-            var number = $("input[name='number[]']").val();
-            alert(number);
-            $.post("Car/buy",{number:number},success)
-            function success(data)
+        var id = $(this).prev().val();
+        var money = $(this).next().next().next().val()*num;
+        /*修改小计里面的值*/
+        $(this).parent().parent().next().next().children(':first-child').val(money);
+        /*发送ajax请求到数据库*/
+        $.post("{:url('Car/updateAddCarNum')}" , {'goods_id' : id } , function(data)
             {
-                console.log(data);
-            }
-
-
-
-          })
-
-
+               // alert(data);
+                //console.log(data);
+            });
+        $(this).next().val(num);
     });
 
+
+
+    $(".car_btn_2").click(function() 
+     {
+        var num =parseInt($(this).prev().val());
+        num++;
+
+        var id = $(this).prev().prev().prev().val();
+        var money = $(this).next().val()*num;
+        //$(this).parent().parent().next().next().children(':first-child').val(money);
+        $(this).parent().parent().next().next().children(':first-child').val(money);
+        $.post("{:url('Car/updateSubCarNum')}" , {'goods_id' : id } , function(data)
+            {
+                //alert(data);
+               // console.log(data);
+            });
+        $(this).prev().val(num);
+    });
+
+});
 
 </script>
