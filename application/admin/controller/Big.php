@@ -44,6 +44,7 @@ class Big extends Controller
 	public function big()
 	{
 		$res = $this->big->selectBig();
+		//dump($res);
 		$this->assign('res',$res);
 		return $this->fetch();
 	}

@@ -14,9 +14,10 @@ class User  extends Model
 		return $this->id;
 	}
 
-	//根据名字去得到某个具体的全部信息
-	public function getName($name)
+	//根据输入的值去得到某个具体的全部信息
+	public function getByType($key , $value)
 	{
+		return $this->where($key , $value)->select();
 		/*dump($name);*/
 		//return $this->where('name', $name)->select();//name要写uname
 	}

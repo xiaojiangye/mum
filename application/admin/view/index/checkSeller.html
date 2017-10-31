@@ -1,0 +1,104 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+{include file='public/css' /}
+{include file='public/js' /}
+<title>交易金额</title>
+</head>
+<body>
+<div class="margin clearfix">
+ <div class="detailed_style clearfix">
+ <em class="type"></em>
+  <div class="shop_logo"><img src="__PICTURE__detailnoimg.png" /></div>
+   <ul class="shop_content clearfix">
+   	<input type="hidden" name="id" value="{$res['id']}">
+    <li class="shop_name"><label class="label_name">店铺名称：</label><span class="info">{$res['name']}</span> 
+    <div class="Authenticate"><i class="icon-yxrz"></i><i class="icon-yhk"></i><i class="icon-sjrz"></i><i class="icon-grxx"></i></div></li>
+    <li><label class="label_name">店铺类型：</label><span class="info">个人店铺</span></li>
+    <li><label class="label_name">店铺分类：</label><span class="info">{$res['big_id']}</span></li>
+    <li><label class="label_name">申请时间：</label><span class="info">{$res['create_time']}</span></li>
+    <li><label class="label_name">状&nbsp;&nbsp;&nbsp;&nbsp;态：</label><span class="info">待审核</span></li>
+    <li><label class="label_name">申请人姓名：</label><span class="info">{$res['leader']}</span></li>
+    <li><label class="label_name">移动电话：</label><span class="info">{$res['pnumber']}</span></li>
+    <li><label class="label_name">电子邮箱：</label><span class="info">{$res['email']}</span></li>
+    <li><label class="label_name">固定电话：</label><span class="info">025-56787876</span></li>
+    <li><label class="label_name">身份证号：</label><span class="info">320568656465342423</span></li>
+   </ul>
+ </div>
+ <div class="Store_Introduction">
+  <div class="title_name">店铺介绍</div>
+   <div class="info">
+  		&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;{$res['description']}
+   </div>
+ </div>
+ <div class="Store_Introduction">
+  <div class="title_name">其他认证</div>
+  <div class="info">
+   	  运营执照：ICP123werxzc
+  </div>
+ </div>
+ <div class="At_button">
+	<button id='pass' class="btn btn-primary radius" >通  过</button>
+	<button id='reject' class="btn btn-danger  btn-warning" >拒  绝</button>
+ </div>
+
+</div>
+</body>
+</html>
+
+<script type="text/javascript">
+$(function()
+	{
+		$('#pass').click(function()
+			{
+			id = $('input[name=id]').val();
+			alert(id);
+			$.post("{:url('Index/checkResult')}" , {'id' : id , 'status' : 1 } , function(data)
+				{
+					console.log(data);
+					if(data == 1 )
+					{
+						alert('审核成功!');
+					}
+				
+				});
+			});
+		$('#reject').click(function()
+			{
+			id = $('input[name=id]').val();
+			alert(id);
+			$.post("{:url('Index/checkResult')}" , {'id' : id , 'status' : 2 } , function(data)
+				{
+					console.log(data);
+					if(data == 1 )
+					{
+						alert('拒绝成功!');
+					}
+				});
+			});
+	});
+
+</script>
+
+
+
+<script>
+/*字数限制*/
+function checkLength(which) {
+	var maxChars = 500; //
+	if(which.value.length > maxChars){
+	   layer.open({
+	   icon:2,
+	   title:'提示框',
+	   content:'您输入的字数超过限制!',	
+    });
+		// 超过限制的字数了就将 文本框中的内容按规定的字数 截取
+		which.value = which.value.substring(0,maxChars);
+		return false;
+	}else{
+		var curr = maxChars - which.value.length; //减去当前输入的
+		document.getElementById("sy").innerHTML = curr.toString();
+		return true;
+	}
+};
+</script>

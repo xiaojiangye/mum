@@ -1,5 +1,4 @@
 <?php
-
 namespace app\index\controller;
 
 use think\Controller;
@@ -26,15 +25,40 @@ class Addgoods extends Controller
 
 	/*驱动商家添加商品的页面*/
 	public function addGoods()
-	{
+	{		
 		if(empty(Session::get('id')))
 		{
 			$this->index->index();
 			die;
 		}
-		$small = $this->small->getByType('name' , '');
+		$small = $this->small->addCategory('name' , '');	
 		$this->assign('small' , $small);
 		return $this->fetch();
+	}
+
+	/*编辑商品*/
+	public function editGoods()
+	{
+		$data = $this->request->param('id');
+		$res = $this->goods->getGoods('id' , $data)[0];
+
+		$res['edit'] = 1;
+		$this->assign('small',$res);
+		return $this->fetch('addgoods/addgoods');
+		/*return $this->fetch('addgoods/editgoods');*/
+	}
+
+	/*更新商品信息*/
+	public function updateInfo()
+	{
+
+		$data = $this->request->post();
+		$res = $this->goods->updateGoods($data);	
+		if($res)
+		{
+			return 1;
+		}
+		return null;
 	}
 
 	/*添加商品的详细信息*/
@@ -80,16 +104,14 @@ class Addgoods extends Controller
 		$this->success('执行成功!' ,  'Addgoods/showSellerGoods');	
 	}
 
-
 	/*驱动小店首页 得到展示所需数据*/
 	public function showSellerGoods()
 	{
 		$info= [];
 		$id = Session::get('id');
-		
 		if(empty($id))
 		{
-			$this->index->index();
+			$this->redirect( 'Seller/sellogin' , '账户未登录');
 			die;
 		}
 
@@ -142,8 +164,9 @@ class Addgoods extends Controller
 		return $this->fetch('addgoods/stockGoods');
 	}
 
-
 }
+
+
 
 
 

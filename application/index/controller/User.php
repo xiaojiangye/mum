@@ -6,34 +6,43 @@ use ucpaas\Ucpaas;
 use think\Session;
 use app\index\model\User as UserModel;
 use app\admin\model\Big;
+use app\index\model\Seller;
 
 class User extends Controller
 {
     protected $user;
     protected $small;
     protected $big;
+    protected $seller;
     
     public function _initialize()
     {
       $this->user =  new UserModel();
       $this->big = new Big();
+      $this->seller = new Seller();
     }
-
-
 
 
     /*注册时查询用户名是否存在的判断*/
     public function selectUser()
     {
-      return 1;
       $data = $this->request->post();
       $name = $data['name'];
-
-      if(empty($this->user->getName($name)))
+      if($data['style'] == '买家')
       {
-        $data = ['status' => 1];
-        echo json_encode($data);
+        if(!empty($this->user->getName($name)))
+          {
+            return 0;
+          }
       }
+      else if($data['style'] == '卖家')
+      {
+         if(!empty($this->seller->getByType('name' , $name)))
+         {
+           return 0;
+         }
+      }
+      return 1;
     }
 
 
@@ -44,6 +53,7 @@ class User extends Controller
       $this->assign('res' , $res);
       return $this->fetch();
     }
+
 
     /*添加注册时的个人信息*/
     public function addUserInfo()
@@ -70,7 +80,9 @@ class User extends Controller
        session(null);
         return $this->fetch('index/index');
     }
-      //发送短信验证码
+
+
+    //发送短信验证码
 
 
 
@@ -134,9 +146,6 @@ class User extends Controller
     }*/
 
 
-
-
-    
     /*我的现金*/
     public function memberCash()
     {   
@@ -148,8 +157,6 @@ class User extends Controller
     {   
         return $this->fetch();
     }
-
-   
 
     /*我的信息*/
     public function memberUser()
@@ -254,6 +261,7 @@ class User extends Controller
         }
 
     }
+
     //账户安全验证 邮箱修改
     public function editEmail()
     {

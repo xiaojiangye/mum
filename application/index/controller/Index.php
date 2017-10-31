@@ -7,6 +7,8 @@ use think\Requst;
 use app\admin\model\Big;
 use app\index\model\Goods;
 use app\index\controller\SendEmail;
+use think\Session;
+use think\Validate;
 
 class Index  extends Controller
 {   
@@ -32,17 +34,47 @@ class Index  extends Controller
      /*发送邮件 并返回验证码*/
     public function getEmailCode()
     {
-    	$address = $this->request->post();
-    	$address = $address['email'];
-    	$emailCode = new SendEmail();
+    	$address = $this->request->post()['email'];
+    	$emailCode = new SendEmail(); 
     	$code = $emailCode->getEmailCode($address);
-    	$data = ['code' => $code];
-    	return json_encode($data);
+      Session::set('emailCode' , $code);
+      return 1;
+      //return Session::get('emailCode');
     }
 
+    /*检查邮箱验证码*/
+    public function checkEmailCode()
+    {
+      $code = $this->request->post()['code'];
+      if($code == Session::get('emailCode'))
+      {
+        return 1;
+      }
+      return null;
+    }
+
+    /*检查图片验证码*/
+    public function checkImageCode()
+    {
+      $imageCode = $this->request->post('imageCode');   
+     // return $imageCode;
+
+      $validate = new Validate([
+      'captcha|验证码'=>'require|captcha'
+      ]);
+    
+      $data = [
+        'captcha' => $imageCode
+      ];
+
+      if(!$validate->check($data)){
+        return 0;
+      }
+      return 1;
+      
+    }
 
     //类型商品类型
-
     public function brandList()
     { 
      $big = input('param.');
@@ -53,6 +85,7 @@ class Index  extends Controller
      $this->assign('res',$res);
     	return $this->fetch();
     }
+    
   //商品的具体详情
     public function details()
    	{ 
@@ -74,6 +107,7 @@ class Index  extends Controller
    	{
    		return $this->fetch();
    	}
+    
    	public function orderDetails()
    	{
    		return $this->fetch();

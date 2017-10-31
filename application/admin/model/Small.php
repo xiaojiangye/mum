@@ -4,6 +4,9 @@ namespace app\admin\model;
 
 use think\Model;
 use app\admin\model\Big;
+use think\Session;
+use app\admin\model\small;
+
 
 class  Small extends Model
 {
@@ -31,6 +34,15 @@ class  Small extends Model
 	/*根据某种特殊的值得到对应的全部信息*/
 	public function getByType($key , $value)
 	{
+		/*if(!$value)
+		{
+			return $this->Field($key)->select();
+			die;	
+		}
+		else
+		{
+			return $this->Field('id , big_id , name')->where($key , $value)->select();
+		}*/
 		if(!$value)
 		{
 			return $this->Field($key)->select();
@@ -41,6 +53,15 @@ class  Small extends Model
 			return $this->Field('id , big_id , name')->where($key , $value)->select();
 		}
 	  
+	}
+
+	/*查出商家可以添加的小版块类型*/
+	public function addCategory($key , $value)
+	{
+		$id = Session::get('id');
+		$big_id = $this->getByType('id' , $id)[0]['big_id'];
+		return $this->Field('id , big_id , name')->where($key , $value)->whereOr('big_id' , $big_id)->select();
+		//return 1;
 	}
 	
 }

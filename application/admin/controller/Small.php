@@ -26,11 +26,21 @@ class Small extends Controller
 
 		$data = $this->small->selectSmall();
 		/*把商品的对应的大版块id得到对应的style*/
-		foreach($data as $key =>  $val)
+		if($data)
 		{
-			$bigId = $val['big_id'];
-			$res = $this->big->getByField('id' , $bigId);
-			$data[$key]['big_style'] = $res[0]['style'];
+			foreach($data as $key =>  $val)
+			{
+				$bigId = $val['big_id'];
+				$res = $this->big->getByField('id' , $bigId);
+				if($res)
+				{
+					$data[$key]['big_style'] = $res[0]['style'];
+				}
+				else
+				{
+					$data[$key]['big_style'] = '空';
+				}
+			}
 		}
 		
 		$this->assign('data' , $data);

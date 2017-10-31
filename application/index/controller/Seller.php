@@ -15,7 +15,6 @@ class Seller extends Controller
 	protected $seller ;
 	protected $big;
 	protected $index;
-	
 
 	public function _initialize()
 	{
@@ -100,5 +99,6 @@ class Seller extends Controller
 		$this->assign('Info' , $Info);
 		return  $this->fetch();
 	}
+
 
 }

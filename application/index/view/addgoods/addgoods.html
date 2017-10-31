@@ -18,24 +18,50 @@
                     <table class="table1 mb20" >
                         <tr>
                             <th width="20%">
+                            {if empty($small['edit'])}
                                 销售类型：
+                            {/if}
                             </th>
                             <td width="100%">
+                            {if empty($small['edit'])}
                                 <select name='small' style="width: 162px;margin-left: 10px;" class="input1 w350">
                                     {foreach $small as $vo}
                                         <option>{$vo['name']}</option>
                                     {/foreach}
+                              
                                 </select>
+                            {/if}
+                            </td>
+                            &nbsp;
+                          
+                        </tr>
+                    
+                        <tr>
+                            <th >
+                                商品名称：
+                            </th>
+                            <td width="100%">
+                                {if empty($small['edit'])}
+                                <input name="name" type="text" class="input1 w350" id="lxs" />
+                                {else /}
+                                <input type="hidden" name="id" value="{$small['id']}">
+                                <input name="name" type="text" class="input1 w350" id="lxs" value="{$small['name']}" />
+                                {/if}
+
                             </td>
                             &nbsp;
                             </td>
                         </tr>
                         <tr>
                             <th >
-                                商品名称：
+                                重量：
                             </th>
                             <td width="100%">
-                                <input name="name" type="text" class="input1 w350" id="lxs" />
+                                {if empty($small['edit'])}
+                                <input name="weight" type="text" class="input1 w350" id="lxs" />克
+                                {else /}
+                                    <input name="weight" type="text" class="input1 w350" id="lxs" value="{$small['weight']}" />克
+                                {/if}
                             </td>
                             &nbsp;
                             </td>
@@ -45,8 +71,13 @@
                                 产品单价：
                             </th>
                             <td colspan="3">
+                                {if empty($small['edit'])} 
                                 <input id="jiagejieguo" type="text" name='price' class="input1 w100" />
                                 元
+                                {else /}
+                                <input id="jiagejieguo" type="text" name='price' class="input1 w100" value="{$small['price']}" />
+                                元
+                                {/if}
                             </td>
                         </tr>
                         <tr>
@@ -54,7 +85,11 @@
                                折扣率：
                             </th>
                             <td colspan="3">
-                                <input id="datetimepicker3" type="text" name='discount' class="input1 w100" />
+                                {if empty($small['edit'])} 
+                                   <input id="datetimepicker3" type="text" name='discount' class="input1 w100" />
+                                {else /}
+                                    <input id="datetimepicker3" type="text" name='discount' class="input1 w100" value="{$small['discount']}" />
+                                {/if}
                                 <span class="font_grey ml15">
                                     大于等于0 小于等于1
                                 </span>
@@ -65,7 +100,11 @@
                                 库存量：
                             </th>
                             <td colspan="3">
+                                {if empty($small['edit'])} 
                                 <input id="datetimepicker3" type="text" name='stock' class="input1 w100" />
+                                {else /}
+                                <input id="datetimepicker3" type="text" name='stock' class="input1 w100" value="{$small['stock']}" />
+                                {/if}
                                 <span class="font_grey ml15">
                                     数量大于10
                                 </span>
@@ -76,14 +115,23 @@
                                 商品描述：
                             </th>
                             <td colspan="3">
-                                <textarea name="description" class="input1 w100" style="border: 1px solid black;margin-top:8px;margin-left: 10px;height: 100px;"></textarea>
+                                {if empty($small['edit'])}
+                                <textarea id="description" class="input1 w100" style="border: 1px solid black;margin-top:8px;margin-left: 10px;height: 100px;"></textarea>
+                                {else /}
+                                 <textarea id="description" class="input1 w100" style="border: 1px solid black;margin-top:8px;margin-left: 10px;height: 100px;">{$small['description']}</textarea>
+                                {/if}
                             </td>
                         </tr>
                     </table>
                   </form>
                 </div>
             </div> 
+           {if empty($small['edit'])}
             <button>添加商品图片</button>
+           {else /}
+                <a id='btn1' style="margin-top: 30px;margin-left: 420px;">保存修改</a> 
+           {/if}
+
        <!--  </section> -->
     </div>
    
@@ -93,6 +141,16 @@
 </html>
 <script type="text/javascript">
 $(function(){
+    $('input[name=weight]').blur(function()
+        {
+            var weight = $("input[name=weight]");
+            if(isNaN(weight.val()))
+            {
+                alert('重量是个数字哦,请填写数字!');
+                weight.val('');
+            }
+        });
+
     $('input[name=price]').blur(function()
         {
             var price = $("input[name=price]");
@@ -151,12 +209,14 @@ $(function(){
         {
             var small = $('select').val();
             var name = $('input[name=name]').val();
+            var weight = $('input[name=weight]').val();
             var picture = $("input[name=picture]").val();
             var price = $("input[name=price]").val();
             var discount = $("input[name=discount]").val();
             var stock = $('input[name=stock]').val();
-            var data = {'small' : small , 'name' : name , 'picture' : picture , 'price' : price , 'discount' : discount , 'stock' : stock };
-            $.post("{:url('Upload/getInfo')}" , data , function(data)
+            
+            var data = {'small' : small , 'name' : name , 'weight' : weight ,'picture' : picture , 'price' : price , 'discount' : discount ,'stock' : stock };
+            $.post( "{:url('Upload/getInfo')}" , data , function(data)
                 {
                    console.log(data);
                    if(data == 1)
@@ -165,6 +225,32 @@ $(function(){
                    }
                   
                 });
+        });
+    $('#btn1').click(function()
+        {
+            alert('应该到这才对吧！');
+            var small = $('select').val();
+            var name = $('input[name=name]').val();
+            var id = $('input[name=id]').val();
+            var weight = $('input[name=weight]').val();
+            var price = $("input[name=price]").val();
+            var discount = $("input[name=discount]").val();
+            var stock = $('input[name=stock]').val();
+            var description = $('#description').val();
+            var data = {'small' : small , 'name' : name ,'id' : id, 'weight' : weight ,     'price' : price , 'discount' : discount ,'description' : description ,  'stock' : stock };
+            $.post( "{:url('Addgoods/updateInfo')}" , data , function(data)
+                {
+                   if(data == null)
+                   {
+                     alert('更新失败!');
+                   }
+                   else
+                   {
+                    alert('更新成功, 去小店首页溜溜!');
+                   }
+                   console.log(data);
+                });
+
         });
 });
 
