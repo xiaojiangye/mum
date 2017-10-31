@@ -19,38 +19,70 @@ class Car extends Controller
 	//渲染购物车页面 得到所有当前用户的购物车中的东西
 	public function car()
 	{	
-		//dump(1);
-		$good = [];
-		$goods = model('goods');
+		if(empty(Session::get('id')))
+		{
+			$this->redirect('User/login');
+			die;
+		}
+		
+		$info = [];
 		/*得到某用户的所有购物车中的商品详细信息 及购物车中的数量*/
 		$carRes= $this->car->selectCar();
 		foreach ($carRes as $key => $value) 
 		{
-			$goodInfo = $goods->where('id' , $value['id'])->select()[0];
-			$goodInfo['count'] = $carRes[$key]['number']; 
-			$good[] = $goodInfo;
-		}
+			$goods_id = $value['goods_id'];
+			$data = ['goods_id' => $goods_id , 'user_id' => Session::get('id')];
+			$carGoods = $this->car->getInfo($data);
+			$info[$key] = $this->goods->getGoods('id' , $goods_id)[0];
+			$info[$key]['count'] = $carGoods['number'];
+			$info[$key]['status'] = $carGoods['status'];
+		}	
 
-		$this->assign('carGoods' , $good);
+		$this->assign('carGoods', $info);
 		return $this->fetch();
-
 	}
-	//加入购物车
-	public function addcar()
+
+
+	/*把商品加入购物车*/
+	public function addCar()
 	{
+		if(empty(Session::get('id')))
+		{
+			$this->redirect('User/login');
+			die;
+		}
+		$goods_id = $this->request->post('id');
+		$user_id = Session::get('id');
+		$data = ['goods_id' => $goods_id , 'user_id' => $user_id];
+		$res = $this->car->addCar($data);
+		return $res;
+	}
+
+	//加入购物车 
+	/*public function addcar()
+	{
+		加入购物车之前先判断是否登录成功
+		if(empty(Session::get('id')))
+		{
+			$this->redirect('User/login');
+			die;
+		}
 		$good = input('param.');
+		dump($good);
+
 		$data = ['user_id'=> session::get('id'),'goods_id'=>$good['good']];
 		$res = $this->car->where($data)->setInc('number',1);
-		  if (!$res) {
+		if (!$res) {
 		  	$this->car->data(['goods_id'=>$good['good'],'user_id'=>session::get('id')]);
 			$res = $this->car->save();
 		  }
 		if ($res) {
-			$this->redirect('index/branlist',['big'=>$big['good']]);
+			//$this->redirect('index/branlist',[ 'big' => $big['good'] ]);
 		}else {
-			$this->error('添加失败',"index/branlist");
+			//$this->error('添加失败',"index/branlist");
 		}
-	}
+	}*/
+
 
 	/*增加购物车中已的物品的数量*/
 	public function updateAddCarNum()

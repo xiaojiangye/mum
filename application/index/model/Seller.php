@@ -3,6 +3,7 @@ namespace app\index\model;
 
 use think\Model;
 use think\Db;
+
 class Seller  extends Model
 {
 	/*添加信息*/

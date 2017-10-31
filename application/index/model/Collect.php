@@ -1,7 +1,8 @@
 <?php
 namespace app\index\model;
-use think\model;
+use think\Model;
 use think\Db;
+
 class Collect extends Model
 {
 	public function collect($good)

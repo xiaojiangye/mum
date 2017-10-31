@@ -37,6 +37,7 @@
                 <div id="tsImgSCon">
                     <ul>
                     {foreach $res as $val}
+
                         <li onclick="showPic(0)" rel="MagicZoom" class="tsSelectImg"><img src="{$val.picture|substr=1}" tsImgS="__IMAGE__ps1.jpg" width="79" height="79" />
                         </li>
                     {/foreach} 
@@ -51,6 +52,7 @@
                 商品简介 : {$res[0]['description']}！
             </div>
             <div class="des_price">
+
             	本店价格：<b style="text-decoration:line-through ;">￥{$res[0]['price']}</b><b>&ensp;&ensp;{$res[0]['price']*$res[0]['discount']}</b><br />
                 商品折扣：{$res[0]['discount']}<br />
                 商品重量：<span>{$res[0]['weight']}g</span><br />
@@ -88,9 +90,6 @@
             </div>            
         </div>
         <span style="font-size: 20px;"><a id='seller' href="{:url('Seller/toSeller' , ['id' => $res[0]['id'] ])}" >卖家小铺</a> </span>
-        
-        	
-            
         </div>    
     </div>
     <div class="content mar_20">
@@ -128,6 +127,7 @@
                       </tr>
                       <tr>
                         <td>商品毛重：{$res[0]['weight']}g</td>
+
                         <td>类型：{$res[0]['big_style']}</td>
                         <td>&nbsp;</td>
                       </tr>

@@ -1,8 +1,4 @@
 <?php
-
-namespace app\index\controller;
-
-use think\Controller;
 use app\index\model\Collectgoods as CollectgoodsModel;
 use think\Session;
 
@@ -27,5 +23,6 @@ class Collectgoods	extends Controller
 		$res = $this->collect->addCollect($data);
 		return $res; 
 	}
+
 	
 } 

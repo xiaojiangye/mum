@@ -59,10 +59,8 @@
                 <span class="fr">共发现120件</span>
             </div>
             <div class="list_c">
-            	
                 <ul class="cate_list">
                {foreach $res as $vo}
-                
                 	<li style="background-color:;">
                     	<div class="img"><a href="{:url('index/details',['good'=>$vo['id']])}"><img src="{$vo.picture|substr=1}" width="210" height="185" /></a></div>
                         <div class="price">
@@ -72,7 +70,9 @@
                         <div class="carbg">
                         	<a href="#" class="ss">收藏</a>
                         <div style="width:75px;height: 30px;background-color: pink;">
-                        <a href="{:url('car/addcar',['good'=>$vo['id']])}">加入购物车</a></div>
+                            <a id='addCar'>加入购物车</a>
+                            <input type="hidden" value="{$vo['id']}">
+                        </div>
                         </div>
                     </li>  
                     
@@ -82,14 +82,27 @@
                 <div class="pages">
                 	<a href="#" class="p_pre">上一页</a><a href="#" class="cur">1</a><a href="#">2</a><a href="#">3</a>...<a href="#">20</a><a href="#" class="p_pre">下一页</a>
                 </div>
-                
-                
-                
             </div>
         </div>
     </div>
-    
    {include file="common/indexfooter"}
-
 </body>
 </html>
+
+<script type="text/javascript">
+$(function()
+    {
+       $('#addCar').click(function()
+        {   
+            var id = $(this).next().val();
+            $.post("{:url('Car/addCar')}" , {'id' : id} , function(data)
+                {
+                    if(data)
+                    {
+                        alert('加入成功!');
+                    }
+
+                } , "json");
+        });
+    });
+</script>>

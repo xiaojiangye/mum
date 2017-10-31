@@ -1,6 +1,7 @@
 <?php
 
 namespace app\index\model;
+
 use think\Model;
 use think\Session;
 
@@ -27,6 +28,7 @@ class Collectgoods extends Model
 		$this->save();
 		return $this->id;
 	}
+
 
 }
 
