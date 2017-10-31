@@ -10,20 +10,30 @@ use app\index\model\Car as CarModel;
 class Car extends Controller
 {	
 	protected $car;
+	protected $goods;
 	public function _initialize()
 	{
 		$this->car = new CarModel();
+		$this->goods = new Goods();
 	}
-	//渲染购物车页面
+	//渲染购物车页面 得到所有当前用户的购物车中的东西
 	public function car()
 	{	
-		$res_id= $this->car->selectCar();
-		 $goods = model('goods');
-        $good_res = $goods->select();
-        //dump($goods_res);die;
-		$this->assign('res_id',$res_id);
-		$this->assign('good_res',$good_res);
+		//dump(1);
+		$good = [];
+		$goods = model('goods');
+		/*得到某用户的所有购物车中的商品详细信息 及购物车中的数量*/
+		$carRes= $this->car->selectCar();
+		foreach ($carRes as $key => $value) 
+		{
+			$goodInfo = $goods->where('id' , $value['id'])->select()[0];
+			$goodInfo['count'] = $carRes[$key]['number']; 
+			$good[] = $goodInfo;
+		}
+
+		$this->assign('carGoods' , $good);
 		return $this->fetch();
+
 	}
 	//加入购物车
 	public function addcar()
@@ -41,6 +51,24 @@ class Car extends Controller
 			$this->error('添加失败',"index/branlist");
 		}
 	}
+
+	/*增加购物车中已的物品的数量*/
+	public function updateAddCarNum()
+	{	
+		$data = $this->request->post();
+		$num = $this->car->updateAddCarNum($data['goods_id']);
+		return json_encode($num);	
+	}
+
+	/*减少购物车中已的物品的数量*/
+	public function updateSubCarNum()
+	{	
+		$data = $this->request->post();
+		$num = $this->car->updateSubCarNum($data['goods_id']);
+		return json_encode($num);	
+	}
+
+
 
 	//购物车第二步
 	public function carTwo()
@@ -64,8 +92,6 @@ class Car extends Controller
 		$number = time(); //用时间戳生成订单号
 
 	}
-
-
 
 	//购物车第三步
 	public function carThree()

@@ -113,7 +113,6 @@ class Goods extends Model
 		return $res;
 	}
 
-
 	/*更新商品信息*/
 	public function updateGoods($data)
 	{

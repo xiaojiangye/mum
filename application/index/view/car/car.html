@@ -104,7 +104,8 @@
          $(".car_btn_2").click(function() {
             //alert($(this).prev().val());
             var num =parseInt($(this).prev().val());
-             num++;
+             num++;  
+             $(this).prev().val(num);
              alert(num++);
              // console.log($(this).parent().parent().prev().prev().prev().val());
             $.post("{:url('car/number')}",{number:num++},success)
@@ -112,7 +113,7 @@
             {
               alert(data);
             }
-            //$(this).prev().val(num);
+          
           })
          //减少 最小为1
           $(".car_btn_1").click(function() {
