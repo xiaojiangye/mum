@@ -23,14 +23,18 @@ class Car extends Controller
 		$goods = model('goods');
 		/*得到某用户的所有购物车中的商品详细信息 及购物车中的数量*/
 		$carRes= $this->car->selectCar();
+		
+		//dump($carRes);
 		foreach ($carRes as $key => $value) 
-		{
-			$goodInfo = $goods->where('id' , $value['id'])->select()[0];
+		{	dump($value);
+			$goodInfo = $goods->where('id', $value['id'])->select()[0];
+			//dump($goodInfo);
 			$goodInfo['count'] = $carRes[$key]['number']; 
+			//dump($carRes[$key]['number']);
 			$good[] = $goodInfo;
 		}
-
-		$this->assign('carGoods' , $good);
+		//dump($carGoods);
+		$this->assign('carGoods', $good);
 		return $this->fetch();
 
 	}

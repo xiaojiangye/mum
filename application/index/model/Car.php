@@ -27,5 +27,12 @@ class Car extends Model
 	{
 		return Db::table('mumma_car')->where('goods_id', $id)->setInc('number');
 	}
+	//查询购物车的数量
+	public function referCar($val)
+	{	
+		return $this->where('goods_id',$val)->select();
+	}
+
+
 
 }
