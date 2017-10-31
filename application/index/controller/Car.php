@@ -56,7 +56,9 @@ class Car extends Controller
 	public function buy()
 	{	
 
-		$pay = input('param');
+		$data = $this->request->post();
+		dump($data);die;
+
 		//生成订单号
 		$number = time(); //用时间戳生成订单号
 
