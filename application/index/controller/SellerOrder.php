@@ -30,9 +30,7 @@ class SellerOrder extends Controller
 
 
 		//dump($orderInfo);
-		
-		
-		
+		$this->assign('orderInfo' , $orderInfo);
 	
 		return $this->fetch();
 	}

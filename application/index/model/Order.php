@@ -74,7 +74,8 @@ class Order extends Model
 		/*创建model中的good的对象*/
 		$good = new Goods();
 
-		$num = $this->field('distinct num_id')->where($data)->select();
+		$num = $this->field('distinct num_id ,number,paied,is_pay, create_time')->where($data)->order('create_time' , 'desc')->select();
+
 		if(empty($num))
 		{
 			return null;
@@ -82,10 +83,13 @@ class Order extends Model
 
 		$goodInfo = null;
 
+		/*记录订单的商品总数量和总价格*/
+		$countAll = null;
+		$priceAll = null;
+
 		/*得到每个订单对应的所有商品id及其具体信息*/
 		foreach ($num as $key => $value) 
 		{
-
 			/*先得到订单中所有商品的的id 再循环处理商品id 得到商品详细信息*/
 			$goodsId = $this->where('num_id' , $value['num_id'])->select();
 			if(empty($goodsId))
@@ -93,24 +97,41 @@ class Order extends Model
 				return null;
 			}
 
+			/*根据订单编号得到所有的信息*/
 			foreach ($goodsId as $key => $value) 
 			{
 				$goods_id = $value['goods_id'];
-				$res = $good->where('id' , $goods_id)->select()[0];
+				$res = $good->where('id' , $goods_id)->select();
 				//dump($res);
-
 			}
-			$goodInfo[$key]['good'] = $res;
+
+			/*得到总数量和总价格*/
+			$countAll += $value['number'];
+			$priceAll += $value['paied'];
+
+			/*把订单编号和生成时间存到数组中*/
 			$goodInfo[$key]['num_id'] = $value['num_id'];
-			//dump($goodInfo);
-			//dump($goodsId);
-			//die;
-			//var_dump($value['num_id']);
+			$goodInfo[$key]['create_time'] = $value['create_time'];
+			$goodInfo[$key]['count'] = $value['number'];
+			if($value['is_pay'] == 1)
+			{
+				$goodInfo[$key]['is_pay'] = '已支付';
+			}
+			else
+			{
+				$goodInfo[$key]['is_pay'] = '待支付';
+			}
+			
+			$goodInfo[$key]['countAll'] = $countAll;
+			$goodInfo[$key]['priceAll'] = $priceAll;
+			$goodInfo[$key]['good'] = $res;
+
+			
+			
+			dump($goodInfo);
+			die;
 		}
-
 		return $goodInfo;
-
-		//dump($num);
 	}
 
 }
