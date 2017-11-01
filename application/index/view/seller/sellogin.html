@@ -1,29 +1,16 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-	<link type="text/css" rel="stylesheet" href="__CSS__style.css" />   
-    <script type="text/javascript" src="__JS__jquery-1.11.1.min_044d0927.js"></script>
-    <script type="text/javascript" src="__JS__jquery.bxslider_e88acd1b.js"></script>
-    <script type="text/javascript" src="__JS__jquery-1.8.2.min.js"></script>
-    <script type="text/javascript" src="__JS__menu.js"></script>      
-	  <script type="text/javascript" src="__JS__select.js"></script>
-    <script type="text/javascript" src="__JS__lrscroll.js"></script>
-    <script type="text/javascript" src="__JS__bban.js"></script>
-    <script type="text/javascript" src="__JS__hban.js"></script>
-    <script type="text/javascript" src="__JS__tban.js"></script>
-	<script type="text/javascript" src="__JS__lrscroll_1.js"></script>
-<title>商家登录页面</title>
+{include file='public/css' /}
+<title>sellerInfo</title>
 </head>
 <body>  
 <!--Begin Header Begin-->
 <div class="log_bg">	
-    <div class="top">
-        <div class="logo"><a href="Index.html"><img src="__IMAGE__logo.png" /></a></div>
-    </div>
-	<div class="login" style="height: 600px;" style="background-color: blue;margin-top:-20px;">
-    	<div class="log_img"><!-- <img src="__IMAGE__l_img.png" width="611" height="425" /> --></div>
-		<div class="log_c" style="height: 600px; background-color: ;">
+   
+	 <div class="login" style="height: 600px;" style="background-color: blue;margin-top:-20px;">
+      <img src="__PICTURE__logo.jpg" width='420px' height="620px;" style="margin-left: 60px;margin-top: 40px;">
+		  <div class="log_c" style="height: 600px;">
         	<form action="" method="post" enctype="multipart/form-data">
             <table border="0" style="width:370px; font-size:14px; margin-top:30px;" cellspacing="0" cellpadding="0">
               <tr height="50" valign="top">
@@ -33,18 +20,18 @@
                     <span class="fr">还没有商城账号，<a href="{:url('User/regist')}" style="color:#ff4e00;">立即注册</a></span>
                 </td>
               </tr>
-              <tr height="70">
-                <td>用户名</td>
-                <td><input type="text" name="name" class="l_user" id="username" /></td>
-              </tr>
-              <tr height="10">
-                <td></td>
-                <td><div id="uerror" style="color:red;"></div></td>
-              </tr>
-              <tr height="70">
-                <td>密&nbsp; &nbsp; 码</td>
-                <td><input type="password" id="pad" class="l_pwd" name="pwd" /></td>
-              </tr>
+                <tr height="70">
+                  <td>用户名</td>
+                  <td><input type="text" name="name" class="l_user" id="username" /></td>
+                </tr>
+                <tr height="10">
+                  <td></td>
+                  <td><div id="uerror" style="color:red;"></div></td>
+                </tr>
+                <tr height="70">
+                  <td>密&nbsp; &nbsp; 码</td>
+                  <td><input type="password" id="pad" class="l_pwd" name="pwd" /></td>
+                </tr>
                <tr height="20">
                 <td></td>
                 <td><div id="perror" style="color:red;"></div></td>
@@ -58,21 +45,6 @@
                     <span class="fr"><a href="#" style="color:#ff4e00;">忘记密码</a></span>
                 </td>
               </tr>
-              <tr>
-                <td style="width: 100px;">
-                </td>
-                <td>
-                 <!-- <div>
-                    <ul style="list-style-type: none;background-color: red;">
-                      <li style="float: right;width:90px;height: 68px;background-color: pink;">微信</li>
-                      <li style="float: right;width:90px;height: 68px;background-color: pink;"><img src="__IMAGE__weixin.png">
-                      微信</li>
-                      <li style="float: right;width:90px;height: 68px;background-color: pink;">微信</li>
-                      
-                    </ul>
-                  </div> -->
-                </td>
-              </tr>
               <tr height="60">
               	<td>&nbsp;</td>
                 <td>
@@ -80,23 +52,10 @@
                 </td>
               </tr>
             </table>
-            </form>
-           <!--  <div style="float: right;"><a href="{:url('seller/sellogin')}">用户登录</div> -->
-            <!-- <div style="float: left;"><a href="{:url('index/index')}">返回首页</div> -->
+          </form>
         </div>
     </div>
-    
 </div>
-<!--End Login End--> 
-<!--Begin Footer Begin-->
-<div class="btmbg">
-    <div class="btm">
-        备案/许可证编号：蜀ICP备12009302号-1-www.dingguagua.com   Copyright © 2015-2018  All Rights Reserved. 复制必究 , Technical Support: Dgg Group <br />
-        
-    </div>    	
-</div>
-<!--End Footer End -->    
-
 </body>
 </html>
 
