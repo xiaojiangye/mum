@@ -36,6 +36,7 @@ class Car extends Controller
 			$info[$key] = $this->goods->getGoods('id' , $goods_id)[0];
 			$info[$key]['count'] = $carGoods['number'];
 			$info[$key]['status'] = $carGoods['status'];
+
 		}	
 
 		$this->assign('carGoods', $info);

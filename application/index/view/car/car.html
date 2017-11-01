@@ -166,8 +166,6 @@ $(function()
                             if($(this).is(":checked"))    
                             {    
                                 str +=  $(this).val() + '|';
-                                //alert($(this).val());
-                                //str += "——" + $(this).val();    
                             }    
                         });
             $.post("{:url('Order/getAllGoods')}" , {'good_id' : str } , function(data)

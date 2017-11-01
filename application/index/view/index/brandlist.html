@@ -97,6 +97,7 @@ $(function()
             var id = $(this).next().val();
             $.post("{:url('Car/addCar')}" , {'id' : id} , function(data)
                 {
+                    alert(data);
                     if(data)
                     {
                         alert('加入成功!');

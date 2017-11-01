@@ -37,17 +37,10 @@ class Order extends Model
 			$this->payable = $value['payable'];*/
 			//$this->status = $value['status'];
 			/*$this->save();*/
-
 			$res = Db::table('mumma_order')->insert(['user_id' => $value['user_id'], 'goods_id' => $value['goods_id'], 'num_id' => $value['num_id'] , 'number' => $value['number'] , 'payable' => $value['payable']]);
 		}
 		return $res;
 	}
-
-
-
-
-
-
 
 
 	/*public function order($gather)
