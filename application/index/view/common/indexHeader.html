@@ -7,46 +7,40 @@
 <body>
 <!--Begin Header Begin-->
 <div class="soubg">
-    <div class="sou">
-
-        <span class="fr">
+    <div class="sou" >
         {$Think.session.id}
-            <span class="fl">
-                {if empty(session('id'))}
-                    你好，请
-                    <a href="{:url('User/login')}">登录</a>&nbsp; 
-                    <a href="{:url('User/regist')}" style="color:#ff4e00;">免费注册</a>
-                {else}
-                {if session('type') ==0}
-                    <a href="{:url('User/memberUser')}">用户个人中心</a>
-                {else}
-                 <a href="{:url('seller/selInfo')}">商家中心</a>
-                 {/if}
-                
-             {/if}
+        <span class="fr" >
+            {if empty(session('id'))}
+                你好，请
+                <a href="{:url('User/login')}">登录</a>&nbsp; 
+                <a href="{:url('User/regist')}" style="color:#ff4e00;">免费注册</a>
+            {else}
+            {if session('type') ==0}
+                <a href="{:url('User/memberUser')}">用户个人中心</a>
+            {else}
+             <a href="{:url('seller/selInfo')}">商家中心</a>
+            {/if}
+            {/if}
              <div class="ss_list">
                     <a href="{:url('Lottery/index')}">抽奖赢礼品</a>
              </div>
-             <span class="ss">
-                <div class="ss_list">
-                    <a href="#">收藏夹</a>
-                    <div class="ss_list_bg">
-                        <div class="ss_list_c">
-                            <ul>
-                                <li><a href="#">收藏的商店</a></li>
-                                <li><a href="#">收藏的物品</a></li>
-                            </ul>
-                        </div>
-                    </div>     
-                </div>
-              
-            </span>
-           
+            <div class="ss_list">
+                <a href="#">收藏夹</a>
+                <div class="ss_list_bg">
+                    <div class="ss_list_c">
+                        <ul>
+                            <li><a href="#">收藏的商店</a></li>
+                            <li><a href="#">收藏的物品</a></li>
+                        </ul>
+                    </div>
+                </div>     
+            </div>
         </span>
     </div>
 </div>
+
 <div class="top">
-    <div class="logo"><a href="Index.html"><img src="__IMAGE__logo.png" /></a></div>
+    <div class="logo" style="margin-top: -20px;height: 140px;"><a href="Index.html" ><img width='140px' height ='140px;' src="__PICTURE__logo.jpg" /></a></div>
     <div class="search">
     	<form>
         	<input type="text" value="" class="s_ipt" />
