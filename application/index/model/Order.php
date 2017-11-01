@@ -36,7 +36,6 @@ class Order extends Model
 		return $res;
 	}
 
-
 	/*确认付款之后更新订单的支付状态*/
 	public function makeSure($data)
 	{
@@ -66,7 +65,6 @@ class Order extends Model
 		}
 		return 1;
 	}
-
 
 	/*得到商家在order里面的订单号 根据对应的num得到goods 然后再根据goods里面的值得到对应的信息*/
 	public function getOrderInfo($data)
@@ -109,9 +107,7 @@ class Order extends Model
 				
 				//dump($res);
 			}
-
 			
-
 			/*把订单编号和生成时间存到数组中*/
 			$goodInfo[$key]['num_id'] = $value['num_id'];
 			$goodInfo[$key]['create_time'] = $value['create_time'];
@@ -125,6 +121,14 @@ class Order extends Model
 			{
 				$goodInfo[$key]['is_pay'] = '待发货';
 			}
+			else if($value['is_pay'] == 2)
+			{
+				$goodInfo[$key]['is_pay'] = '待收款';
+			}
+			else if($value['is_pay'] == 3)
+			{
+				$goodInfo[$key]['is_pay'] = '已完成';
+			}
 			
 			/*得到总数量和总价格*/
 			$priceAll += $value['paied'];
@@ -134,10 +138,16 @@ class Order extends Model
 			$countAll =0 ;
 	
 		}
-
-		//dump($goodInfo);
-	
 		return $goodInfo;
+	}
+
+	/*更新订单状态*/
+	public function updateState($data)
+	{
+		
+		$res = $this->save(['is_pay' => $data['is_pay']],['num_id' => $data['num_id'] , 'seller_id' => Session::get('id')]);
+		
+		return $res;
 	}
 
 

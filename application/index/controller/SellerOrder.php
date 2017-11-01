@@ -16,7 +16,7 @@ class SellerOrder extends Controller
 	}
 
 	/*用来驱动商家的全部商品的订单页面*/
-	public function SellerOrder()
+	public function sellerOrder()
 	{
 		if(empty(Session::get('id')))
 		{
@@ -32,14 +32,35 @@ class SellerOrder extends Controller
 		return $this->fetch();
 	}
 
-	/*驱动买家待付款的页面*/
-	public function 
+	/*驱动买家待付款 商家待发货  待收款  已完成订单的页面 也就是is_pay为0,1,2,3的情况*/
+	public function  obligationOrder()
+	{
+		if(empty(Session::get('id')))
+		{
+			$this->redirect('Seller/sellogin');
+			die;
+		}
+
+		$is_pay = $this->request->param('is_pay');	
+		$data = ['seller_id' => Session::get('id') , 'is_pay' => $is_pay];
+		$orderInfo = $this->order->getOrderInfo($data);
+
+		$this->assign('orderInfo' , $orderInfo);
+		return $this->fetch('seller_order/sellerOrder');
+	}
 
 
+	/*更新订单状态*/
+	public function updateState()
+	{
+		$data = $this->request->post();
+		
+		$res = $this->order->updateState($data);
 
-	/*驱动商家待发货的页面*/
+		return json_encode($res);
 
-	/*驱动商家已完成的页面*/
+	}
+
 	
 }
 

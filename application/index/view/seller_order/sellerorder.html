@@ -16,10 +16,11 @@
     <div class="m_right" style="margin-left: 0px;">
 
       <div class="myotitle bg-white clearfix">
-          <div class="col-xs-3 clearPadding text-center pt10"><span class="activeborder">全&nbsp;&nbsp;&nbsp;部</span></div> 
-          <div class="col-xs-2 clearPadding text-center pt10"><span class="pb8">待收款</span></div>
-          <div class="col-xs-2 clearPadding text-center pt10"><span>待发货</span></div>
-          <div class="col-xs-3 clearPadding text-center pt10"><span>已完成</span></div>
+          <div class="col-xs-3 clearPadding text-center pt10"><a href="{:url('SellerOrder/sellerOrder')}" class="activeborder">全&nbsp;&nbsp;&nbsp;部</a></div> 
+          <div class="col-xs-2 clearPadding text-center pt10"><a href="{:url('SellerOrder/obligationOrder' , ['is_pay' => 0])}">待买家付款</a></div>
+          <div class="col-xs-2 clearPadding text-center pt10"><a href="{:url('SellerOrder/obligationOrder' , ['is_pay' => 1])}">待发货</a></div>
+          <div class="col-xs-2 clearPadding text-center pt10"><a href="{:url('SellerOrder/obligationOrder' , ['is_pay' => 2])}">待收款</a></div>
+          <div class="col-xs-3 clearPadding text-center pt10"><a href="{:url('SellerOrder/obligationOrder' , ['is_pay' => 3])}">已完成</a></div>
       </div>
     
       <div id="ocontent">
@@ -35,7 +36,7 @@
       
 
           <div class="myddetailbox">
-      
+              <div>test</div>
             {foreach $value['good'] as $key => $vo}
               <div class="myodetail clearfix" style="border: 1px solid grey;">
                 <div class="col-xs-2 clearPadding proimg">
@@ -55,6 +56,11 @@
             <div class="ptb10 plr15 text-muted font12 clearfix">
               <div class="pull-left font12">
                 <span class="badge bg-dining" style="font-weight:normal;">{$value['is_pay']}</span>
+                {if $value['is_pay'] == '待发货'}
+                  <a href="#" class="badge bg-dining send" style="font-weight:normal;">发货</a>
+                  <input type="hidden" value="{$value['num_id']}">
+                {/if}
+                
               </div>
               <div class="pull-right">
                 <span>共<b style="color: black;">{$value['countAll']}</b>件商品</span>&nbsp;&nbsp;已付款：<span class="colorred2">￥{$value['priceAll']}</span>
@@ -69,7 +75,7 @@
 </div>
 </body>
 </html>
-<script src="js/jquery-2.1.4.min.js"></script>
+
 <script>
 $(".myotitle >div").click(function(){
   $(this).find("span").addClass("activeborder");
@@ -79,3 +85,36 @@ $('.arrowdown').click(function(){
   $(this).parent().parent().next().slideToggle("slow");
 });
 </script> 
+
+<script type="text/javascript">
+$(function()
+  {
+
+    $('.send').each(function()
+      {
+          $(this).click(function()
+          {
+             var num_id = $(this).next().val(); 
+
+             $.post("{:url('SellerOrder/updateState')}" , {'num_id' : num_id , 'is_pay' : 2} , function(data)
+              {
+                  if(data)
+                  {
+                    alert('发货成功!');
+                    aler($(this).parent().parent().parent().children(':first').val());
+                  }
+                  else
+                  {
+                    aler('发货失败!');
+                  }
+      
+              });
+
+
+          });
+
+      });
+    
+
+  });
+</script>
