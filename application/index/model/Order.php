@@ -3,6 +3,8 @@ namespace app\index\model;
 use think\Model;
 use think\Db;
 use app\index\model\Goods;
+use app\index\model\Car;
+use think\Session;
 
 class Order extends Model
 {
@@ -28,15 +30,6 @@ class Order extends Model
 	{
 		foreach ($info as $key => $value) 
 		{
-			/*Db::query("INSERT	INTO mumma_order( user_id,goods_id, number ,num_id, payable)  VALUES($value['user_id'], $value['goods_id'], $value['num_id'], $value['number'], ['payable'])");*/
-
-			/*$this->user_id = $value['user_id'];
-			$this->goods_id = $value['goods_id'];
-			$this->num_id = $value['num_id'];
-			$this->number = $value['number'];
-			$this->payable = $value['payable'];*/
-			//$this->status = $value['status'];
-			/*$this->save();*/
 
 			$res = Db::table('mumma_order')->insert(['user_id' => $value['user_id'], 'goods_id' => $value['goods_id'], 'num_id' => $value['num_id'] , 'number' => $value['number'] , 'payable' => $value['payable']]);
 		}
@@ -44,11 +37,35 @@ class Order extends Model
 	}
 
 
-
-
-
-
-
+	/*确认付款之后更新订单的支付状态*/
+	public function makeSure($data)
+	{
+		//$car = new Car();
+		foreach ($data as $key => $value)
+		{
+			$this->where('num_id' , $value)->update(['is_pay' => 1]);
+			if(empty($this->getError()))
+			{
+				/*待订单确认了之后需删除购物车中的记录*/
+				$carInfo = $this->field('user_id,goods_id')->where('num_id' , $value)->select();
+				foreach ($carInfo as $key => $value) 
+				{
+					$user_id = $value['user_id'];
+					$goods_id = $value['goods_id'];
+					$res = Db::execute("delete from mumma_car where user_id = $user_id and goods_id = $goods_id");
+					if(!$res)
+					{
+						return 0;
+					}
+				}
+			}
+			else
+			{
+				return 0;
+			}
+		}
+		return 1;
+	}
 
 	/*public function order($gather)
 	{	
