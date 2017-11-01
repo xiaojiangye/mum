@@ -28,11 +28,18 @@ class SellerOrder extends Controller
 		/*得到商家的所有订单的所有商品*/
 		$orderInfo = $this->order->getOrderInfo($data);
 
-		//dump($orderInfo);
 		$this->assign('orderInfo' , $orderInfo);
-	
 		return $this->fetch();
 	}
+
+	/*驱动买家待付款的页面*/
+	public function 
+
+
+
+	/*驱动商家待发货的页面*/
+
+	/*驱动商家已完成的页面*/
 	
 }
 

@@ -16,9 +16,9 @@
     <div class="m_right" style="margin-left: 0px;">
 
       <div class="myotitle bg-white clearfix">
-          <div class="col-xs-3 clearPadding text-center pt10"><span class="activeborder">全&nbsp;&nbsp;&nbsp;部</span></div>
-          <div class="col-xs-2 clearPadding text-center pt10"><span>待发货</span></div>
+          <div class="col-xs-3 clearPadding text-center pt10"><span class="activeborder">全&nbsp;&nbsp;&nbsp;部</span></div> 
           <div class="col-xs-2 clearPadding text-center pt10"><span class="pb8">待收款</span></div>
+          <div class="col-xs-2 clearPadding text-center pt10"><span>待发货</span></div>
           <div class="col-xs-3 clearPadding text-center pt10"><span>已完成</span></div>
       </div>
     
@@ -32,10 +32,11 @@
             </h4>
             <h4 class="pull-right font12">{$value['create_time']} &nbsp;&nbsp;<i class="iconfont arrowdown">&#xe60c;</i></h4>
           </div>
-          
+      
+
           <div class="myddetailbox">
       
-            {foreach $value['good'] as $vo}
+            {foreach $value['good'] as $key => $vo}
               <div class="myodetail clearfix" style="border: 1px solid grey;">
                 <div class="col-xs-2 clearPadding proimg">
                   <img src="{$vo['picture']|substr=1}" alt="" style="height:70px;">
@@ -56,7 +57,7 @@
                 <span class="badge bg-dining" style="font-weight:normal;">{$value['is_pay']}</span>
               </div>
               <div class="pull-right">
-                <span>共<b style="color: black;">{$value['countAll']}</b>件商品</span>&nbsp;&nbsp;合计：<span class="colorred2">￥{$value['priceAll']}</span>
+                <span>共<b style="color: black;">{$value['countAll']}</b>件商品</span>&nbsp;&nbsp;已付款：<span class="colorred2">￥{$value['priceAll']}</span>
               </div>
             </div>
           </div>

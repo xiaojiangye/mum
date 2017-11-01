@@ -71,8 +71,10 @@ class Order extends Model
 	/*得到商家在order里面的订单号 根据对应的num得到goods 然后再根据goods里面的值得到对应的信息*/
 	public function getOrderInfo($data)
 	{	
-		/*$num = $this->field('distinct num_id ,number,paied,is_pay, create_time')->where($data)->order('create_time' , 'desc')->select();*/
-		$num = $this->getNum($data);
+		/*根据商家传进来的条件得到所需的order中的信息*/
+		$num = $this->field('distinct num_id ,number,paied,is_pay, create_time')->where($data)->order('create_time' , 'desc')->select();
+
+		/*$num = $this->getNum($data);*/
 		if(empty($num))
 		{
 			return null;
@@ -83,72 +85,60 @@ class Order extends Model
 		$countAll = null;
 		$priceAll = null;
 
-		$goodInfo = $this->getGoodsInfo($num , $goodInfo , $countAll , $priceAll);
-	
-		return $goodInfo;
-	}
-
-
-	/*根据商家传进来的条件得到所需的order中的信息*/
-	public function getNum($data)
-	{
-		return $this->field('distinct num_id ,number,paied,is_pay, create_time')->where($data)->order('create_time' , 'desc')->select();
-	}
-
-
-	/*根据商品id得到商品的具体信息*/
-	public function getGoodsInfo($num , $goodInfo , $countAll , $priceAll)
-	{	
 		/*创建model中的good的对象*/
 		$good = new Goods();
+
+		/*根据商品id得到商品的具体信息*/
 		/*得到每个订单对应的所有商品id及其具体信息*/
 		foreach ($num as $key => $value) 
 		{
 			/*先得到订单中所有商品的的id 再循环处理商品id 得到商品详细信息*/
-			$goodsId = $this->where('num_id' , $value['num_id'])->select();
+			$goodsId = $this->where(['num_id' => $value['num_id'] , 'seller_id' => $data['seller_id'] ])->select();
 			if(empty($goodsId))
 			{
 				return null;
 			}
-
+			//dump($goodsId);
 			/*根据订单编号得到所有的信息*/
-			foreach ($goodsId as $key => $value) 
+			foreach ($goodsId as $k => $val) 
 			{
-				$goods_id = $value['goods_id'];
-				$res = $good->where('id' , $goods_id)->select();
+				$goods_id = $val['goods_id'];
+				$res[$k] = $good->where('id' , $goods_id)->select();
+				$goodInfo[$key]['good'][$k] = $res[$k][0];
+				$countAll++;
+				
 				//dump($res);
 			}
 
-			/*得到总数量和总价格*/
-			$countAll += $value['number'];
-			$priceAll += $value['paied'];
+			
 
 			/*把订单编号和生成时间存到数组中*/
 			$goodInfo[$key]['num_id'] = $value['num_id'];
 			$goodInfo[$key]['create_time'] = $value['create_time'];
 			$goodInfo[$key]['count'] = $value['number'];
-			if($value['is_pay'] == 1)
+
+			if($value['is_pay'] == 0)
+			{
+				$goodInfo[$key]['is_pay'] = '待买家付款';
+			}
+			else if($value['is_pay'] == 1)
 			{
 				$goodInfo[$key]['is_pay'] = '待发货';
 			}
-			else 
-			{
-				$goodInfo[$key]['is_pay'] = '待处理';
-			}
 			
-			$goodInfo[$key]['countAll'] = $countAll;
+			/*得到总数量和总价格*/
+			$priceAll += $value['paied'];
 			$goodInfo[$key]['priceAll'] = $priceAll;
-			$goodInfo[$key]['good'] = $res;
-
-			//dump($goodInfo);
-			//die;
+			$goodInfo[$key]['countAll'] = $countAll;
+			$priceAll = 0 ;
+			$countAll =0 ;
+	
 		}
 
+		//dump($goodInfo);
+	
 		return $goodInfo;
 	}
-
-
-
 
 
 }
