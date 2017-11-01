@@ -147,9 +147,9 @@ $(function()
             console.log(str);
            $.post("{:url('Order/makeSure')}" , {'num_id' : str } , function(data)
                 {
+                  console.log(data);
                   if(data)
                   {
-                    console.log(data);
                     alert('付款成功,等待宝贝到达吧!');
                     window.location.href="{:url('Order/forder')}"
                   }
@@ -163,12 +163,6 @@ $(function()
             
                        
         });
-
-
-
-
-
-
 
   });
 </script>

@@ -8,7 +8,7 @@ use think\Session;
 
 class Order extends Model
 {
-	/*找到该用户所有未付款的订单*/
+	/*找到该用户所有的订单*/
 	public function getOrder($data)
 	{
 		$res = $this->order('num_id','asc')->where($data)->select();
@@ -25,45 +25,38 @@ class Order extends Model
 		return $res;
 	}
 
-	/*把选中的处理好的信息插入到order中*/
+	/*把选中的处理好的信息插入到order中 然后删除购物车中的记录  这里应该开启事务*/
 	public function addOrder($info)
-	{
-		/*foreach ($info as $key => $value) 
-		{
-			$res = Db::table('mumma_order')->insert(['user_id' => $value['user_id'], 'goods_id' => $value['goods_id'], 'num_id' => $value['num_id'] , 'number' => $value['number'] , 'payable' => $value['payable']]);
-		}*/
+	{	
 		$res = $this->saveAll($info);
-		return $res;
+		$car = new Car();
+		if($res)
+		{
+			foreach ($info as $key => $value)
+			{
+				$r = $car->destroy(['user_id' => $value['user_id'] , 'goods_id' => $value['goods_id']]);
+			}
+			return $r;
+		}
+		return null;
+		
 	}
 
 	/*确认付款之后更新订单的支付状态*/
 	public function makeSure($data)
 	{
-		//$car = new Car();
+		$goods = new Goods();
 		foreach ($data as $key => $value)
 		{
-			$this->where('num_id' , $value)->update(['is_pay' => 1]);
-			if(empty($this->getError()))
+			if(empty($value))
 			{
-				/*待订单确认了之后需删除购物车中的记录*/
-				$carInfo = $this->field('user_id,goods_id')->where('num_id' , $value)->select();
-				foreach ($carInfo as $key => $value) 
-				{
-					$user_id = $value['user_id'];
-					$goods_id = $value['goods_id'];
-					$res = Db::execute("delete from mumma_car where user_id = $user_id and goods_id = $goods_id");
-					if(!$res)
-					{
-						return 0;
-					}
-				}
+				continue;
 			}
-			else
-			{
-				return 0;
-			}
+			$price = $this->field('payable')->where('num_id' , $value)->select()[0];
+			$price =  $price['payable'];
+			$res = $this->where('num_id' , $value)->update(['is_pay' => 1 , 'paied' => $price ]);
 		}
-		return 1;
+		return $res;
 	}
 
 	/*得到商家在order里面的订单号 根据对应的num得到goods 然后再根据goods里面的值得到对应的信息*/

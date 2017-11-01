@@ -30,6 +30,10 @@ class Order extends Controller
 		$data = ['user_id' => Session::get('id') , 'is_pay' => 0];
 		$info = $this->order->getOrder($data);
 		//dump($info);die;
+		if(!$info)
+		{
+			$this->redirect('Car/car');
+		}
 		foreach($info as $vo) {
 			$money[]=$vo['payable'];
 			$count[]=$vo['number'];
@@ -53,7 +57,7 @@ class Order extends Controller
 		$data = $this->request->post('num_id');
 		$data = array_unique(explode('|' , $data));
 		$res = $this->order->makeSure($data);
-		return $res;
+		return json_encode($res);
 	}
 	
 
