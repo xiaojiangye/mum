@@ -11,6 +11,7 @@
 <title>我的购物车</title>
 </head>
 <body>  
+{include file="common/indexHeader"}
 <!--Begin Header Begin-->
 <!--End Menu End--> 
 <div class="i_bg">  
@@ -139,7 +140,7 @@ $(function()
 
     $(".car_btn_2").click(function() 
     {
-        alert(11);
+        //alert(11);
         var num =parseInt($(this).next().val());
         num++;
         $(this).next().val(num);

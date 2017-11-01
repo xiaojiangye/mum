@@ -31,13 +31,12 @@
             <div id="tsImgS">
                 <a href="__IMAGE__p_big.jpg" title="Images" class="MagicZoom" id="MagicZoom"><img src="{$res.0.picture|substr=1}"  /></a>
             </div>
-           
+          
             <div id="tsPicContainer" style="border: 1px solid green;">
                 <div id="tsImgSArrL" onclick="tsScrollArrLeft()"></div>
                 <div id="tsImgSCon">
                     <ul>
                     {foreach $res as $val}
-
                         <li onclick="showPic(0)" rel="MagicZoom" class="tsSelectImg"><img src="{$val.picture|substr=1}" tsImgS="__IMAGE__ps1.jpg" width="79" height="79" />
                         </li>
                     {/foreach} 
@@ -82,11 +81,9 @@
                     <input type="button" value="-" onclick="jianUpdate(jq(this));" class="n_btn_2" />   
                 </div>
                 <span class="fl">
-                <form action="" enctype="" method="post">
-                    <a onclick="ShowDiv_1('MyDiv1','fade1')">
-                    <a href="{:url('car/car',['good'=>$res[0]['id']])}"><img src="__IMAGE__j_car.png" /></a></a>
-                    </span>
-                </form>
+                    <img id='addCar' style="border: 1px solid blue;" src="__IMAGE__j_car.png" />
+                    <input type="hidden" value="{$res[0]['id']}">
+                </span>
             </div>            
         </div>
         <span style="font-size: 20px;"><a id='seller' href="{:url('Seller/toSeller' , ['id' => $res[0]['id'] ])}" >卖家小铺</a> </span>
@@ -266,8 +263,31 @@ $(function(){
             } , "json");
         });
 
-
     /*收藏小店*/
+
+
+    /*加入购物车*/
+    $('#addCar').click(function()
+        {   
+            //alert(1);
+            var id = $(this).next().val();
+            //alert(id);
+            $.post("{:url('Car/addCar')}" , {'id' : id} , function(data)
+                {
+                    //alert(data);
+                    if(data)
+                    {
+                        alert('加入成功!');
+                    }
+
+                } , "json");
+        });
+
+
+
+
+
+
 });
 
 </script>>

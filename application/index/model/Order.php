@@ -28,10 +28,11 @@ class Order extends Model
 	/*把选中的处理好的信息插入到order中*/
 	public function addOrder($info)
 	{
-		foreach ($info as $key => $value) 
+		/*foreach ($info as $key => $value) 
 		{
 			$res = Db::table('mumma_order')->insert(['user_id' => $value['user_id'], 'goods_id' => $value['goods_id'], 'num_id' => $value['num_id'] , 'number' => $value['number'] , 'payable' => $value['payable']]);
-		}
+		}*/
+		$res = $this->saveAll($info);
 		return $res;
 	}
 
@@ -67,6 +68,49 @@ class Order extends Model
 	}
 
 
-	/**/
+	/*得到商家在order里面的订单号 根据对应的num得到goods 然后再根据goods里面的值得到对应的信息*/
+	public function getOrderInfo($data)
+	{
+		/*创建model中的good的对象*/
+		$good = new Goods();
+
+		$num = $this->field('distinct num_id')->where($data)->select();
+		if(empty($num))
+		{
+			return null;
+		}
+
+		$goodInfo = null;
+
+		/*得到每个订单对应的所有商品id及其具体信息*/
+		foreach ($num as $key => $value) 
+		{
+
+			/*先得到订单中所有商品的的id 再循环处理商品id 得到商品详细信息*/
+			$goodsId = $this->where('num_id' , $value['num_id'])->select();
+			if(empty($goodsId))
+			{
+				return null;
+			}
+
+			foreach ($goodsId as $key => $value) 
+			{
+				$goods_id = $value['goods_id'];
+				$res = $good->where('id' , $goods_id)->select()[0];
+				//dump($res);
+
+			}
+			$goodInfo[$key]['good'] = $res;
+			$goodInfo[$key]['num_id'] = $value['num_id'];
+			//dump($goodInfo);
+			//dump($goodsId);
+			//die;
+			//var_dump($value['num_id']);
+		}
+
+		return $goodInfo;
+
+		//dump($num);
+	}
 
 }

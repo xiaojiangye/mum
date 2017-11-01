@@ -15,7 +15,7 @@ class SellerOrder extends Controller
 		$this->order = new Order();
 	}
 
-	/*用来驱动商家的全部商品的页面*/
+	/*用来驱动商家的全部商品的订单页面*/
 	public function SellerOrder()
 	{
 		if(empty(Session::get('id')))
@@ -24,8 +24,16 @@ class SellerOrder extends Controller
 			die;
 		}
 		$data = ['seller_id' => Session::get('id')];
-		//$sellerOrder = $this->order->getSellerOrder($data);
+
+		/*得到商家的所有订单的所有商品*/
+		$orderInfo = $this->order->getOrderInfo($data);
+
+
+		//dump($orderInfo);
 		
+		
+		
+	
 		return $this->fetch();
 	}
 	

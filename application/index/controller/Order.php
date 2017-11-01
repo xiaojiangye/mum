@@ -29,10 +29,21 @@ class Order extends Controller
 
 		$data = ['user_id' => Session::get('id') , 'is_pay' => 0];
 		$info = $this->order->getOrder($data);
+		//dump($info);die;
+		foreach($info as $vo) {
+			$money[]=$vo['payable'];
+			$count[]=$vo['number'];
+		}
+		//总价钱
+		$acount = array_sum($money);
+		//总数量
+		$cou =array_sum($count);
 		
 		//dump($info);
 
 		$this->assign('info' , $info);
+		$this->assign('acount' , $acount);
+		$this->assign('cou' , $cou);
 		return $this->fetch();
 	}
 
@@ -42,19 +53,7 @@ class Order extends Controller
 		$data = $this->request->post('num_id');
 		$data = array_unique(explode('|' , $data));
 		$res = $this->order->makeSure($data);
-
 		return $res;
-		die;
-
-		foreach ($data as $key => $value) 
-		{
-			return $value;
-			die;
-		}
-		
-		
-		return json_encode($data);
-		return 123345345;
 	}
 	
 
@@ -79,12 +78,12 @@ class Order extends Controller
 			//$info[$key]['status'] = $car['status'];
 			$info[$key]['number'] = $car['number'];
 
-
 			/*根据商品id在goods里面得到商品详细信息*/
 			$goodInfo = $this->goods->getGoods('id' , $value)[0];
-			$info[$key]['payable'] = $goodInfo['price'] * $goodInfo['discount'];
+			$info[$key]['payable'] = $goodInfo['price']*$goodInfo['discount']*$car['number'] ;
 			$info[$key]['num_id'] =  $num_id;
 			$info[$key]['goods_id'] =  $value;
+			$info[$key]['seller_id'] =  $goodInfo['seller_id'];
 			$info[$key]['user_id'] =  Session::get('id');
 		}
 
@@ -92,6 +91,10 @@ class Order extends Controller
 		$checkedGoods = $this->order->addOrder($info);
 		return $checkedGoods;
 			
+	}
+	public function forder()
+	{
+		return $this->fetch();
 	}
 
 	
