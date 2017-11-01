@@ -46,6 +46,7 @@
                 <div id="tsImgSArrR" onclick="tsScrollArrRight()"></div>
             </div>		
         </div>
+   
         <div class="pro_des">
         	<div class="des_name">
             	<p>{$res[0]['name']}</p>
@@ -70,8 +71,7 @@
                     </div>
                 </div>
                 <div class="d_care">
-                    <a href="{:url('collect/coll',['good'=>$res[0]['id']])}">
-                    收藏商品</a>
+                    <a id='collect'>收藏商品</a>
                 </div>
             </div>
             <div>库存量:{$res[0]['stock']}</div>

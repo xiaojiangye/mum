@@ -78,7 +78,7 @@ class User extends Controller
     public function exit()
     {
        session(null);
-        return $this->fetch('index/index');
+      $this->redirect('index/index');
     }
 
 

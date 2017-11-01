@@ -1,4 +1,7 @@
 <?php
+
+namespace app\index\controller;
+use think\Controller;
 use app\index\model\Collectgoods as CollectgoodsModel;
 use think\Session;
 
@@ -13,7 +16,7 @@ class Collectgoods	extends Controller
 
 	public function addCollect()
 	{
-		$data = $this->request->post();
+		$data = $this->request->param();
 		if(empty(Session::get('id')))
 		{
 			$this->redirect('User/login');

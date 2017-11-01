@@ -24,7 +24,7 @@ class SellerOrder extends Controller
 			die;
 		}
 		$data = ['seller_id' => Session::get('id')];
-		$sellerOrder = $this->order->getSellerOrder($data);
+		//$sellerOrder = $this->order->getSellerOrder($data);
 		
 		return $this->fetch();
 	}

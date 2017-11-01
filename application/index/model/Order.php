@@ -30,27 +30,12 @@ class Order extends Model
 	{
 		foreach ($info as $key => $value) 
 		{
-<<<<<<< HEAD
-			/*Db::query("INSERT	INTO mumma_order( user_id,goods_id, number ,num_id, payable)  VALUES($value['user_id'], $value['goods_id'], $value['num_id'], $value['number'], ['payable'])");*/
-
-			/*$this->user_id = $value['user_id'];
-			$this->goods_id = $value['goods_id'];
-			$this->num_id = $value['num_id'];
-			$this->number = $value['number'];
-			$this->payable = $value['payable'];*/
-			//$this->status = $value['status'];
-			/*$this->save();*/
-=======
-
->>>>>>> 6bc57fb50ab30cb09f336c3e1c11478a50c3eb15
 			$res = Db::table('mumma_order')->insert(['user_id' => $value['user_id'], 'goods_id' => $value['goods_id'], 'num_id' => $value['num_id'] , 'number' => $value['number'] , 'payable' => $value['payable']]);
 		}
 		return $res;
 	}
 
 
-<<<<<<< HEAD
-=======
 	/*确认付款之后更新订单的支付状态*/
 	public function makeSure($data)
 	{
@@ -81,36 +66,7 @@ class Order extends Model
 		return 1;
 	}
 
->>>>>>> 6bc57fb50ab30cb09f336c3e1c11478a50c3eb15
-	/*public function order($gather)
-	{	
-		foreach ($gather as $key => $value) 
-		{
-			//var_dump($value);
-			$this->data($value);
-			 $this->save();
-		}
 
-	    //dump($data);
-	    foreach ($info as $key => $value) 
-		{
-			
-			$this->allowField(true)->data[$value];
-			$this->save();
-			
-		}
-		//var_dump($value);
-		foreach ($info as $vo) {
-		$data[] = [
-					'user_id'=>session::get('id'),
-					'good_id'=>$vo['id'],
-					'number'=>$vo['count'],
-					'is_pay'=>0,
-					'num_id'=>$number,
-					'payable'=>$amount
-			   ];
-		}
-
-	}*/
+	/**/
 
 }
