@@ -7,7 +7,7 @@
 {include file='common/indexHeader' /}
 <div class="menu_bg">
     <div class="menu">
-    
+
         <!--Begin 商品分类详情 Begin-->    
         <div class="nav">
             <div class="nav_t">全部商品分类</div>
@@ -81,35 +81,7 @@
             </div>
             <ul>
                 <li><span>[ 特惠 ]</span><a href="#">掬一轮明月 表无尽惦念</a></li>
-               
             </ul>
-            <div class="charge_t">
-                话费充值<div class="ch_t_icon"></div>
-            </div>
-            <form>
-            <table border="0" style="width:205px; margin-top:10px;" cellspacing="0" cellpadding="0">
-              <tr height="35">
-                <td width="33">号码</td>
-                <td><input type="text" value="" class="c_ipt" /></td>
-              </tr>
-              <tr height="35">
-                <td>面值</td>
-                <td>
-                    <select class="jj" name="city">
-                      <option value="0" selected="selected">100元</option>
-                      <option value="1">50元</option>
-                      <option value="2">30元</option>
-                      <option value="3">20元</option>
-                      <option value="4">10元</option>
-                    </select>
-                    <span style="color:#ff4e00; font-size:14px;">￥99.5</span>
-                </td>
-              </tr>
-              <tr height="35">
-                <td colspan="2"><input type="submit" value="立即充值" class="c_btn" /></td>
-              </tr>
-            </table>
-            </form>
         </div>
     </div>
    
@@ -153,6 +125,7 @@
     <div class="content mar_20">
         <img src="__IMAGE__mban_1.jpg" width="1200" height="110" />
     </div>
+
     <!--Begin 个人美妆 Begin-->  
     {volist name="res1" id="vo"}  
     <div class="i_t mar_10">
@@ -161,12 +134,12 @@
     </div>
     <div class="content">
         <div class="make_left">
-            <div class="make_ban">
+           <div class="make_ban">
                 <div id="imgPlay3">
                     <ul class="imgs" id="actor3">
-                        <li><a href="#"><img src="images/make_r.jpg" width="211" height="286" /></a></li>
-                        <li><a href="#"><img src="images/make_r.jpg" width="211" height="286" /></a></li>
-                        <li><a href="#"><img src="images/make_r.jpg" width="211" height="286" /></a></li>
+                        <li><a href="#"><img src="__IMAGE__make_r.jpg" width="211" height="286" /></a></li>
+                        <li><a href="#"><img src="__IMAGE__make_r.jpg" width="211" height="286" /></a></li>
+                        <li><a href="#"><img src="__IMAGE__make_r.jpg" width="211" height="286" /></a></li>
                     </ul>
                     <div class="prev_m">上一张</div>
                     <div class="next_m">下一张</div> 
@@ -177,7 +150,7 @@
                 <div class="fresh_txt_c">
                 {foreach $goods_res as $val}
                 {if condition="$val.big_id eq $vo.id"}
-
+            
                     <a href="{:url('index/details',['good'=>$val['id']])}">{$val.name}</a> 
                 {/if}
                {/foreach} 
@@ -201,7 +174,7 @@
         </div>
         <div class="fresh_right">
             <ul>
-                <li><a href="#"><img src="__IMAGE__make_b1.jpg" width="260" height="220" /></a></li>
+                <li><a href="#"><img src="__PICTURE__make_b1.jpg" width="260" height="220" /></a></li>
                 <li><a href="#"><img src="__IMAGE__make_b2.jpg" width="260" height="220" /></a></li>
             </ul>
         </div>
@@ -209,10 +182,8 @@
     {/volist}
     <!--End 个人美妆 End-->
 
-
 {include file="common/indexFooter"}
-  
-</div>
+
 
 </body>
 
