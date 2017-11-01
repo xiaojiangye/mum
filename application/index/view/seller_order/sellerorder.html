@@ -36,7 +36,7 @@
       
 
           <div class="myddetailbox">
-              <div>test</div>
+            
             {foreach $value['good'] as $key => $vo}
               <div class="myodetail clearfix" style="border: 1px solid grey;">
                 <div class="col-xs-2 clearPadding proimg">
@@ -100,8 +100,9 @@ $(function()
               {
                   if(data)
                   {
+                    $(this).parent().parent().empty();
                     alert('发货成功!');
-                    aler($(this).parent().parent().parent().children(':first').val());
+
                   }
                   else
                   {
