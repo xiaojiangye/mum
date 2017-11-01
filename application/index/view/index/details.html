@@ -27,33 +27,20 @@
     	<span class="fl">全部 > 商品详情 </span>
     </div>   
     <div class="content">                   
-        <div id="tsShopContainer">
+        <div id="tsShopContainer" style="height: 400px;">
             <div id="tsImgS">
-                <a href="__IMAGE__p_big.jpg" title="Images" class="MagicZoom" id="MagicZoom"><img src="{$res.0.picture|substr=1}"  /></a>
+                <a href="__IMAGE__p_big.jpg" title="Images" class="MagicZoom" id="MagicZoom"><img src="{$res.0.picture|substr=1}" /></a>
             </div>
-          
-            <div id="tsPicContainer" style="border: 1px solid green;">
-                <div id="tsImgSArrL" onclick="tsScrollArrLeft()"></div>
-                <div id="tsImgSCon">
-                    <ul>
-                    {foreach $res as $val}
-                        <li onclick="showPic(0)" rel="MagicZoom" class="tsSelectImg"><img src="{$val.picture|substr=1}" tsImgS="__IMAGE__ps1.jpg" width="79" height="79" />
-                        </li>
-                    {/foreach} 
-                    </ul>
-                </div>
-                <div id="tsImgSArrR" onclick="tsScrollArrRight()"></div>
-            </div>		
         </div>
    
-        <div class="pro_des">
+        <div class="pro_des" style="height: 400px;">
         	<div class="des_name">
             	<p>{$res[0]['name']}</p>
                 商品简介 : {$res[0]['description']}！
             </div>
             <div class="des_price">
 
-            	本店价格：<b style="text-decoration:line-through ;">￥{$res[0]['price']}</b><b>&ensp;&ensp;{$res[0]['price']*$res[0]['discount']}</b><br />
+            	本店价格：<b style="text-decoration:line-through ;">￥{$res[0]['price']}</b><b>&ensp;&ensp; ￥{$res[0]['price']*$res[0]['discount']}</b><br />
                 商品折扣：{$res[0]['discount']}<br />
                 商品重量：<span>{$res[0]['weight']}g</span><br />
                 消费积分：<span>28R</span>
@@ -136,7 +123,7 @@
                 <div class="des_con">
                 	<table border="0" align="center" style="width:745px; font-size:14px; font-family:'宋体';" cellspacing="0" cellpadding="0">
                       <tr>
-                      {foreach $res1 as $vo}
+                      
                         <td width="365"><img src="{$vo.picture|substr=1}" width="306" height="412" /></td>
                         <td>
                          <b>{$res[0]['name']}</b><br />
@@ -147,10 +134,10 @@
                         </td>
                       </tr>
                     </table>
-                    
+                {foreach $res1 as $vo}   
                     <p align="center">
                     <img src="{$vo.picture|substr=1}" width="746" height="425" /><br /><br />
-                    {/foreach}
+                 {/foreach}
 					</p>
                 </div>
           	</div>  

@@ -70,23 +70,37 @@ class Order extends Model
 
 	/*得到商家在order里面的订单号 根据对应的num得到goods 然后再根据goods里面的值得到对应的信息*/
 	public function getOrderInfo($data)
-	{
-		/*创建model中的good的对象*/
-		$good = new Goods();
-
-		$num = $this->field('distinct num_id ,number,paied,is_pay, create_time')->where($data)->order('create_time' , 'desc')->select();
-
+	{	
+		/*$num = $this->field('distinct num_id ,number,paied,is_pay, create_time')->where($data)->order('create_time' , 'desc')->select();*/
+		$num = $this->getNum($data);
 		if(empty($num))
 		{
 			return null;
 		}
 
 		$goodInfo = null;
-
 		/*记录订单的商品总数量和总价格*/
 		$countAll = null;
 		$priceAll = null;
 
+		$goodInfo = $this->getGoodsInfo($num , $goodInfo , $countAll , $priceAll);
+	
+		return $goodInfo;
+	}
+
+
+	/*根据商家传进来的条件得到所需的order中的信息*/
+	public function getNum($data)
+	{
+		return $this->field('distinct num_id ,number,paied,is_pay, create_time')->where($data)->order('create_time' , 'desc')->select();
+	}
+
+
+	/*根据商品id得到商品的具体信息*/
+	public function getGoodsInfo($num , $goodInfo , $countAll , $priceAll)
+	{	
+		/*创建model中的good的对象*/
+		$good = new Goods();
 		/*得到每个订单对应的所有商品id及其具体信息*/
 		foreach ($num as $key => $value) 
 		{
@@ -115,23 +129,26 @@ class Order extends Model
 			$goodInfo[$key]['count'] = $value['number'];
 			if($value['is_pay'] == 1)
 			{
-				$goodInfo[$key]['is_pay'] = '已支付';
+				$goodInfo[$key]['is_pay'] = '待发货';
 			}
-			else
+			else 
 			{
-				$goodInfo[$key]['is_pay'] = '待支付';
+				$goodInfo[$key]['is_pay'] = '待处理';
 			}
 			
 			$goodInfo[$key]['countAll'] = $countAll;
 			$goodInfo[$key]['priceAll'] = $priceAll;
 			$goodInfo[$key]['good'] = $res;
 
-			
-			
-			dump($goodInfo);
-			die;
+			//dump($goodInfo);
+			//die;
 		}
+
 		return $goodInfo;
 	}
+
+
+
+
 
 }

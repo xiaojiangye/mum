@@ -17,14 +17,13 @@
 
       <div class="myotitle bg-white clearfix">
           <div class="col-xs-3 clearPadding text-center pt10"><span class="activeborder">全&nbsp;&nbsp;&nbsp;部</span></div>
-          <div class="col-xs-2 clearPadding text-center pt10"><span class="pb8">待付款</span></div>
           <div class="col-xs-2 clearPadding text-center pt10"><span>待发货</span></div>
-          <div class="col-xs-2 clearPadding text-center pt10"><span>已发货</span></div>
+          <div class="col-xs-2 clearPadding text-center pt10"><span class="pb8">待收款</span></div>
           <div class="col-xs-3 clearPadding text-center pt10"><span>已完成</span></div>
       </div>
     
       <div id="ocontent">
-
+        {if isset($orderInfo)}
         {foreach $orderInfo as $value}
         <div class="myolist" style="border: 1px solid red;">
           <div class="myorderid clearfix plr15 borderbottom">
@@ -54,16 +53,16 @@
             
             <div class="ptb10 plr15 text-muted font12 clearfix">
               <div class="pull-left font12">
-                <span class="badge bg-dining" style="font-weight:normal;">待付款</span>
+                <span class="badge bg-dining" style="font-weight:normal;">{$value['is_pay']}</span>
               </div>
               <div class="pull-right">
-                <span>共100件商品</span>&nbsp;&nbsp;合计：<span class="colorred2">￥5990</span>
+                <span>共<b style="color: black;">{$value['countAll']}</b>件商品</span>&nbsp;&nbsp;合计：<span class="colorred2">￥{$value['priceAll']}</span>
               </div>
             </div>
           </div>
         </div>
         {/foreach}
-
+        {/if}
     </div>
   <!--End 用户中心 End-->  
 </div>

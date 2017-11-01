@@ -28,7 +28,6 @@ class SellerOrder extends Controller
 		/*得到商家的所有订单的所有商品*/
 		$orderInfo = $this->order->getOrderInfo($data);
 
-
 		//dump($orderInfo);
 		$this->assign('orderInfo' , $orderInfo);
 	
