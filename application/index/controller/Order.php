@@ -106,7 +106,7 @@ class Order extends Controller
 
 		$data = ['user_id' => Session::get('id') , 'is_pay' => 0];
 		$info = $this->order->getOrder($data);
-
+		
 		//dump($info);
 
 		$this->assign('info' , $info);
@@ -116,6 +116,21 @@ class Order extends Controller
 	/*确认购买进行的条件修改*/
 	public function makeSure()
 	{
+		$data = $this->request->post('num_id');
+		$data = array_unique(explode('|' , $data));
+		$res = $this->order->makeSure($data);
+
+		return $res;
+		die;
+
+		foreach ($data as $key => $value) 
+		{
+			return $value;
+			die;
+		}
+		
+		
+		return json_encode($data);
 		return 123345345;
 	}
 

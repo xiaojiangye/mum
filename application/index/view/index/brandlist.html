@@ -70,7 +70,7 @@
                         <div class="carbg">
                         	<a href="#" class="ss">收藏</a>
                         <div style="width:75px;height: 30px;background-color: pink;">
-                            <a id='addCar'>加入购物车</a>
+                            <a class='addCar'>加入购物车</a>
                             <input type="hidden" value="{$vo['id']}">
                         </div>
                         </div>
@@ -92,9 +92,10 @@
 <script type="text/javascript">
 $(function()
     {
-       $('#addCar').click(function()
+       /*$('#addCar').click(function()
         {   
             var id = $(this).next().val();
+            alert(id);
             $.post("{:url('Car/addCar')}" , {'id' : id} , function(data)
                 {
                     alert(data);
@@ -104,6 +105,26 @@ $(function()
                     }
 
                 } , "json");
-        });
+        });*/
+
+        $('.addCar').each(function()
+            {
+                $(this).click(function()
+                {   
+                    var id = $(this).next().val();
+                    //alert(id);
+                    $.post("{:url('Car/addCar')}" , {'id' : id} , function(data)
+                        {
+                            if(data)
+                            {
+                                alert('加入成功!');
+                            }
+
+                        } , "json");
+                });
+            });
+        
+
+
     });
 </script>>

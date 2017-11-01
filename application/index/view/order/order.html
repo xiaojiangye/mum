@@ -43,10 +43,10 @@
                 <td class="car_th" width="70">小计</td>
                 <td class="car_th" width="70">奖励积分</td>
               </tr>
-
+            {if isset($info)}
             {foreach $info as $vo}
                 <tr>
-                <td>{$vo['num_id']}</td>
+                <td><input style="border: none;" readonly name="num_id" value="{$vo['num_id']}" /></td>
                   <td>
                       <div class="c_s_img"><img src="{$vo['goodInfo']['picture']|substr=1}" width="73" height="73" /></div>
                       {$vo['goodInfo']['name']}
@@ -59,6 +59,7 @@
                   <td align="center">{$vo['goodInfo']['price']*0.1}</td>
                 </tr>
             {/foreach}
+            {/if}
               <!-- <tr>
               <td></td>
               <td></td>
@@ -166,11 +167,41 @@
 <script type="text/javascript">
 $(function()
   {
-    alert(1111);
     $('#make').click(function()
-      {
-          $.post()
-          alert(222);
-      });
+        {
+            alert(111);
+            var str = ""; 
+         
+            $("input[name=num_id]").each(function()
+            {               
+              //alert($(this).val());
+              str +=  $(this).val() + '|';
+            });
+            //alert(str);
+            console.log(str);
+           $.post("{:url('Order/makeSure')}" , {'num_id' : str } , function(data)
+                {
+                  if(data)
+                  {
+                    console.log(data);
+                    alert('付款成功,等待宝贝到达吧!');
+                  }
+                  else
+                  {
+                    alert('付款失败,是否网络延迟或者已经付过款了?');
+                  }
+                }); 
+            
+            //console.log(str);
+            
+                       
+        });
+
+
+
+
+
+
+
   });
 </script>
