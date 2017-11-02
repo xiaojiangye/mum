@@ -11,6 +11,9 @@
 		<div class="m_right">
             <p></p>
             <div class="mem_tit">我的订单</div>
+            {if empty($ord)}
+            <div style="text-align: center;">小主你还没有订单哦～～～～</div>
+            {else}
             <table border="0" class="order_tab" style="width:930px; text-align:center; margin-bottom:30px;" cellspacing="0" cellpadding="0">
               <tr>                      
                 <td width="20%"></td>
@@ -29,14 +32,15 @@
               {foreach $ord as $vo}
               {foreach $vo as $v}
               <tr>
-                <td><font color="#ff4e00"><a href="Order_Details.html">{$v.num_id}</a></font></td>
-                <td>2015-09-26   16:45:20</td>
+                <td><font color="#ff4e00"><a href="{:url('Order/orderDetails',['num_id'=>$v.num_id])}">{$v.num_id}</a></font></td>
+                <td>{$v.create_time}</td>
                 <td>￥{$v.payable}</td>
                 <td>未确认，未付款，未发货</td>
                 <td>取消订单</td>
               </tr>
               {/foreach}
              {/foreach}
+             {/if}
             </table>     
         </div>
     </div>

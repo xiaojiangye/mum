@@ -3,6 +3,8 @@ namespace app\index\controller;
 use think\Controller;
 use think\Session;
 use think\Db;
+use app\index\model\Address;
+use think\Request;
 use app\index\model\Goods;
 use app\index\model\Car;
 use app\index\model\Order as OrderModel;
@@ -11,11 +13,13 @@ class Order extends Controller
 	protected $order;
 	protected $goods;
 	protected $car;
+	protected $addr;
 	public function _initialize()
 	{
 		$this->order = new OrderModel();
 		$this->goods = new Goods();
 		$this->car = new Car();
+		$this->addr = new Address();
 	}
 
 	/*驱动待确认购买的界面*/
@@ -37,18 +41,35 @@ class Order extends Controller
 		foreach($info as $vo) {
 			$money[]=$vo['payable'];
 			$count[]=$vo['number'];
-		}
+		}	
 		//总价钱
 		$acount = array_sum($money);
 		//总数量
 		$cou =array_sum($count);
-		
+		//收货人
+
+		$addrRes = $this->addr->where('user_id',Session::get('id'))->order('create_time')->select();
+		//dump($addrRes);
+		if($addrRes){
+
+		$this->assign('info' , $info);
+		$this->assign('acount' , $acount);
+		$this->assign('addrRes' , $addrRes);
+		$this->assign('cou' , $cou);
+		return $this->fetch();
+
+		}else{
+
+
 		//dump($info);
 
 		$this->assign('info' , $info);
 		$this->assign('acount' , $acount);
 		$this->assign('cou' , $cou);
 		return $this->fetch();
+		}
+	
+	
 	}
 
 	/*确认购买进行的条件修改*/
@@ -105,8 +126,8 @@ class Order extends Controller
 	public function myOrder()
 	{	
 		$res = $this->order->selectOrder();
-		//dump($res);die;
-		foreach ($res as $val) {
+		if($res){
+			foreach ($res as $val) {
 			$ord[]=$this->order->selectNumId($val['num_id']);
 			
 		}
@@ -114,7 +135,29 @@ class Order extends Controller
 		//$numRes = $this->collect->count('id');
 		$this->assign('ord',$ord);
 		return $this->fetch();
+		}
+		else{
+			return $this->fetch();
+		}
 
+	}
+
+	//我的订单的详情页
+	public function orderDetails()
+	{	
+		$data = input('param.');
+		$list=Order::has('goods','<',3)->select();
+		dump($list);die;
+		$res = $this->order->goods()->where('num_id');
+		dump($res);die;
+		dump('good_id');
+		
+	//dump($data);die;
+		//$res = $this->order->where('num_id',$data['num_id'])->select();
+		//dump($res);die;
+		$this->assign('res',$res);
+
+		return $this->fetch();
 	}
 
 	

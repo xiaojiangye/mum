@@ -60,59 +60,32 @@
                 </tr>
             {/foreach}
             {/if}
-              <!-- <tr>
-              <td></td>
-              <td></td>
-                <td colspan="5" align="right" style="font-family:'Microsoft YaHei';">
-                    商品总价:<span style="color:red;font-size:16px;">{ // $amoun}</span>￥  
-                    总数量:{ // $sum}
-                </td>
-              </tr> -->
             </table>
-            
-
-
             <div class="two_t">
             	<span class="fr"><a href="{:url('car/car')}">修改</a></span>收货人信息
-            </div>
+            </div> {if !empty($addrRes)}
+
             <table border="0" class="peo_tab" style="width:1110px;" cellspacing="0" cellpadding="0">
               <tr>
                 <td class="p_td" width="160">收货人</td>
-                <td width="395">海贼王</td>
+                <td width="395">{$addrRes.0.addr_name}</td>
                 <td class="p_td" width="160">电子邮件</td>
-                <td width="395">12345678@qq.com</td>
+                <td width="395">{$addrRes.0.addr_email}</td>
               </tr>
               <tr>
                 <td class="p_td">详细信息</td>
-                <td>四川省成都市武侯区</td>
-                <td class="p_td">邮政编码</td>
-                <td>6011111</td>
-              </tr>
-              <tr>
-                <td class="p_td">电话</td>
-                <td></td>
+                <td>{$addrRes.0.addr_detail}</td>
                 <td class="p_td">手机</td>
-                <td>18600002222</td>
+                <td>{$addrRes.0.addr_phone}</td>
               </tr>
-              <tr>
-                <td class="p_td">标志建筑</td>
-                <td></td>
-                <td class="p_td">最佳送货时间</td>
-                <td></td>
-              </tr>
+              
+              
             </table>
-            
+            {else}
+            <div style="text-align: center;">小主你还没地址哦,<a href="{:url('address/address')}">点我去填写地址吧~~~~~</a></div>
+            {/if}
            
             <table border="0" style="width:900px; margin-top:20px;" cellspacing="0" cellpadding="0">
-              <!-- <tr>
-                <td align="right">
-                  该订单完成后，您将获得 <font color="#ff4e00">1815</font> 积分 ，以及价值 <font color="#ff4e00">￥0.00</font> 的红包 <br />
-                    商品总价: 
-                    <font color="#ff4e00">
-                    ￥{ // $amount}
-                    </font>  + 配送费用: <font color="#ff4e00">￥15.00</font>
-                </td>
-              </tr> -->
               <tr height="70">
                 <td align="right">
                   <b style="font-size:14px;">应付款金额：<span style="font-size:22px; color:#ff4e00;">￥{$acount}</span></b><br />

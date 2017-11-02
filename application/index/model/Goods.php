@@ -77,7 +77,7 @@ class Goods extends Model
 		//dump($big);
 		//dump($big['big']);
 		
-		$res = $this->where('big_id',$big['big'])->select();
+		$res = $this->where('big_id',$big['big'])->field('distinct(number),name,price,discount,id,big_id,weight,stock,description,picture')->select();
 		//dump($res);
 		//die;
 		//dump($res);die;
@@ -143,6 +143,12 @@ class Goods extends Model
 	public function collection($data)
 	{
 		return $this->where('id',$data)->select();
+	}
+
+	//我的订单详情的关联
+	public function orderDetails()
+	{
+		return $this->belongTos('orderDetails');
 	}
 
 

@@ -63,11 +63,11 @@ class Order extends Model
 
 		public function selectOrder()
 		{
-			return $this->where('user_id',Session::get('id'))->select();
+			return $this->where('user_id',Session::get('id'))->field('distinct(num_id)')->group('num_id')->select();
 		}
 		public function selectNumId($val)
 		{
-			return $this->where('num_id',$val)->select();
+			return $this->where('num_id',$val)->field('distinct(num_id),payable,create_time')->group('num_id')->select();
 		}
 
 	/*得到商家在order里面的订单号 根据对应的num得到goods 然后再根据goods里面的值得到对应的信息*/
@@ -154,6 +154,12 @@ class Order extends Model
 		return $res;
 	}
 
+	//我的订单详情与goodsmodel关联
+
+	public function goods()
+	{
+		return $this->hasMany('goods','good_id')->field('name,description');
+	}
 
 
 }

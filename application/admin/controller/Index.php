@@ -23,14 +23,10 @@ class Index  extends Controller
 		return $this->fetch();
 	}
 
-	public function home()
+	/*驱动后台首页的右边部分*/
+	public function order()
 	{
-		return $this->fetch('index/index');		
-	}
-
-	public function login()
-	{
-		return $this->fetch('public/login');
+		return $this->fetch('order/order');
 	}
 
 	/*渲染类型添加的页面*/

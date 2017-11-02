@@ -4,77 +4,42 @@
 {include file='public/js' /}
 <title>login</title>
 </head>
-
-{include file='public/js'}
-{include file='public/css'}
 <body class="login-layout Reg_log_style">
-<div class="logintop">    
-    <span>欢迎后台管理界面平台</span>    
-    <ul>
-    <li><a href="#">返回首页</a></li>
-    <li><a href="#">帮助</a></li>
-    <li><a href="#">关于</a></li>
-    </ul>    
-    </div>
-    <div class="loginbody">
-<div class="login-container">
-	<div class="center">
-	     <img src="__PICTURE__/logo1.png" />
-							</div>
-
-		<div class="space-6"></div>
-
-		<div class="position-relative">
-			<div id="login-box" class="login-box widget-box no-border visible">
-				<div class="widget-body">
-					<div class="widget-main">
-						<h4 class="header blue lighter bigger" style="background-color:pink;">
-							<i class="icon-coffee green">管理员登录</i>
-							<span style="float: right;" id="write"></span>
-						</h4>
-
-						<div class="login_icon"><img src="__PICTURE__/login.png" /></div>
-
-				<form name='fm' action="{:url('Administor/dologin')}" method="post" >
-					<fieldset>
+   
+  <div class="login-container" style="margin-top: 150px;">
+	  <div class="widget-body">
+			<div class="widget-main">
+        <h4 class="header blue lighter bigger">
+					<i class="icon-coffee green">管理员登录</i>
+				</h4>
+        <div class="login_icon"><img src="__PICTURE__/login.png" /></div>
+				<fieldset>
 					<ul>
-						<li class="frame_style"><label class="user_icon"></label><input name="uname" type="text"  id="username"/><i>用户名</i></li>
-
-						<li class="frame_style"><label class="password_icon"></label><input name="pwd" type="password"   id="pad"/><i>密码</i></li>
-
-						<li class="frame_style form_error"><label class="Codes_icon"></label><input name="验证码" type="text"   id="Codes_text"/><i>验证码</i><div class="Codes_region"></div></li>
-
-						</ul>
-						<div class="space"></div>
-
-						<div class="clearfix">
-							<label class="inline">
-								<input type="checkbox" class="ace">
-								<span class="lbl">自动登录</span>
-							</label>
-				</form>
-							<button type="button" class="width-35 pull-right btn btn-sm btn-primary" id="log">
-								<i class="icon-key"></i>
-								登录
-							</button>
-						</div>
-
-						<div class="space-4"></div>
-					</fieldset>
-			
-				<div class="social-or-login center">
-					<span class="bigger-110">通知</span>
-				</div>
-			</div><!-- /widget-main -->
-
-					<div class="toolbar clearfix">
+						<li class="frame_style">
+                <input name="uname" type="text"  id="username"/>
+                <i>用户名</i>
+            </li>
+						<li class="frame_style">
+               
+                <input name="pwd" type="password"   id="pad"/>
+                <i>密码</i>
+            </li>
+					</ul>
+					<div class="clearfix">
+						<label class="inline">
+							<input type="checkbox" class="ace">
+							<span class="lbl">自动登录</span>
+						</label>
+						<button type="button" class="width-35 pull-right btn btn-sm btn-primary" id="log">
+							<i class="icon-key"></i>
+							登录
+						</button>
 					</div>
-				</div><!-- /widget-body -->
-			</div><!-- /login-box -->
-		</div><!-- /position-relative -->
+				</fieldset>
+			</div>
+		</div>
 	</div>
-    </div>
-    <strong></strong>
+	
 </body>
 </html>
 <script type="text/javascript">
@@ -82,11 +47,11 @@
 
         $('#log').click(function () {
           var uname = $('#username').val();
-          alert(uname);
+        
           var pwd = $('#pad').val();
-          alert(pwd);
+         
            $.post("{:url('Administor/dologin')}",{uname:uname,pwd:pwd},function (data) {
-            //console.log(data);
+           
             alert(data);
             var data = JSON.parse(data);
             if(data == 0){
@@ -94,7 +59,7 @@
             }else if(data == 2){
               $('#write').html('用户名不正确');
             }else if(data == 1) {
-             window.location.href="admin/index/index"; 
+             window.location.href="{:url('Index/index')}"; 
             }
            },'json');
            return false;
