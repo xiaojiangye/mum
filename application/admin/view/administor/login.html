@@ -79,11 +79,12 @@
 </html>
 <script type="text/javascript">
   $(function(){
+
         $('#log').click(function () {
           var uname = $('#username').val();
-          //alert(name);
+          alert(uname);
           var pwd = $('#pad').val();
-          //alert(pwd);
+          alert(pwd);
            $.post("{:url('Administor/dologin')}",{uname:uname,pwd:pwd},function (data) {
             //console.log(data);
             alert(data);

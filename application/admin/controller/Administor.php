@@ -25,9 +25,11 @@ class Administor  extends Controller
 	 public function dologin()
     {   
       $uname = input('post.uname');
+      //dump($uname);die;
       $pwd = input('post.pwd');
       $result =  Db::table('mumma_user')->where('uname',"$uname")->find();
        //查询结果
+    // dump($result);die;
       if ($result) {
         if ($pwd !== $result['pwd']) 
         {
