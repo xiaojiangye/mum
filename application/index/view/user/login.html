@@ -1,19 +1,9 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-	<link type="text/css" rel="stylesheet" href="__CSS__style.css" />   
-    <script type="text/javascript" src="__JS__jquery-1.11.1.min_044d0927.js"></script>
-    <script type="text/javascript" src="__JS__jquery.bxslider_e88acd1b.js"></script>
-    <script type="text/javascript" src="__JS__jquery-1.8.2.min.js"></script>
-    <script type="text/javascript" src="__JS__menu.js"></script>      
-	  <script type="text/javascript" src="__JS__select.js"></script>
-    <script type="text/javascript" src="__JS__lrscroll.js"></script>
-    <script type="text/javascript" src="__JS__bban.js"></script>
-    <script type="text/javascript" src="__JS__hban.js"></script>
-    <script type="text/javascript" src="__JS__tban.js"></script>
-	<script type="text/javascript" src="__JS__lrscroll_1.js"></script>
-<title>登录页面</title>
+<link type="text/css" rel="stylesheet" href="__CSS__style.css" />   
+{include file='public/js' /}
+<title>userlogin.html</title>
 </head>
 <body>  
 <!--Begin Header Begin-->
@@ -97,15 +87,13 @@
 <!--Begin Footer Begin-->
 <div class="btmbg">
     <div class="btm">
-        备案/许可证编号：蜀ICP备12009302号-1-www.dingguagua.com   Copyright © 2015-2018  All Rights Reserved. 复制必究 , Technical Support: Dgg Group <br />
-        
+        备案/许可证编号：蜀ICP备12009302号-1-www.dingguagua.com   Copyright © 2015-2018  All Rights Reserved. 复制必究 , Technical Support: Dgg Group <br />  
     </div>    	
 </div>
 <!--End Footer End -->    
 
 </body>
 </html>
-
 <script type="text/javascript">
   $(function(){
         $('#log').click(function () {
@@ -144,12 +132,6 @@
 
             $('#uerror').html("用户名不能为空");
             }
-            /*$.post("{url('User/login')}",{name:name},function (data) {
-             alert(data);
-             },'json');*/
-            /*if($("#usernaem").val() !== "" ) {
-               $('#uerror').html("用户名不存在");
-            }*/
             $("#username").css("background-color","");
         })
 

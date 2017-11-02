@@ -7,103 +7,39 @@
 <body>
 <!--Begin Header Begin-->
 <div class="soubg">
-    <div class="sou">
-
-        <span class="fr">
+    <div class="sou" >
         {$Think.session.id}
-            <span class="fl">
-                {if empty(session('id'))}
-                    你好，请
-                    <a href="{:url('User/login')}">登录</a>&nbsp; 
-                    <a href="{:url('User/regist')}" style="color:#ff4e00;">免费注册</a>
-                {else}
-                {if session('type') ==0}
-                    <a href="{:url('User/memberUser')}">用户个人中心</a>
-                {else}
-                 <a href="{:url('seller/selInfo')}">商家中心</a>
-                 {/if}
-                
-             {/if}
-
-            <span class="ss">
-                <div class="ss_list">
-                    <a href="#">收藏夹</a>
-                    <div class="ss_list_bg">
-                        <div class="s_city_t"></div>
-                        <div class="ss_list_c">
-                            <ul>
-                                <li><a href="#">收藏的商家</a></li>
-                                <li><a href="#">收藏的商品</a></li>
-                            </ul>
-                        </div>
-                    </div>     
-                </div>
-              
-            </span>
-           
+        <span class="fr" >
+            {if empty(session('id'))}
+                你好，请
+                <a href="{:url('User/login')}">登录</a>&nbsp; 
+                <a href="{:url('User/regist')}" style="color:#ff4e00;">免费注册</a>
+            {else}
+            {if session('type') ==0}
+                <a href="{:url('User/memberUser')}">用户个人中心</a>
+            {else}
+             <a href="{:url('seller/selInfo')}">商家中心</a>
+            {/if}
+            {/if}
+             <div class="ss_list">
+                    <a href="{:url('Lottery/index')}">抽奖赢礼品</a>
+             </div>
+            <div class="ss_list">
+                <a href="#">收藏夹</a>
+                <div class="ss_list_bg">
+                    <div class="ss_list_c">
+                        <ul>
+                            <li><a href="#">收藏的商店</a></li>
+                            <li><a href="#">收藏的物品</a></li>
+                        </ul>
+                    </div>
+                </div>     
+            </div>
         </span>
     </div>
 </div>
-<div class="top">
-    <div class="logo"><a href="Index.html"><img src="__IMAGE__logo.png" /></a></div>
-    <div class="search">
-    	<form>
-        	<input type="text" value="" class="s_ipt" />
-            <input type="submit" value="搜索" class="s_btn" />
-        </form>                      
-        <span class="fl"><a href="#">咖啡</a><a href="#">iphone 6S</a><a href="#">新鲜美食</a><a href="#">蛋糕</a><a href="#">日用品</a><a href="#">连衣裙</a></span>
-    </div>
-    <div class="i_car">
 
-    	<div class="car_t"><a href="{:url('car/car')}">购物车 </a>[ <span>3</span> ]</div>
-
-        <div class="car_bg">
-       
-           
-            <div class="price_sum">共计&nbsp; <font color="#ff4e00">￥</font><span>1058</span></div>
-            <div class="price_a"><a href="#">去购物车结算</a></div>
-            <!--End 购物车已登录 End-->
-        </div>
-    </div>
-</div>
-<!--End Header End--> 
-
-<!--Begin Menu Begin-->
-<div class="menu_bg">
-  <div class="menu">
-      <!--Begin 商品分类详情 Begin-->    
-      <div class="nav">
-          <div class="nav_t">全部商品分类</div>
-            <div class="leftNav none">
-                <ul>      
-                    <li>
-                      <div class="fj">
-                          <span class="n_img"><span></span><img src="__IMAGE__nav1.png" /></span>
-                            <span class="fl">进口食品、生鲜</span>
-                        </div>
-                        <div class="zj">
-                            <div class="zj_l">
-                                <div class="zj_l_c">
-                                    <h2>零食 / 糖果 / 巧克力</h2>
-                                    <a href="#">坚果</a>|<a href="#">蜜饯</a>|<a href="#">红枣</a>|<a href="#">牛肉干</a>|<a href="#">巧克力</a>|
-                                    <a href="#">口香糖</a>|<a href="#">海苔</a>|<a href="#">鱼干</a>|<a href="#">蜜饯</a>|<a href="#">红枣</a>|
-                                    <a href="#">蜜饯</a>|<a href="#">红枣</a>|<a href="#">牛肉干</a>|<a href="#">蜜饯</a>|
-                                </div>
-                            </div>
-                        </div>
-                          </li>           
-                                
-                </ul>            
-            </div>
-        </div>  
-        <!--End 商品分类详情 End-->
-      <ul class="menu_r">                
-          <li><a href="{:url('index/index')}">首页</a></li>        
-
-        </ul>
-        <div class="m_ad">抢购双十一！</div>
-    </div>
-</div>
+{include file='common/nav' /}
 
 </body>
 </html>

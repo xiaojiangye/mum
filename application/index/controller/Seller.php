@@ -83,7 +83,7 @@ class Seller extends Controller
     public function exit()
     {
     	session(null);
-    	$this->fetch('index/index');
+    	$this->redirect('index/index');
     }
 
 	/*渲染商家中心的页面  小店信息*/

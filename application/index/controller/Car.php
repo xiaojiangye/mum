@@ -59,31 +59,6 @@ class Car extends Controller
 		return $res;
 	}
 
-	//加入购物车 
-	/*public function addcar()
-	{
-		加入购物车之前先判断是否登录成功
-		if(empty(Session::get('id')))
-		{
-			$this->redirect('User/login');
-			die;
-		}
-		$good = input('param.');
-		dump($good);
-
-		$data = ['user_id'=> session::get('id'),'goods_id'=>$good['good']];
-		$res = $this->car->where($data)->setInc('number',1);
-		if (!$res) {
-		  	$this->car->data(['goods_id'=>$good['good'],'user_id'=>session::get('id')]);
-			$res = $this->car->save();
-		  }
-		if ($res) {
-			//$this->redirect('index/branlist',[ 'big' => $big['good'] ]);
-		}else {
-			//$this->error('添加失败',"index/branlist");
-		}
-	}*/
-
 
 	/*增加购物车中已的物品的数量*/
 	public function updateAddCarNum()
@@ -100,7 +75,6 @@ class Car extends Controller
 		$num = $this->car->updateSubCarNum($data['goods_id']);
 		return json_encode($num);	
 	}
-
 
 
 	//购物车第二步
