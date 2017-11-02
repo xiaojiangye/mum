@@ -1,10 +1,10 @@
 <?php
 
 namespace app\index\model;
-
 use think\Model;
 use think\Db;
 use app\admin\model\Big;
+
 use app\admin\model\Small;
 use think\Session;
 
@@ -133,6 +133,17 @@ class Goods extends Model
 		return $this->limit(4)->order('create_time')->select();
 	}
 
+   //首页根据big查询物品的信息
+	public function referGoods($val)
+	{
+		return $this->where('id',$val)->select();
+	}
+
+	//我的收藏
+	public function collection($data)
+	{
+		return $this->where('id',$data)->select();
+	}
 
 
 

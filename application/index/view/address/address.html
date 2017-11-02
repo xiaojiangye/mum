@@ -39,19 +39,13 @@
                 <td align="right">收货人姓名</td>
                 <td style="font-family:'宋体';"><input type="text"  class="add_ipt" name="consignee" />（必填）<span id="name"></span></td>
                 <td align="right">电子邮箱</td>
-                <td style="font-family:'宋体';"><input type="text"  class="add_ipt" name="cmeail" />（必填）</td>
+                <td style="font-family:'宋体';"><input type="text"  class="add_ipt" name="cemail" />（必填）</td>
               </tr>
               <tr>
                 <td align="right">详细地址</td>
                 <td style="font-family:'宋体';"><input type="text"  class="add_ipt" name="deaddr" />（必填）</td>
-                <td align="right">邮政编码</td>
-                <td style="font-family:'宋体';"><input type="text"  class="add_ipt" name=code /></td>
-              </tr>
-              <tr>
                 <td align="right">手机</td>
                 <td style="font-family:'宋体';"><input type="text"  class="add_ipt" name="cphone" />（必填）</td>
-                <td align="right">标志建筑</td>
-                <td style="font-family:'宋体';"><input type="text"  class="add_ipt" name="cbulid"/></td>
               </tr>
             </table>
            	<p align="right">
@@ -87,14 +81,11 @@
                     <td align="right">电子邮箱：</td>
                     <td>{$vo.addr_email}</td>
                   </tr>
-                  <tr>
-                    <td align="right">标志建筑：</td>
-                    <td>{$vo.addr_bulid}</td>
-                  </tr>
+                  
                 </table>
                 <p align="right">
-                <button id="mo" value="{$vo.id}">{if $vo.is_default == 1}默认{else}设为默认{/if}</button>
-                <button id="edit">编辑</button>
+                {if $vo.is_default == 1}默认{else}设为默认{/if}
+               <a href="{:url('address/del',['id'=>$vo.id])}">删除</a>
                 </p>
      {/foreach}
             </div>
@@ -111,13 +102,11 @@
           var city = $('#s_city').val()
           var county = $('#s_county').val();
           var consignee = $("input[name='consignee']").val();
-          var cmeail = $("input[name='cemail']").val();
+          var cemail = $("input[name='cemail']").val();
           var cphone = $("input[name='cphone']").val();
           var deaddr = $("input[name='deaddr']").val();
-          var cbuild = $("input[name='cbulid']").val();
-
-          //alert(deaddr);
-              $.post('aasd',{province:province,city:city,county:county,consignee:consignee,cmeail:cemail,cphone:cphone,deaddr:deaddr,cbuild:cbulid},success);
+          alert(cemail);
+              $.post("{:url('address/addAddr')}",{province:province,city:city,county:county,consignee:consignee,cemail:cemail,cphone:cphone,deaddr:deaddr},success);
             //$.post('addAddr',{city:city},success);
             function success (data)
             { 

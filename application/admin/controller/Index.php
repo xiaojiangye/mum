@@ -25,7 +25,7 @@ class Index  extends Controller
 
 	public function home()
 	{
-		return $this->fetch();		
+		return $this->fetch('index/index');		
 	}
 
 	public function login()

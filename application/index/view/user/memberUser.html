@@ -2,6 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 {include file="common/mcss" /}
+  <script type="text/javascript" src="__JS__jquery-1.11.3.js"></script>
 <title>个人信息</title>
 </head>
 <body> 
@@ -18,24 +19,24 @@
                     </td>
                     <td>
                     	<div class="m_user">
-                     <form method="post">
+                     <form method="post" enctype="multipart/form-data" >
                        昵称:&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" value="{$res['uname']}" name="name" style="border:none;">
                        </div>
                        
-                            <div><input type="submit" id="edit" value="确认修改昵称" style="border:none;width: 100px;color:red;background-color:pink;margin-top:10px;" ></div>
+                            <div><input type="button" id="edit" value="确认修改昵称" style="border:none;width: 100px;color:red;background-color:white;margin-top:10px;" ></div>
                       </form>
                         <p>
                             等级：普通用户 <br />
                             上一次登录时间: 2015-09-28 18:19:47<br />
-                            您还没有通过邮件认证 <a href="" style="color:#ff4e00;">点此发送认证邮件</a>
+                            
                         </p>
                         <div class="m_notice" >
                           <!-- 头像的修改 -->
-                         <form action="/index/user/upload" enctype="multipart/form-data" method="post">
+                         <!-- <form action="/index/user/upload" enctype="multipart/form-data" method="post">
                             <font color="red">修改头像</font>
                             <input type="file" name="image" />
                             <input type="submit" value="上传"/>
-                          </form>
+                          </form> -->
                         </div>
                     </td>
                   </tr>
@@ -88,8 +89,10 @@
 </html>
 <script type="text/javascript">
     $(function() {
-      $('#edit').click (function() {
+     // alert(11) 
+           $('#edit').click(function() {
         var  name = $("input[name='name']").val();
+        alert(name);
        /* var phone =$("input[name='phone']").val();
         var email = $("input[name = 'email']").val();*/
        // alert(phone);
@@ -100,7 +103,7 @@
              //console.log(data);
              },'json');*/
         
-         $.post('editUser',{name:name},success,'text')
+         $.post("{:url('user/editUser')}",{name:name},success,'text')
          function success(data) {
              var data = JSON.parse(data);
              console.log(data);
@@ -112,11 +115,11 @@
              }
              };
       return false;
-      })
+      });
       
 
 
-    })
+    });
     
      
 

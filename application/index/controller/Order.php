@@ -187,5 +187,21 @@ class Order extends Controller
 			
 	}
 
+	//我的订单
+	public function myOrder()
+	{	
+		$res = $this->order->selectOrder();
+		//dump($res);die;
+		foreach ($res as $val) {
+			$ord[]=$this->order->selectNumId($val['num_id']);
+			
+		}
+		//dump($ord);die;
+		//$numRes = $this->collect->count('id');
+		$this->assign('ord',$ord);
+		return $this->fetch();
+
+	}
+
 	
 }

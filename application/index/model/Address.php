@@ -9,26 +9,27 @@ class Address extends Model
 	public function add($data)
 	{	
 		$time = time();
+
 		//dump($time);
-		$addr = $data['s_province'] . $data['s_city'] . $data['s_county'];
+		$addr = $data['province'] . $data['city'] . $data['county'];
 		//dump($addr);
+		//dump($data);die;
 		$id = Session::get('id');
+		//dump($data['consignee']);die;
 		//dump($id);die;
 		$list=[
 				'addr_name'  => $data['consignee'],
 				'addr_phone' => $data['cphone'],
 				'addr_addr'  => $addr,
-				'addr_email' => $data['cmeail'],
+				'addr_email' => $data['cemail'],
 				'addr_detail' => $data['deaddr'],
-				'addr_code'  => $data['code'],
-				'addr_bulid'     => $data['cbulid'],
 				'create_time' => $time,
 				'user_id'     => $id
-
 		];
-
-		$res = $this->save($list);
-		return $res;
+	
+		$this->data($list);
+		return $this->save();
+		
 
 	}
 

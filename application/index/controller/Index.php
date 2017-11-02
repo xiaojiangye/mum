@@ -27,11 +27,29 @@ class Index  extends Controller
     {
       //大商品的种类 big
         $res1 = $this->big->referBig();
+        foreach($res1 as $val)
+        {
+         $res[] = $this->goods->referGoods($val['id']);
+        }
+        //dump($res[0][0]);die;
         $goods = model('goods');
         $goods_res = $goods->select();
+        $goodsRes = $goods->group('big_id')->field('big_id')->select();
+        foreach($goodsRes as $key=> $val)
+        {
+          $bigRes[] = $val['big_id'];
+        }
+       //dump($bigRes[$key]);die;
+      // dump($goods_res);
+        //dump($bigRes);die;
+        foreach($bigRes as $value)
+        { 
+           $result[] = $this->goods->referGoods($value);
+        }
         $this->assign('res1',$res1);
+        $this->assign('res',$res);
         $this->assign('goods_res',$goods_res);
-
+        
       /*得到轮播图*/
       $carousel = $this->carousel->selectCarousel();
       $this->assign('carousel' , $carousel);

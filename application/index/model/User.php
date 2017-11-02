@@ -32,7 +32,7 @@ class User  extends Model
 	{
 		//return $this->where('id',session::get('id'))->update(['name'=>$data['name'],'phone'=>$data['phone'],'email'=>$data['email']]);*/
 		//dump($data['name']);die;
-		return $this->where('id',session::get('id'))->update(['uname'=>$data['uname']]);
+		return $this->where('id',session::get('id'))->update(['uname'=>$data['name']]);
 	}
 	//电话号码修改
 	public function ajaxPhone($data)
@@ -41,9 +41,7 @@ class User  extends Model
 		$result = $this->where('phone',$data['phone'])->select();
 		//dump($result);
 		if ($result) {
-			return   $this->where('id',session::get('id'))->update(['phone'=>$data['rephone']]);
-			 //dump($res);
-			 
+			return   $this->where('id',session::get('id'))->update(['phone'=>$data['rephone']]); 
 		}else {
 			return  0;
 		}

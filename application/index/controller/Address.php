@@ -25,7 +25,13 @@ class Address extends Controller
 	{	
 
 		$data = $this->request->post();
-		dump($data);die;
+		$res = $this->address->add($data);
+		//dump($res);die;
+		if($res) {
+			return 1;
+		}else{
+			return 0;
+		}
 		
 	}
 	//是否设为默认
@@ -35,5 +41,13 @@ class Address extends Controller
 	//    $res = $this->address->mo($data);
 
 	// }
+	public function del()
+	{
+		$data = input('param.');
+		$res = $this->address->where('id',$data['id'])->delete();
+		if($res){
+			$this->redirect('address/address');
+		}
+	}
 
 }

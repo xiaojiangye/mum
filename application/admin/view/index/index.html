@@ -6,18 +6,12 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<link href="__CSS__bootstrap.min.css" rel="stylesheet" />
 		<link rel="stylesheet" href="__CSS__font-awesome.min.css" />
-		<!--[if IE 7]>
-		  <link rel="stylesheet" href="css/font-awesome-ie7.min.css" />
-		<![endif]-->
 		<link rel="stylesheet" href="__CSS__ace.min.css" />
 		<link rel="stylesheet" href="__CSS__ace-rtl.min.css" />
 		<link rel="stylesheet" href="__CSS__ace-skins.min.css" />
         <link rel="stylesheet" href="__CSS__style.css"/>
-		
 		<script src="__JS__ace-extra.min.js"></script>
-		
 		<script src="__JS__jquery-1.9.1.min.js"></script>        
-		
 		<script type="text/javascript">
 			if("ontouchend" in document) document.write("<script src='__JS__jquery.mobile.custom.min.js'>"+"<"+"script>");
 		</script>
@@ -349,7 +343,7 @@ function link_operating(name,title){
 					</div><!-- #sidebar-shortcuts -->
 					<div id="menu_style" class="menu_style">
 					<ul class="nav nav-list" id="nav_list" style="border: 1px solid blue;width: 180px;margin-top: 90px;">
-				     <li class="home"><a href="javascript:void(0)" name="{:url('Index/home')}" class="iframeurl" title=""><i class="icon-home"></i><span class="menu-text"> 系统首页 </span></a></li>
+				     <li class="home"><a href="javascript:void(0)" name="{:url('Index/index')}" class="iframeurl" title=""><i class="icon-index"></i><span class="menu-text"> 系统首页 </span></a></li>
                  <!--  <li><a href="#" class="dropdown-toggle"><i class="icon-desktop"></i><span class="menu-text"> 产品管理 </span><b class="arrow icon-angle-down"></b></a>
                   	<ul class="submenu">
                      <li class="home"><a  href="javascript:void(0)" name="Products_List.html"  title="商品类型" class="iframeurl"><i class="icon-double-angle-right"></i>商品类型</a></li> 
@@ -370,9 +364,9 @@ function link_operating(name,title){
                     <!-- <li class="home"><a href="javascript:void(0)" name="transaction.html" title="交易信息"  class="iframeurl"><i class="icon-double-angle-right"></i>交易统计</a></li> -->
 					<!-- <li class="home"><a href="javascript:void(0)" name="Order_Chart.html" title="交易订单（图）"  class="iframeurl"><i class="icon-double-angle-right"></i>交易订单(图)</a></li> -->
                     <!-- <li class="home"><a href="javascript:void(0)" name="Orderform.html" title="订单管理"  class="iframeurl"><i class="icon-double-angle-right"></i>查看订单</a></li> -->
-                    <li class="home"><a href="javascript:void(0)" name="order.html" title="交易金额"  class="iframeurl"><i class="icon-double-angle-right"></i>待发货订单</a></li>
-                    <li class="home"><a href="javascript:void(0)" name="order.html" title="交易金额"  class="iframeurl"><i class="icon-double-angle-right"></i>成功订单</a></li>
-                     <li class="home"><a href="javascript:void(0)" name="order.html" title="交易金额"  class="iframeurl"><i class="icon-double-angle-right"></i>失败订单</a></li>
+                    <li class="home"><a href="javascript:void(0)" name="{:url('order/order')}" title="交易金额"  class="iframeurl"><i class="icon-double-angle-right"></i>待发货订单</a></li>
+                    <li class="home"><a href="javascript:void(0)" name="{:url('order/order')}" title="交易金额"  class="iframeurl"><i class="icon-double-angle-right"></i>成功订单</a></li>
+                     <li class="home"><a href="javascript:void(0)" name="{:url('order/order')}" title="交易金额"  class="iframeurl"><i class="icon-double-angle-right"></i>失败订单</a></li>
 
                    <!--  <li class="home"><a href="javascript:void(0)" name="Order_handling.html" title="订单处理"  class="iframeurl"><i class="icon-double-angle-right"></i>订单处理</a></li> -->
 					 <!--  <li class="home"><a href="javascript:void(0)" name="Refund.html" title="退款管理"  class="iframeurl"><i class="icon-double-angle-right"></i>退款管理</a></li> -->
