@@ -61,14 +61,7 @@ class Order extends Model
 		return $res;
 	}
 
-		public function selectOrder()
-		{
-			return $this->where('user_id',Session::get('id'))->field('distinct(num_id)')->group('num_id')->select();
-		}
-		public function selectNumId($val)
-		{
-			return $this->where('num_id',$val)->field('distinct(num_id),payable,create_time')->group('num_id')->select();
-		}
+		
 
 	/*得到商家在order里面的订单号 根据对应的num得到goods 然后再根据goods里面的值得到对应的信息*/
 	public function getOrderInfo($data)
@@ -153,13 +146,51 @@ class Order extends Model
 		
 		return $res;
 	}
+	//订单详情页
 
-	//我的订单详情与goodsmodel关联
+	public function detail($data)
+	{	
 
-	public function goods()
-	{
-		return $this->hasMany('goods','good_id')->field('name,description');
+		return $this->where('num_id',$data['num_id'])->field('goods_id')->select(); 
 	}
+
+
+	//查询订单
+		public function selectOrder()
+		{
+			return $this->where('user_id',Session::get('id'))->field('distinct(num_id)')->group('num_id')->select();
+		}
+		//去重订单号 全部订单号is_pay=0
+		public function selectNumId($val)
+		{
+			return $this->where('num_id',$val)->field('distinct(num_id),payable,create_time,is_pay')->group('num_id')->order('create_time desc')->select();
+		}
+		//is_pay=1
+		public function selectPayz()
+		{
+			return $this->where('is_pay',0)->field('distinct(num_id)')->group('num_id')->select();
+		}
+
+         //is_pay=3
+		// public function selectNumId($val)
+		// {
+		// 	return $this->where(['num_id'=>$val,'is_pay'=>3] )->field('distinct(num_id),payable,create_time,is_pay')->group('num_id')->order('create_time desc')->select();
+		// }
+		// public function selectPayt
+		// {
+		// 	return $this->where(['num_id'=>$val,'is_pay'=>2])->field('distinct(num_id),payable,create_time,is_pay')->group('num_id')->order('create_time desc')->select();
+		// }
+		
+
+		//消费中心的查询
+		public function selectMoney()
+		{
+			return $this->where('user_id',Session::get('id'))->field('distinct(num_id),payable,number')->select();
+		}
+
+
+
+
 
 
 }

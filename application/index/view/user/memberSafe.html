@@ -145,27 +145,35 @@
       var pwd = $("input[name='pwd']").val();
       var npwd = $("input[name='npwd']").val();
       var repwd = $("input[name='repwd']").val();
+      alert(repwd);
       if (npwd !== repwd) {
-        $('#rpwd').html('两次密码不一致');
-      }
-      //alert(rephone);
-      $.post('editPwd',{pwd:pwd,npwd:npwd},success,'text')
-      function success(data)
-      {
-        var data = JSON.parse(data);
-        console.log(data);
-        if (data == 0){
-          alert('原密码不正确'); 
+          $('#rpwd').html('两次密码不一致');
+        }else{
+          if ( /^[a-z0-9_-]{5,18}$/.test(repwd)) {
+             $.post('editPwd',{pwd:pwd,npwd:npwd},success,'text')
+          function success(data)
+          {
+              var data = JSON.parse(data);
+              console.log(data);
+              if (data == 0){
+                alert('原密码不正确'); 
+              }
+              if (data == 1)
+              {
+                alert('修改成功');
+              }
+              if (data ==2) {
+                alert('修改失败');                          
+              }
+          }
+
+          }else{
+             $('#rpwd').html('密码格式不正确');
+          }
         }
-        if (data == 1)
-        {
-          alert('修改成功');
-        }
-        if (data ==2) {
-          alert('修改失败');                          
-        }
-      }
+     
     })
+
 
   });
 

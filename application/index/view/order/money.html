@@ -23,7 +23,7 @@
                 </div>
              
                <div class="Details_list">
-                 <div class="hd" ><ul><li id="c">充值消费记录</li><li id="t">提现记录</li></ul></div>
+                 <div class="hd" ><ul><li id="c">消费记录</li></ul></div>
                  <div class="bd">
                    <ul class="consumption_list" id="consumption_list">
                       <table>
@@ -31,8 +31,14 @@
                         <tr><td class="label_1">操作时间</td><td class="label_2">类型</td><td class="label_3">金额</td><td class="label_4">备注</td></tr>
                        </thead>
                        <tbody>
-                         <tr><td>2016-2-23 12:23:34</td><td>消费</td><td>123.00</td><td>商城购物消费</td></tr>
-                         <tr><td>2016-2-23 12:23:34</td><td>消费</td><td>123.00</td><td>商城购物消费</td></tr>
+                       {foreach $res as $val}
+                         <tr>
+                            <td>{$val['create_time']}</td>
+                            <td>消费</td>
+                            <td>{$val['payable']}</td>
+                            <td>商城购物消费</td>
+                          </tr>
+                          {/foreach}
                        </tbody>
                       </table>
                     </ul>

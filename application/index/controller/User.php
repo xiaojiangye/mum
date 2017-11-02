@@ -24,26 +24,26 @@ class User extends Controller
 
 
     /*注册时查询用户名是否存在的判断*/
-    // public function selectUser()
-    // {
-    //   $data = $this->request->post();
-    //   $name = $data['name'];
-    //   if($data['style'] == '买家')
-    //   {
-    //     if(!empty($this->user->getName($name)))
-    //       {
-    //         return 0;
-    //       }
-    //   }
-    //   else if($data['style'] == '卖家')
-    //   {
-    //      if(!empty($this->seller->getByType('name' , $name)))
-    //      {
-    //        return 0;
-    //      }
-    //   }
-    //   return 1;
-    // }
+    public function selectUser()
+    {
+      $data = $this->request->post();
+      $name = $data['name'];
+      if($data['style'] == '买家')
+      {
+        if(!empty($this->user->getName($name)))
+          {
+            return 0;
+          }
+      }
+      else if($data['style'] == '卖家')
+      {
+         if(!empty($this->seller->getByType('name' , $name)))
+         {
+           return 0;
+         }
+      }
+      return 1;
+    }
 
 
     /*渲染注册页面*/
@@ -100,6 +100,9 @@ class User extends Controller
           return 0;
         }else{
           $id = $result['id'];
+          //记录登录时间
+          //积分加2
+          $this->user->where("id=$id")->setInc('grade',5);
           Session::set('uname',"$uname");
           Session::set('id',"$id");
           Session::set('type',0);   

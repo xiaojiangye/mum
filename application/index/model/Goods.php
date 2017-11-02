@@ -146,10 +146,10 @@ class Goods extends Model
 	}
 
 	//我的订单详情的关联
-	public function orderDetails()
-	{
-		return $this->belongTos('orderDetails');
-	}
+	// public function orderDetails()
+	// {
+	// 	return $this->belongTos('orderDetails');
+	// }
 
 
 

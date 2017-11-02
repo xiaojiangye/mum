@@ -118,7 +118,8 @@ class Order extends Controller
 			
 	}
 	public function forder()
-	{
+	{	
+
 		return $this->fetch();
 	}
 
@@ -143,22 +144,24 @@ class Order extends Controller
 	}
 
 	//我的订单的详情页
-	public function orderDetails()
-	{	
-		$data = input('param.');
-		$list=Order::has('goods','<',3)->select();
-		dump($list);die;
-		$res = $this->order->goods()->where('num_id');
-		dump($res);die;
-		dump('good_id');
-		
-	//dump($data);die;
-		//$res = $this->order->where('num_id',$data['num_id'])->select();
-		//dump($res);die;
-		$this->assign('res',$res);
+	
 
+	public function pay()
+	{
+		
+	}
+	//退出
+	public function reorder()
+	{
+		return $this->fetch();
+	}
+	//消费中心
+	public function money()
+	{	
+		$res =$this->order->selectMoney();
+		//dump($res[0]['number']);die;
+		$this->assign('res',$res);
 		return $this->fetch();
 	}
 
-	
 }
